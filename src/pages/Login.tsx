@@ -28,11 +28,17 @@ export const Login: React.FunctionComponent = () => {
       <section id="login-container">
         <h3 id="login-title">Login</h3>
         <form id="login-form" onSubmit={handleFormSubmit}>
-          <Input type="text" value={id} onChange={handleIdChange} />
           <Input
+            onChange={handleIdChange}
+            placeholder="ID"
+            type="text"
+            value={id}
+          />
+          <Input
+            onChange={handlePasswordChange}
+            placeholder="Password"
             type="password"
             value={password}
-            onChange={handlePasswordChange}
           />
           <Button type="submit" disabled={!id || !password}>
             Login
