@@ -13,11 +13,11 @@ export const Input: React.FunctionComponent<InputProps> = ({
 }) => {
   return (
     <input
-      spellCheck={false}
       className="input"
+      onChange={onChange}
+      spellCheck={false}
       type={type}
       value={value}
-      onChange={onChange}
     />
   );
 };
