@@ -1,0 +1,17 @@
+.button {
+  background-color: $color-primary;
+  border-radius: $radius;
+  color: $color-font;
+  cursor: pointer;
+  font-size: $font-size-md;
+  padding: $padding-sm;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
