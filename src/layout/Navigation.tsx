@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Navigation: React.FunctionComponent = () => {
+interface NavigationProps {
+  toggleSidebar: () => void;
+}
+
+export const Navigation: React.FunctionComponent<NavigationProps> = ({
+  toggleSidebar
+}) => {
   return (
     <nav id="navigation">
       <div id="navigation-left">
@@ -9,7 +15,9 @@ export const Navigation: React.FunctionComponent = () => {
           <h1>Home Control</h1>
         </Link>
       </div>
-      <div id="navigation-right">Philipp</div>
+      <div id="navigation-right" onClick={toggleSidebar}>
+        Philipp
+      </div>
     </nav>
   );
 };

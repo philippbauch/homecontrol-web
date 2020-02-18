@@ -1,6 +1,6 @@
 #navigation {
   display: flex;
-  height: $nav-height;
+  grid-area: navigation;
   justify-content: space-between;
 
   &-left,
