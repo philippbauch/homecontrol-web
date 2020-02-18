@@ -15,7 +15,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
     <nav id="navigation">
       <div id="navigation-left">
         <Link className="nostyle" to="/">
-          <h1>Home Control</h1>
+          <h1>Home</h1>
         </Link>
       </div>
       <div id="navigation-right">

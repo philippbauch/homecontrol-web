@@ -1,0 +1,24 @@
+.tile {
+  background-color: $color-background;
+  border-radius: $radius;
+
+  &.is-clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-background-dark;
+    }
+
+    &.is-dark {
+      background-color: $color-background-darker;
+    }
+  }
+
+  &.is-dark {
+    background-color: $color-background-dark;
+  }
+
+  &.is-padded {
+    padding: $padding-md;
+  }
+}
