@@ -1,0 +1,25 @@
+.user-icon {
+  align-items: center;
+  background-color: grey;
+  border-radius: $radius-round;
+  display: flex;
+  height: $size-xxl;
+  justify-content: center;
+  width: $size-xxl;
+
+  &.is-blue {
+    background-color: $color-primary;
+  }
+
+  &.is-green {
+    background-color: $color-success;
+  }
+
+  &.is-red {
+    background-color: $color-danger;
+  }
+
+  .user-symbol {
+    font-size: $size-xl;
+  }
+}

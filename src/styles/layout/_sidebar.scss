@@ -2,13 +2,38 @@
   background-color: $color-background-dark;
   bottom: 0;
   left: 0;
-  padding: $padding-lg;
+  overflow-y: auto;
   position: absolute;
   right: 0;
   top: 0;
 }
 
+#sidebar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar-top {
+  padding: $padding-md;
+}
+
 #user-tile {
   align-items: center;
   display: flex;
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: $margin-md;
+
+    .user-name {
+      font-size: $font-lg;
+      font-weight: bold;
+      margin-bottom: $margin-xs;
+    }
+
+    .user-role {
+      font-size: $font-sm;
+    }
+  }
 }
