@@ -1,0 +1,30 @@
+#devices-page {
+  display: flex;
+  flex-direction: column;
+  padding: $padding-lg;
+}
+
+.devices-header {
+  margin-bottom: $margin-lg;
+}
+
+.devices-item {
+  &:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
+
+  .device-tile {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    .device-info {
+      align-items: center;
+      display: flex;
+
+      .device-title {
+        margin-left: $margin-md;
+      }
+    }
+  }
+}

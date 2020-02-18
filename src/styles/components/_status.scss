@@ -1,0 +1,13 @@
+.status {
+  border-radius: $radius-round;
+  height: $size-sm;
+  width: $size-sm;
+
+  &.is-connected {
+    background-color: $color-success;
+  }
+
+  &.is-disconnected {
+    background-color: $color-danger;
+  }
+}

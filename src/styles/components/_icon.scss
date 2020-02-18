@@ -16,20 +16,29 @@ $icon-size-lg: 2em;
   }
 
   &.is-small {
-    font-size: $font-md;
-    height: $icon-size-sm;
-    width: $icon-size-sm;
+    height: $size-lg;
+    width: $size-lg;
+
+    i {
+      font-size: $font-md;
+    }
   }
 
   &.is-md {
-    font-size: $font-lg;
-    height: $icon-size-md;
-    width: $icon-size-md;
+    height: $size-xl;
+    width: $size-xl;
+
+    i {
+      font-size: $font-lg;
+    }
   }
 
   &.is-lg {
-    font-size: $font-xl;
-    height: $icon-size-lg;
-    width: $icon-size-lg;
+    height: $size-xxl;
+    width: $size-xxl;
+
+    i {
+      font-size: $font-xl;
+    }
   }
 }

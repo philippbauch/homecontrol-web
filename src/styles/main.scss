@@ -5,11 +5,14 @@
 @import "base/mixins";
 @import "base/reset";
 
+@import "components/add";
 @import "components/burger";
 @import "components/button";
 @import "components/icon";
 @import "components/input";
+@import "components/level";
 @import "components/spinner";
+@import "components/status";
 @import "components/tile";
 @import "components/userIcon";
 
@@ -17,5 +20,6 @@
 @import "layout/navigation";
 @import "layout/sidebar";
 
+@import "pages/devices";
 @import "pages/home";
 @import "pages/login";

@@ -5,7 +5,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import { Home, Login } from "./pages";
+import { Devices, Home, Login } from "./pages";
 import { Layout } from "./layout/Layout";
 
 export const App: React.FunctionComponent = () => {
@@ -13,14 +13,17 @@ export const App: React.FunctionComponent = () => {
     <Router>
       <Switch>
         <Route path="/login" exact={true}>
-          <Login></Login>
+          <Login />
         </Route>
         <Layout>
+          <Route path="/devices">
+            <Devices />
+          </Route>
           <Route path="/home">
-            <Home></Home>
+            <Home />
           </Route>
           <Route path="">
-            <Redirect to="/home"></Redirect>
+            <Redirect to="/home" />
           </Route>
         </Layout>
       </Switch>
