@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Navigation } from "./Navigation";
 import { Sidebar } from "./Sidebar";
 
 export const Layout: React.FunctionComponent = ({ children }) => {
+  const layoutRef = useRef<HTMLDivElement>(null);
   const [showSidebar, setShowSidebar] = useState(false);
+
+  const resizeLayout = useCallback(() => {
+    const layout = layoutRef.current;
+
+    if (layout) {
+      layout.style.height = `${window.innerHeight}px`;
+    }
+  }, [layoutRef]);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
+  useEffect(() => {
+    window.addEventListener("resize", resizeLayout);
+
+    resizeLayout();
+
+    return () => window.removeEventListener("resize", resizeLayout);
+  }, [resizeLayout]);
+
   return (
-    <div id="layout">
+    <div id="layout" ref={layoutRef}>
       <Navigation toggleSidebar={toggleSidebar} />
       <div id="main">
         {showSidebar ? <Sidebar /> : null}

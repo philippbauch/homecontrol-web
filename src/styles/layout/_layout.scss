@@ -1,6 +1,5 @@
 #layout {
   display: grid;
-  min-height: 100vh;
   grid-template-rows: $nav-height 1fr;
   grid-template-areas: "navigation" "main";
 }
