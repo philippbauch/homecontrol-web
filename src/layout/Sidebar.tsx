@@ -1,8 +1,15 @@
 import React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 import { Icon, Tile, UserIcon } from "../components";
 
-const Sidebar: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
+interface SidebarProps extends RouteComponentProps {
+  setShowSidebar: (showSidebar: boolean) => void;
+}
+
+const Sidebar: React.FunctionComponent<SidebarProps> = ({
+  history,
+  setShowSidebar
+}) => {
   const signOut = () => {
     history.push("/login");
   };
@@ -27,7 +34,24 @@ const Sidebar: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
             </div>
           </Tile>
         </section>
-        <section id="sidebar-bottom">Menu</section>
+        <section id="sidebar-bottom">
+          <NavLink
+            activeClassName="is-active"
+            className="sidebar-item nostyle"
+            onClick={() => setShowSidebar(false)}
+            to="/devices"
+          >
+            Devices
+          </NavLink>
+          <NavLink
+            activeClassName="is-active"
+            className="sidebar-item nostyle"
+            onClick={() => setShowSidebar(false)}
+            to="/settings"
+          >
+            Settings
+          </NavLink>
+        </section>
       </div>
     </aside>
   );

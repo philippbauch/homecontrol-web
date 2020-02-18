@@ -17,6 +17,22 @@
   padding: $padding-md;
 }
 
+#sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+
+  .sidebar-item {
+    font-size: $font-lg;
+    padding: $padding-md;
+    position: relative;
+    text-align: center;
+
+    &.is-active {
+      background-color: $color-background-darker;
+    }
+  }
+}
+
 #user-tile {
   align-items: center;
   display: flex;
