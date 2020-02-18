@@ -1,8 +1,10 @@
 import React from "react";
+import { Navigation } from "../layout/Navigation";
 
 export const App: React.FunctionComponent = () => {
   return (
     <div className="App">
+      <Navigation></Navigation>
       <header className="App-header">
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

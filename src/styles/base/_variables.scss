@@ -1,11 +1,12 @@
 $base-font: 16px;
 
+$nav-height: 60px;
+
 $size-xxs: 0.125em;
 $size-xs: 0.25em;
 $size-sm: 0.5em;
 $size-of: 0.75em;
 $size-md: 1em;
-$size-fo: 1.125em;
 $size-lg: 1.5em;
 $size-xl: 2em;
 $size-xxl: 4em;
@@ -15,7 +16,6 @@ $font-xs: $size-xs;
 $font-sm: $size-sm;
 $font-of: $size-of;
 $font-md: $size-md;
-$font-fo: $size-fo;
 $font-lg: $size-lg;
 $font-xl: $size-xl;
 $font-xxl: $size-xxl;
@@ -25,7 +25,6 @@ $margin-xs: $size-xs;
 $margin-sm: $size-sm;
 $margin-of: $size-of;
 $margin-md: $size-md;
-$margin-fo: $size-fo;
 $margin-lg: $size-lg;
 $margin-xl: $size-xl;
 $margin-xxl: $size-xxl;
@@ -35,7 +34,6 @@ $padding-xs: $size-xs;
 $padding-sm: $size-sm;
 $padding-of: $size-of;
 $padding-md: $size-md;
-$padding-fo: $size-fo;
 $padding-lg: $size-lg;
 $padding-xl: $size-xl;
 $padding-xxl: $size-xxl;
@@ -43,14 +41,15 @@ $padding-xxl: $size-xxl;
 $radius: $size-xs;
 $radius-round: 50%;
 
-$screen-size-desktop: 1400px;
-$screen-size-tablet: 800px;
+$screen-size-desktop: 1024px;
+$screen-size-tablet: 768px;
 
 $color-white: white;
 $color-white-off: rgba(255, 255, 255, 0.5);
 
 $color-background: #282c34;
 $color-background-dark: #20242b;
+$color-background-light: #30353f;
 $color-font: $color-white;
 $color-primary: #61dafb;
 $color-primary-dark: #55cdee;

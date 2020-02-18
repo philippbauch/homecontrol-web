@@ -1,0 +1,12 @@
+#navigation {
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+
+  &-left,
+  &-right {
+    align-items: center;
+    display: flex;
+    margin: 0 $margin-md;
+  }
+}
