@@ -1,8 +1,11 @@
 import React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Icon, Tile, UserIcon } from "../components";
 
-export const Sidebar: React.FunctionComponent = () => {
-  const signOut = () => {};
+const Sidebar: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
+  const signOut = () => {
+    history.push("/login");
+  };
 
   return (
     <aside id="sidebar">
@@ -29,3 +32,5 @@ export const Sidebar: React.FunctionComponent = () => {
     </aside>
   );
 };
+
+export default withRouter(Sidebar);

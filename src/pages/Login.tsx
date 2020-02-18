@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Input } from "../components";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
-export const Login: React.FunctionComponent = () => {
+const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
   const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
@@ -9,10 +10,11 @@ export const Login: React.FunctionComponent = () => {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log(id, password);
-
     setLoading(true);
-    setTimeout(() => setLoading(false), 20000);
+    setTimeout(() => {
+      setLoading(false);
+      history.push("/home");
+    }, 2000);
   };
 
   const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,3 +56,5 @@ export const Login: React.FunctionComponent = () => {
     </div>
   );
 };
+
+export default withRouter(Login);
