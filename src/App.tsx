@@ -16,15 +16,17 @@ export const App: React.FunctionComponent = () => {
           <Login />
         </Route>
         <Layout>
-          <Route path="/devices">
-            <Devices />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="">
-            <Redirect to="/home" />
-          </Route>
+          <Switch>
+            <Route path="/devices">
+              <Devices />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="">
+              <Redirect to="/home" />
+            </Route>
+          </Switch>
         </Layout>
       </Switch>
     </Router>
