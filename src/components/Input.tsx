@@ -1,9 +1,11 @@
 import React from "react";
 
+type InputType = "password" | "text";
+
 interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  type?: "password" | "text";
+  type?: InputType;
   value: string;
 }
 

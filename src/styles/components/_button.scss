@@ -3,7 +3,9 @@
   border-radius: $radius;
   color: $color-font;
   cursor: pointer;
-  font-size: $font-size-md;
+  display: flex;
+  font-size: $font-md;
+  justify-content: center;
   padding: $padding-of;
 
   &:disabled {
