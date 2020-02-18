@@ -1,7 +1,9 @@
 import React from "react";
-import { Tile, UserIcon } from "../components";
+import { Icon, Tile, UserIcon } from "../components";
 
 export const Sidebar: React.FunctionComponent = () => {
+  const signOut = () => {};
+
   return (
     <aside id="sidebar">
       <div id="sidebar-container">
@@ -13,6 +15,12 @@ export const Sidebar: React.FunctionComponent = () => {
                 <span className="user-name">Philipp</span>
                 <span className="user-role">Admin</span>
               </div>
+              <Icon
+                className="sign-out"
+                icon="fas fa-sign-out-alt"
+                onClick={signOut}
+                size="lg"
+              />
             </div>
           </Tile>
         </section>

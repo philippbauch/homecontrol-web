@@ -1,0 +1,35 @@
+$icon-size-sm: 1em;
+$icon-size-md: 1.5em;
+$icon-size-lg: 2em;
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+
+  &.is-clickable {
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &.is-small {
+    font-size: $font-md;
+    height: $icon-size-sm;
+    width: $icon-size-sm;
+  }
+
+  &.is-md {
+    font-size: $font-lg;
+    height: $icon-size-md;
+    width: $icon-size-md;
+  }
+
+  &.is-lg {
+    font-size: $font-xl;
+    height: $icon-size-lg;
+    width: $icon-size-lg;
+  }
+}
