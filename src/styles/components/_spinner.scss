@@ -1,0 +1,52 @@
+$spinner-font-base: 2px;
+
+$spinner-border-width-sm: 1em;
+$spinner-border-width-md: 1.5em;
+$spinner-border-width-lg: 2em;
+$spinner-border-width-xl: 2.5em;
+
+.spinner {
+  animation: spin 1s linear 0s infinite;
+  position: relative;
+
+  &::before {
+    border-color: $color-white-off;
+    border-radius: $radius-round;
+    border-style: solid;
+    border-top-color: white;
+    bottom: 0;
+    content: "";
+    font-size: $spinner-font-base;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &.is-sm {
+    height: $size-md;
+    width: $size-md;
+
+    &::before {
+      border-width: $spinner-border-width-md;
+    }
+  }
+
+  &.is-md {
+    height: $size-lg;
+    width: $size-lg;
+
+    &::before {
+      border-width: $spinner-border-width-lg;
+    }
+  }
+
+  &.is-lg {
+    height: $size-xl;
+    width: $size-xl;
+
+    &::before {
+      border-width: $spinner-border-width-xl;
+    }
+  }
+}
