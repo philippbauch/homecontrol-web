@@ -14,10 +14,6 @@ export const Layout: React.FunctionComponent = ({ children }) => {
     }
   }, [layoutRef]);
 
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
-  };
-
   useEffect(() => {
     window.addEventListener("resize", resizeLayout);
 
@@ -28,7 +24,7 @@ export const Layout: React.FunctionComponent = ({ children }) => {
 
   return (
     <div id="layout" ref={layoutRef}>
-      <Navigation showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+      <Navigation setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
       <div id="main">
         {showSidebar ? <Sidebar /> : null}
         <main id="page-container">{children}</main>

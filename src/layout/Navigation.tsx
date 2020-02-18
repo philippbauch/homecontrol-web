@@ -3,23 +3,30 @@ import { Link } from "react-router-dom";
 import { Burger } from "../components";
 
 interface NavigationProps {
+  setShowSidebar: (showSidebar: boolean) => void;
   showSidebar: boolean;
-  toggleSidebar: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const Navigation: React.FunctionComponent<NavigationProps> = ({
-  showSidebar,
-  toggleSidebar
+  setShowSidebar,
+  showSidebar
 }) => {
   return (
     <nav id="navigation">
       <div id="navigation-left">
-        <Link className="nostyle" to="/">
+        <Link
+          className="nostyle"
+          onClick={() => setShowSidebar(false)}
+          to="/home"
+        >
           <h1>Home</h1>
         </Link>
       </div>
       <div id="navigation-right">
-        <Burger onClick={toggleSidebar} open={showSidebar} />
+        <Burger
+          onClick={() => setShowSidebar(!showSidebar)}
+          open={showSidebar}
+        />
       </div>
     </nav>
   );
