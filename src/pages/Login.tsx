@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Button, Input } from "../components";
+import React, { useContext, useState, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { Button, Input } from "../components";
+import { UserContext } from "../contexts/UserContext";
 
 const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
+  const { user } = useContext(UserContext);
   const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
@@ -30,6 +32,12 @@ const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
   };
 
   const isLoginDisabled = !id || !password;
+
+  useEffect(() => {
+    if (user) {
+      history.push("/home");
+    }
+  }, [history, user]);
 
   return (
     <div id="login-page">
