@@ -8,4 +8,5 @@ export { PrivateRoute } from "./PrivateRoute";
 export { Spinner } from "./Spinner";
 export { Status } from "./Status";
 export { Tile } from "./Tile";
+export { Translate } from "./Translate";
 export { UserIcon } from "./UserIcon";
