@@ -1,4 +1,5 @@
 export { Add } from "./Add";
+export { Alert } from "./Alert";
 export { Burger } from "./Burger";
 export { Button } from "./Button";
 export { Icon } from "./Icon";

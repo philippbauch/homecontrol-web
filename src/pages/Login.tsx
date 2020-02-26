@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Input, Translate } from "../components";
+import { Button, Input, Translate, Alert } from "../components";
 import { UserContext } from "../contexts/UserContext";
 import { HttpMethod, useHttp } from "../hooks/useHttp";
 
@@ -52,7 +52,11 @@ export const Login: React.FunctionComponent = () => {
       <section id="login-container">
         <h3 id="login-title">Login</h3>
         <form id="login-form" onSubmit={handleFormSubmit}>
-          {error ? <Translate>{error}</Translate> : null}
+          {error ? (
+            <Alert>
+              <Translate>{error}</Translate>
+            </Alert>
+          ) : null}
           <Input
             onChange={handleIdentifierChange}
             placeholder="ID"
