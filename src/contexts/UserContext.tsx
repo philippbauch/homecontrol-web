@@ -2,58 +2,83 @@ import jwt from "jsonwebtoken";
 import React, { useEffect, useState } from "react";
 
 interface UserContext {
-  token: string | null;
-  user: any | null;
+  error?: string;
+  isAuthenticated: boolean;
+  user?: any;
   onLogin: (token: string) => void;
   onLogout: () => void;
 }
 
 const initialContext: UserContext = {
-  token: null,
-  user: null,
+  isAuthenticated: false,
   onLogin: () => {},
   onLogout: () => {}
 };
 
 const UserContext = React.createContext<UserContext>(initialContext);
 
+function decodeToken(token: string): any {
+  const decoded = jwt.decode(token) as any;
+
+  if (!decoded.user) {
+    throw new Error("Malformed token");
+  }
+
+  return decoded.user;
+}
+
 const UserProvider: React.FunctionComponent = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<any | null>(null);
+  const [error, setError] = useState<string>();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [user, setUser] = useState<any>();
 
-  const handleLogin = (token: string) => {
-    const user = jwt.decode(token);
-    setUser(user);
-    setToken(token);
+  const onLogin = (token: string) => {
+    setError(undefined);
 
-    localStorage.setItem("token", token);
+    try {
+      const user = decodeToken(token);
+
+      setIsAuthenticated(true);
+      setUser(user);
+
+      localStorage.setItem("token", token);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
-  const handleLogout = () => {
-    setUser(null);
-    setToken(null);
-
+  const onLogout = () => {
     localStorage.removeItem("token");
+
+    setIsAuthenticated(false);
+    setUser(undefined);
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const decoded = jwt.decode(token);
+      try {
+        const user = decodeToken(token);
 
-      setToken(token);
-      setUser(decoded);
+        setIsAuthenticated(true);
+        setUser(user);
+      } catch (error) {
+        setError(error.message);
+
+        localStorage.removeItem("token");
+      }
     }
   }, []);
 
   return (
     <UserContext.Provider
       value={{
-        token,
-        user,
-        onLogin: handleLogin,
-        onLogout: handleLogout
+        error,
+        isAuthenticated,
+        onLogin,
+        onLogout,
+        user
       }}
     >
       {children}

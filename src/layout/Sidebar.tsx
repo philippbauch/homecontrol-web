@@ -18,7 +18,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
         <section id="sidebar-top">
           <Tile>
             <div id="user-tile">
-              <UserIcon color="green" username={user.identifier} />
+              <UserIcon color="blue" username={user.identifier} />
               <div className="user-info">
                 <span className="user-name">{user.identifier}</span>
                 <span className="user-role">Admin</span>

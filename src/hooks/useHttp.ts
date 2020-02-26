@@ -1,8 +1,7 @@
 import moment from "moment";
-import { useCallback, useContext, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useCallback, useState } from "react";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = "http://api.philippbauch.com";
 
 function sanitizeEndpoint(endpoint: string) {
   if (!endpoint.startsWith("/")) {
@@ -20,7 +19,6 @@ export enum HttpMethod {
 }
 
 export function useHttp() {
-  const { token } = useContext(UserContext);
   const [loading, setLoading] = useState<boolean>(false);
 
   const http = useCallback(
@@ -37,6 +35,8 @@ export function useHttp() {
       if (body) {
         body = JSON.stringify(body);
       }
+
+      const token = localStorage.getItem("token");
 
       if (token) {
         headers.Authentication = token;
@@ -59,7 +59,7 @@ export function useHttp() {
 
       return data;
     },
-    [token]
+    []
   );
 
   return { http, loading };
