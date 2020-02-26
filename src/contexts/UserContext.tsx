@@ -42,6 +42,7 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
     if (token) {
       const decoded = jwt.decode(token);
 
+      setToken(token);
       setUser(decoded);
     }
   }, []);
