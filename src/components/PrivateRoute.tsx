@@ -13,8 +13,6 @@ export const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = ({
 }) => {
   const { user } = useContext(UserContext);
 
-  console.log("PrivateRoute", rest);
-
   return (
     <Route
       {...rest}
