@@ -1,7 +1,7 @@
 import React from "react";
 import { Add, Level, Status, Tile, Icon } from "../components";
 
-const Devices: React.FunctionComponent = () => {
+export const Devices: React.FunctionComponent = () => {
   const devices = ["Arduino Uno", "Raspberry Pi"];
 
   return (
@@ -28,5 +28,3 @@ const Devices: React.FunctionComponent = () => {
     </div>
   );
 };
-
-export default Devices;

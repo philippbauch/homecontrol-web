@@ -1,28 +1,38 @@
 import React, { useContext, useState, useEffect } from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import { Button, Input } from "../components";
+import { useHistory } from "react-router-dom";
+import { Button, Input, Translate } from "../components";
 import { UserContext } from "../contexts/UserContext";
+import { HttpMethod, useHttp } from "../hooks/useHttp";
 
-const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
-  const { user } = useContext(UserContext);
-  const [id, setId] = useState("");
-  const [loading, setLoading] = useState(false);
+export const Login: React.FunctionComponent = () => {
+  const { user, onLogin } = useContext(UserContext);
+  const history = useHistory();
+  const { http, loading } = useHttp();
+  const [error, setError] = useState();
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      history.push("/home");
-    }, 2000);
+    try {
+      const { token } = await http(HttpMethod.POST, "/login", {
+        identifier,
+        password
+      });
+
+      onLogin(token);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
-  const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleIdentifierChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { value } = event.target;
 
-    setId(value);
+    setIdentifier(value);
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +40,6 @@ const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
 
     setPassword(value);
   };
-
-  const isLoginDisabled = !id || !password;
 
   useEffect(() => {
     if (user) {
@@ -44,11 +52,12 @@ const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
       <section id="login-container">
         <h3 id="login-title">Login</h3>
         <form id="login-form" onSubmit={handleFormSubmit}>
+          {error ? <Translate>{error}</Translate> : null}
           <Input
-            onChange={handleIdChange}
+            onChange={handleIdentifierChange}
             placeholder="ID"
             type="text"
-            value={id}
+            value={identifier}
           />
           <Input
             onChange={handlePasswordChange}
@@ -56,7 +65,11 @@ const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
             type="password"
             value={password}
           />
-          <Button disabled={isLoginDisabled} loading={loading} type="submit">
+          <Button
+            disabled={!identifier || !password}
+            loading={loading}
+            type="submit"
+          >
             Login
           </Button>
         </form>
@@ -64,5 +77,3 @@ const Login: React.FunctionComponent<RouteComponentProps> = ({ history }) => {
     </div>
   );
 };
-
-export default withRouter(Login);
