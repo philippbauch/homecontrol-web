@@ -12,9 +12,10 @@ export const UserIcon: React.FunctionComponent<UserIconProps> = ({
   color = "blue",
   username
 }) => {
-  const symbol = useMemo(() => (username.length ? username[0] : "?"), [
-    username
-  ]);
+  const symbol = useMemo(
+    () => (username.length ? username[0].toUpperCase() : "?"),
+    [username]
+  );
 
   return (
     <div
