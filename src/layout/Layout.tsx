@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Navigation } from "./Navigation";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 
 export const Layout: React.FunctionComponent = ({ children }) => {
   const layoutRef = useRef<HTMLDivElement>(null);

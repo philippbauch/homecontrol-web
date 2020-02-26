@@ -1,18 +1,16 @@
-import React from "react";
-import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { Icon, Tile, UserIcon } from "../components";
+import { UserContext } from "../contexts/UserContext";
 
-interface SidebarProps extends RouteComponentProps {
+interface SidebarProps {
   setShowSidebar: (showSidebar: boolean) => void;
 }
 
-const Sidebar: React.FunctionComponent<SidebarProps> = ({
-  history,
+export const Sidebar: React.FunctionComponent<SidebarProps> = ({
   setShowSidebar
 }) => {
-  const signOut = () => {
-    history.push("/login");
-  };
+  const { onLogout, user } = useContext(UserContext);
 
   return (
     <aside id="sidebar">
@@ -20,15 +18,15 @@ const Sidebar: React.FunctionComponent<SidebarProps> = ({
         <section id="sidebar-top">
           <Tile>
             <div id="user-tile">
-              <UserIcon color="green" username="Philipp" />
+              <UserIcon color="green" username={user.identifier} />
               <div className="user-info">
-                <span className="user-name">Philipp</span>
+                <span className="user-name">{user.identifier}</span>
                 <span className="user-role">Admin</span>
               </div>
               <Icon
                 className="sign-out"
                 icon="fas fa-sign-out-alt"
-                onClick={signOut}
+                onClick={onLogout}
                 size="lg"
               />
             </div>
@@ -56,5 +54,3 @@ const Sidebar: React.FunctionComponent<SidebarProps> = ({
     </aside>
   );
 };
-
-export default withRouter(Sidebar);
