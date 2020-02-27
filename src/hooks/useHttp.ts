@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useCallback, useState } from "react";
 
-const baseUrl = "http://api.philippbauch.com";
+const baseUrl = "https://api.philippbauch.com";
 
 function sanitizeEndpoint(endpoint: string) {
   if (!endpoint.startsWith("/")) {
