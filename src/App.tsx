@@ -1,14 +1,17 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Layout } from "./layout/Layout";
-import { Devices, Home } from "./pages";
+import { DeviceDetails, Devices, Home } from "./pages";
 
 export const App: React.FunctionComponent = () => {
   return (
     <Layout>
       <Switch>
-        <Route path="/devices">
+        <Route exact={true} path="/devices">
           <Devices />
+        </Route>
+        <Route path="/devices/:deviceId">
+          <DeviceDetails />
         </Route>
         <Route path="/home">
           <Home />
