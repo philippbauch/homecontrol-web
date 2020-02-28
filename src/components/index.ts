@@ -1,10 +1,10 @@
-export { Add } from "./Add";
 export { Alert } from "./Alert";
 export { Burger } from "./Burger";
 export { Button } from "./Button";
 export { Icon } from "./Icon";
 export { Input } from "./Input";
 export { Level } from "./Level";
+export { Loader } from "./Loader";
 export { PrivateRoute } from "./PrivateRoute";
 export { Spinner } from "./Spinner";
 export { Status } from "./Status";

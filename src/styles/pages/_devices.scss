@@ -4,6 +4,12 @@
   padding: $padding-lg;
 }
 
+.device-add-button {
+  .icon {
+    margin-right: $margin-sm;
+  }
+}
+
 .devices-header {
   margin-bottom: $margin-lg;
 }

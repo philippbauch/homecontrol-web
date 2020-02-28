@@ -23,6 +23,11 @@ $spinner-border-width-xl: 2.5em;
     top: 0;
   }
 
+  &.is-primary::before {
+    border-color: $color-white-off;
+    border-top-color: $color-primary;
+  }
+
   &.is-sm {
     height: $size-md;
     width: $size-md;
