@@ -7,16 +7,27 @@ import { HttpMethod, useHttp } from "../../hooks/useHttp";
 
 export const Devices: React.FunctionComponent = () => {
   const { http, loading } = useHttp();
+  const [deviceName, setDeviceName] = useState("");
   const [createDeviceActive, setCreateDeviceActive] = useState(false);
   const [devices, setDevices] = useState<any[]>([]);
   const [error, setError] = useState();
 
-  const toggleCreateDevice = () => {
-    setCreateDeviceActive(old => !old);
+  const handleDeviceNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDeviceName(event.target.value);
   };
 
-  const handleSaveDevice = (device: any) => {
-    setDevices(old => device + old);
+  const handleSaveDevice = () => {
+    console.log(deviceName);
+  };
+
+  const toggleCreateDevice = () => {
+    if (createDeviceActive) {
+      setDeviceName("");
+    }
+
+    setCreateDeviceActive(old => !old);
   };
 
   useEffect(() => {
@@ -47,7 +58,12 @@ export const Devices: React.FunctionComponent = () => {
       <div className="devices-body">
         <Loader loading={loading}>
           {error ? <span>{error}</span> : null}
-          <DeviceInput onSave={handleSaveDevice} visible={createDeviceActive} />
+          <DeviceInput
+            onChange={handleDeviceNameChange}
+            onSave={handleSaveDevice}
+            value={deviceName}
+            visible={createDeviceActive}
+          />
           {createDeviceActive ? <Divider /> : null}
           <DeviceList devices={devices} />
         </Loader>
