@@ -1,15 +1,15 @@
-import classnames from "classnames";
 import React, { useEffect, useState } from "react";
-import { DeviceList } from "./DeviceList";
-import { Button, Icon, Level, Loader } from "../../components";
-import { HttpMethod, useHttp } from "../../hooks/useHttp";
+import { AddDeviceButton } from "./AddDeviceButton";
 import { DeviceInput } from "./DeviceInput";
+import { DeviceList } from "./DeviceList";
+import { Level, Loader } from "../../components";
+import { HttpMethod, useHttp } from "../../hooks/useHttp";
 
 export const Devices: React.FunctionComponent = () => {
   const { http, loading } = useHttp();
   const [createDeviceActive, setCreateDeviceActive] = useState(false);
-  const [error, setError] = useState();
   const [devices, setDevices] = useState<any[]>([]);
+  const [error, setError] = useState();
 
   const toggleCreateDevice = () => {
     setCreateDeviceActive(old => !old);
@@ -39,16 +39,10 @@ export const Devices: React.FunctionComponent = () => {
     <div id="devices-page">
       <Level className="devices-header">
         <h1>Devices</h1>
-        <Button
-          className={classnames("add-device-button", {
-            "is-active": createDeviceActive
-          })}
-          onClick={toggleCreateDevice}
-          primary={!createDeviceActive}
-        >
-          <Icon size="sm" icon="fas fa-plus" />
-          {createDeviceActive ? "Cancel" : "Add"}
-        </Button>
+        <AddDeviceButton
+          active={createDeviceActive}
+          onToggle={toggleCreateDevice}
+        />
       </Level>
       <div className="devices-body">
         <Loader loading={loading}>
