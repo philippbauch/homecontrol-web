@@ -8,13 +8,13 @@ interface DeviceListProps {
 export const DeviceList: React.FunctionComponent<DeviceListProps> = ({
   devices
 }) => {
-  return devices.length ? (
-    <div>
-      {devices.map(device => (
-        <DeviceItem device={device} key={device._id} />
-      ))}
+  return (
+    <div className="device-list">
+      {devices.length ? (
+        devices.map(device => <DeviceItem device={device} key={device._id} />)
+      ) : (
+        <span>No devices found.</span>
+      )}
     </div>
-  ) : (
-    <span>No devices found.</span>
   );
 };
