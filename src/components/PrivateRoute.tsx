@@ -11,13 +11,13 @@ export const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { isAuthenticated } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <Route
       {...rest}
       render={props =>
-        isAuthenticated ? (
+        user ? (
           <Component {...props} />
         ) : (
           <Redirect

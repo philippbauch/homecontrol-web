@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 import { HttpMethod, useHttp } from "../hooks/useHttp";
 
 export const Login: React.FunctionComponent = () => {
-  const { isAuthenticated, onLogin } = useContext(UserContext);
+  const { user, onLogin } = useContext(UserContext);
   const history = useHistory();
   const { http, loading } = useHttp();
   const [error, setError] = useState();
@@ -42,10 +42,10 @@ export const Login: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (user) {
       history.push("/home");
     }
-  }, [history, isAuthenticated]);
+  }, [history, user]);
 
   return (
     <div id="login-page">
