@@ -1,28 +1,15 @@
 import classnames from "classnames";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import {
-  Level,
-  Loader,
-  Status,
-  Tile,
-  Icon,
-  Button,
-  Input
-} from "../components";
-import { useHttp, HttpMethod } from "../hooks/useHttp";
+import { DeviceList } from "./DeviceList";
+import { Button, Icon, Input, Level, Loader } from "../../components";
+import { HttpMethod, useHttp } from "../../hooks/useHttp";
 
 export const Devices: React.FunctionComponent = () => {
-  const history = useHistory();
   const { http, loading } = useHttp();
   const [createDeviceActive, setCreateDeviceActive] = useState(false);
   const [error, setError] = useState();
   const [deviceName, setDeviceName] = useState();
   const [devices, setDevices] = useState<any[]>([]);
-
-  const handleDeviceSelect = (device: any) => {
-    history.push(`/devices/${device._id}`);
-  };
 
   const toggleCreateDevice = () => {
     setCreateDeviceActive(old => !old);
@@ -75,28 +62,7 @@ export const Devices: React.FunctionComponent = () => {
               placeholder="Device Name"
             />
           ) : null}
-          {devices.length ? (
-            devices.map(device => {
-              return (
-                <Tile
-                  className="devices-item"
-                  dark={true}
-                  key={device._id}
-                  onClick={() => handleDeviceSelect(device)}
-                >
-                  <div className="device-tile">
-                    <div className="device-info">
-                      <Status status="connected" />
-                      <span className="device-title">{device.name}</span>
-                    </div>
-                    <Icon icon="fas fa-chevron-right" size="sm" />
-                  </div>
-                </Tile>
-              );
-            })
-          ) : (
-            <span>No devices found.</span>
-          )}
+          <DeviceList devices={devices} />
         </Loader>
       </div>
     </div>
