@@ -1,6 +1,7 @@
 export { Alert } from "./Alert";
 export { Burger } from "./Burger";
 export { Button } from "./Button";
+export { Divider } from "./Divider";
 export { Icon } from "./Icon";
 export { Input } from "./Input";
 export { Level } from "./Level";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AddDeviceButton } from "./AddDeviceButton";
 import { DeviceInput } from "./DeviceInput";
 import { DeviceList } from "./DeviceList";
-import { Level, Loader } from "../../components";
+import { Divider, Level, Loader } from "../../components";
 import { HttpMethod, useHttp } from "../../hooks/useHttp";
 
 export const Devices: React.FunctionComponent = () => {
@@ -48,6 +48,7 @@ export const Devices: React.FunctionComponent = () => {
         <Loader loading={loading}>
           {error ? <span>{error}</span> : null}
           <DeviceInput onSave={handleSaveDevice} visible={createDeviceActive} />
+          {createDeviceActive ? <Divider /> : null}
           <DeviceList devices={devices} />
         </Loader>
       </div>
