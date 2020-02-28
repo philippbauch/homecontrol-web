@@ -1,7 +1,15 @@
 import classnames from "classnames";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Level, Loader, Status, Tile, Icon, Button } from "../components";
+import {
+  Level,
+  Loader,
+  Status,
+  Tile,
+  Icon,
+  Button,
+  Input
+} from "../components";
 import { useHttp, HttpMethod } from "../hooks/useHttp";
 
 export const Devices: React.FunctionComponent = () => {
@@ -9,6 +17,7 @@ export const Devices: React.FunctionComponent = () => {
   const { http, loading } = useHttp();
   const [createDeviceActive, setCreateDeviceActive] = useState(false);
   const [error, setError] = useState();
+  const [deviceName, setDeviceName] = useState();
   const [devices, setDevices] = useState<any[]>([]);
 
   const handleDeviceSelect = (device: any) => {
@@ -17,6 +26,12 @@ export const Devices: React.FunctionComponent = () => {
 
   const toggleCreateDevice = () => {
     setCreateDeviceActive(old => !old);
+  };
+
+  const handleDeviceNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDeviceName(event.target.value);
   };
 
   useEffect(() => {
@@ -49,10 +64,17 @@ export const Devices: React.FunctionComponent = () => {
           {createDeviceActive ? "Cancel" : "Add"}
         </Button>
       </Level>
-      <section>
+      <div className="devices-body">
         <Loader loading={loading}>
           {error ? <span>{error}</span> : null}
-          {createDeviceActive ? <span>Editing</span> : null}
+          {createDeviceActive ? (
+            <Input
+              className="add-device-input"
+              value={deviceName}
+              onChange={handleDeviceNameChange}
+              placeholder="Device Name"
+            />
+          ) : null}
           {devices.length ? (
             devices.map(device => {
               return (
@@ -76,7 +98,7 @@ export const Devices: React.FunctionComponent = () => {
             <span>No devices found.</span>
           )}
         </Loader>
-      </section>
+      </div>
     </div>
   );
 };

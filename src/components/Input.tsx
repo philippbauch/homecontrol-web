@@ -1,8 +1,10 @@
+import classnames from "classnames";
 import React from "react";
 
 type InputType = "password" | "text";
 
 interface InputProps {
+  className?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: InputType;
@@ -10,6 +12,7 @@ interface InputProps {
 }
 
 export const Input: React.FunctionComponent<InputProps> = ({
+  className,
   onChange,
   placeholder,
   value,
@@ -17,7 +20,7 @@ export const Input: React.FunctionComponent<InputProps> = ({
 }) => {
   return (
     <input
-      className="input"
+      className={classnames("input", className)}
       onChange={onChange}
       placeholder={placeholder}
       spellCheck={false}

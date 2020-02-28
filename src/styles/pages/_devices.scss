@@ -8,6 +8,15 @@
   margin-bottom: $margin-lg;
 }
 
+.devices-body {
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
+}
+
 .add-device-button {
   .icon {
     margin-right: $margin-sm;
@@ -21,10 +30,6 @@
 }
 
 .devices-item {
-  &:not(:last-child) {
-    margin-bottom: $margin-md;
-  }
-
   .device-tile {
     align-items: center;
     display: flex;
