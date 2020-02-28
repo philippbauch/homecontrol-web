@@ -18,7 +18,6 @@ export const DeviceItem: React.FunctionComponent<DeviceItemProps> = ({
     <Tile
       className="devices-item"
       dark={true}
-      key={device._id}
       onClick={() => handleDeviceSelect(device)}
     >
       <div className="device-tile">

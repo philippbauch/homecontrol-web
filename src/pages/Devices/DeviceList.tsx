@@ -11,7 +11,7 @@ export const DeviceList: React.FunctionComponent<DeviceListProps> = ({
   return devices.length ? (
     <div>
       {devices.map(device => (
-        <DeviceItem device={device} />
+        <DeviceItem device={device} key={device._id} />
       ))}
     </div>
   ) : (

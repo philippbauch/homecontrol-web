@@ -1,24 +1,22 @@
 import classnames from "classnames";
 import React, { useEffect, useState } from "react";
 import { DeviceList } from "./DeviceList";
-import { Button, Icon, Input, Level, Loader } from "../../components";
+import { Button, Icon, Level, Loader } from "../../components";
 import { HttpMethod, useHttp } from "../../hooks/useHttp";
+import { DeviceInput } from "./DeviceInput";
 
 export const Devices: React.FunctionComponent = () => {
   const { http, loading } = useHttp();
   const [createDeviceActive, setCreateDeviceActive] = useState(false);
   const [error, setError] = useState();
-  const [deviceName, setDeviceName] = useState();
   const [devices, setDevices] = useState<any[]>([]);
 
   const toggleCreateDevice = () => {
     setCreateDeviceActive(old => !old);
   };
 
-  const handleDeviceNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDeviceName(event.target.value);
+  const handleSaveDevice = (device: any) => {
+    setDevices(old => device + old);
   };
 
   useEffect(() => {
@@ -46,6 +44,7 @@ export const Devices: React.FunctionComponent = () => {
             "is-active": createDeviceActive
           })}
           onClick={toggleCreateDevice}
+          primary={!createDeviceActive}
         >
           <Icon size="sm" icon="fas fa-plus" />
           {createDeviceActive ? "Cancel" : "Add"}
@@ -54,14 +53,7 @@ export const Devices: React.FunctionComponent = () => {
       <div className="devices-body">
         <Loader loading={loading}>
           {error ? <span>{error}</span> : null}
-          {createDeviceActive ? (
-            <Input
-              className="add-device-input"
-              value={deviceName}
-              onChange={handleDeviceNameChange}
-              placeholder="Device Name"
-            />
-          ) : null}
+          <DeviceInput onSave={handleSaveDevice} visible={createDeviceActive} />
           <DeviceList devices={devices} />
         </Loader>
       </div>
