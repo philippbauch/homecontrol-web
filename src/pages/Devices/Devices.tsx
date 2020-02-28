@@ -64,7 +64,7 @@ export const Devices: React.FunctionComponent = () => {
             value={deviceName}
             visible={createDeviceActive}
           />
-          {createDeviceActive ? <Divider /> : null}
+          <Divider />
           <DeviceList devices={devices} />
         </Loader>
       </div>
