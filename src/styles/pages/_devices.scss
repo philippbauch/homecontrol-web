@@ -6,6 +6,10 @@
 
 .devices-header {
   margin-bottom: $margin-md;
+
+  > *:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
 }
 
 .add-device-button {
@@ -17,15 +21,6 @@
     .icon {
       transform: rotate(-45deg);
     }
-  }
-}
-
-.devices-body {
-  display: flex;
-  flex-direction: column;
-
-  & > *:not(:last-child) {
-    margin-bottom: $margin-md;
   }
 }
 

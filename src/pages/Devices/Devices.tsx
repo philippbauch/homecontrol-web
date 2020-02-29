@@ -3,14 +3,16 @@ import { AddDeviceButton } from "./AddDeviceButton";
 import { DeviceInput } from "./DeviceInput";
 import { DeviceList } from "./DeviceList";
 import { Divider, Level, Loader } from "../../components";
-import { HttpMethod, useHttp } from "../../hooks/useHttp";
+import { client } from "../../api/client";
 
 export const Devices: React.FunctionComponent = () => {
-  const { http, loading } = useHttp();
-  const [deviceName, setDeviceName] = useState("");
   const [createDeviceActive, setCreateDeviceActive] = useState(false);
   const [devices, setDevices] = useState<any[]>([]);
-  const [error, setError] = useState();
+  const [deviceName, setDeviceName] = useState("");
+  const [fetchDevicesError, setFetchDevicesError] = useState();
+  const [fetchDevicesLoading, setFetchDevicesLoading] = useState(false);
+  const [postDeviceError, setPostDeviceError] = useState();
+  const [postDeviceLoading, setPostDeviceLoading] = useState(false);
 
   const handleDeviceNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -18,8 +20,25 @@ export const Devices: React.FunctionComponent = () => {
     setDeviceName(event.target.value);
   };
 
-  const handleSaveDevice = () => {
-    console.log(deviceName);
+  const handleSaveDevice = async () => {
+    setPostDeviceError(null);
+    setPostDeviceLoading(true);
+
+    const device = {
+      name: deviceName
+    };
+
+    try {
+      const { _id } = await client.post("/devices", device);
+
+      setCreateDeviceActive(false);
+      setDeviceName("");
+      setDevices(old => old.concat({ _id, ...device }));
+    } catch (error) {
+      setPostDeviceError(error.message);
+    } finally {
+      setPostDeviceLoading(false);
+    }
   };
 
   const toggleCreateDevice = () => {
@@ -31,43 +50,48 @@ export const Devices: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    setError(null);
+    setFetchDevicesError(null);
+    setFetchDevicesLoading(true);
 
     async function fetchDevices() {
       try {
-        const devices = await http(HttpMethod.GET, "/devices");
+        const devices = await client.get("/devices");
 
         setDevices(devices);
       } catch (error) {
-        setError(error.message);
+        setFetchDevicesError(error.message);
+      } finally {
+        setFetchDevicesLoading(false);
       }
     }
 
     fetchDevices();
-  }, [http]);
+  }, []);
 
   return (
     <div id="devices-page">
-      <Level className="devices-header">
-        <h1>Devices</h1>
-        <AddDeviceButton
-          active={createDeviceActive}
-          onToggle={toggleCreateDevice}
-        />
-      </Level>
-      <div className="devices-body">
-        <Loader loading={loading}>
-          {error ? <span>{error}</span> : null}
-          <DeviceInput
-            onChange={handleDeviceNameChange}
-            onSave={handleSaveDevice}
-            value={deviceName}
-            visible={createDeviceActive}
+      <div className="devices-header">
+        <Level>
+          <h1>Devices</h1>
+          <AddDeviceButton
+            active={createDeviceActive}
+            onToggle={toggleCreateDevice}
           />
-          <Divider />
-          <DeviceList devices={devices} />
-        </Loader>
+        </Level>
+        {postDeviceError ? <span>{postDeviceError}</span> : null}
+        {fetchDevicesError ? <span>{fetchDevicesError}</span> : null}
+        <DeviceInput
+          loading={postDeviceLoading}
+          onChange={handleDeviceNameChange}
+          onSave={handleSaveDevice}
+          value={deviceName}
+          visible={createDeviceActive}
+        />
+        <Divider />
       </div>
+      <Loader loading={fetchDevicesLoading}>
+        <DeviceList devices={devices} />
+      </Loader>
     </div>
   );
 };

@@ -2,12 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Input, Translate, Alert } from "../components";
 import { UserContext } from "../contexts/UserContext";
-import { HttpMethod, useHttp } from "../hooks/useHttp";
+import { client } from "../api/client";
 
 export const Login: React.FunctionComponent = () => {
   const { user, onLogin } = useContext(UserContext);
   const history = useHistory();
-  const { http, loading } = useHttp();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -15,15 +15,21 @@ export const Login: React.FunctionComponent = () => {
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const credentials = {
+      identifier,
+      password
+    };
+
+    setLoading(true);
+
     try {
-      const { token } = await http(HttpMethod.POST, "/login", {
-        identifier,
-        password
-      });
+      const { token } = await client.post("/login", credentials);
 
       onLogin(token);
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
