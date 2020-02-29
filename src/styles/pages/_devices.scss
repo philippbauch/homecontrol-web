@@ -38,11 +38,11 @@
   }
 }
 
-.device-list {
-  text-align: center;
-}
-
 .devices-item {
+  &:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
+
   .device-tile {
     align-items: center;
     display: flex;
