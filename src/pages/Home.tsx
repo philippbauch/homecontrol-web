@@ -1,7 +1,14 @@
 import React from "react";
 import { Divider, Level, Tile, Icon } from "../components";
+import { useHistory } from "react-router-dom";
 
 export const Home: React.FunctionComponent = () => {
+  const history = useHistory();
+
+  const handleSelectMenuItem = (name: string) => {
+    history.push("/" + name);
+  };
+
   return (
     <div id="home-page">
       <div className="overview-header">
@@ -11,7 +18,11 @@ export const Home: React.FunctionComponent = () => {
         <Divider />
       </div>
       <div className="overview-body">
-        <Tile className="overview-tile" dark={true}>
+        <Tile
+          className="overview-tile"
+          dark={true}
+          onClick={() => handleSelectMenuItem("rooms")}
+        >
           <Icon icon="fas fa-th-large" size="lg" />
           <span className="overview-tile-title">Räume</span>
         </Tile>

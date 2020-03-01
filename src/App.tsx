@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Layout } from "./layout/Layout";
-import { DeviceDetails, Devices, Home } from "./pages";
+import { DeviceDetails, Devices, Home, Rooms } from "./pages";
 
 export const App: React.FunctionComponent = () => {
   return (
@@ -12,6 +12,9 @@ export const App: React.FunctionComponent = () => {
         </Route>
         <Route path="/devices/:deviceId">
           <DeviceDetails />
+        </Route>
+        <Route exact={true} path="/rooms">
+          <Rooms />
         </Route>
         <Route path="/home">
           <Home />
