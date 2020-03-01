@@ -1,7 +1,21 @@
+#layout-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 #layout {
   display: grid;
   grid-template-rows: $nav-height 1fr;
   grid-template-areas: "navigation" "main";
+  width: 100%;
+
+  @include screen-desktop {
+    width: 80%;
+  }
+
+  @include screen-large {
+    width: 60%;
+  }
 }
 
 #main {
