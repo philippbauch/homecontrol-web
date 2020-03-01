@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { client } from "../api/client";
 import { Button, Input, Translate, Alert } from "../components";
 import { UserContext } from "../contexts/UserContext";
-import { client } from "../api/client";
 
 export const Login: React.FunctionComponent = () => {
   const { user, onLogin } = useContext(UserContext);

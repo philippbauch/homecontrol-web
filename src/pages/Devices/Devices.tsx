@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { AddDeviceButton } from "./AddDeviceButton";
 import { DeviceInput } from "./DeviceInput";
 import { DeviceList } from "./DeviceList";
-import { Divider, Level, Loader } from "../../components";
 import { client } from "../../api/client";
+import { Divider, Level, Loader } from "../../components";
 
 export const Devices: React.FunctionComponent = () => {
   const [createDeviceActive, setCreateDeviceActive] = useState(false);

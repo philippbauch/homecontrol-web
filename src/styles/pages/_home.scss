@@ -1,4 +1,13 @@
 #home-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: $padding-lg;
+}
+
+.rooms-header {
+  margin-bottom: $margin-md;
+
+  > *:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
 }
