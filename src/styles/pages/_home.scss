@@ -4,10 +4,27 @@
   padding: $padding-lg;
 }
 
-.rooms-header {
+.overview-header {
   margin-bottom: $margin-md;
 
   > *:not(:last-child) {
     margin-bottom: $margin-md;
+  }
+}
+
+.overview-body {
+  > *:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
+
+  .overview-tile {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-size: $font-lg;
+      margin-bottom: $margin-sm;
+    }
   }
 }
