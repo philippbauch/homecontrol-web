@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Titillium Web Light"), local("TitilliumWeb-Light"),
+    url("../../assets/fonts/titillium-web-v8-latin-300.woff2") format("woff2"),
+    url("../../assets/fonts/titillium-web-v8-latin-300.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Titillium Web Regular"), local("TitilliumWeb-Regular"),
+    url("../../assets/fonts/titillium-web-v8-latin-regular.woff2")
+      format("woff2"),
+    url("../../assets/fonts/titillium-web-v8-latin-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 600;
+  src: local("Titillium Web SemiBold"), local("TitilliumWeb-SemiBold"),
+    url("../../assets/fonts/titillium-web-v8-latin-600.woff2") format("woff2"),
+    url("../../assets/fonts/titillium-web-v8-latin-600.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Titillium Web Bold"), local("TitilliumWeb-Bold"),
+    url("../../assets/fonts/titillium-web-v8-latin-700.woff2") format("woff2"),
+    url("../../assets/fonts/titillium-web-v8-latin-700.woff") format("woff");
+}
