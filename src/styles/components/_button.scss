@@ -4,12 +4,12 @@
   box-shadow: inset 0 0 0 2px $color-background-lighter;
 
   border-radius: $radius;
-  color: $color-font;
+  color: white;
   cursor: pointer;
   display: flex;
   font-size: $font-md;
   justify-content: center;
-  padding: $padding-md;
+  padding: 0.75em $padding-md;
 
   &:disabled {
     cursor: not-allowed;

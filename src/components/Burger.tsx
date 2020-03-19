@@ -15,9 +15,11 @@ export const Burger: React.FunctionComponent<BurgerProps> = ({
       className={classnames("burger", { "is-open": open })}
       onClick={onClick}
     >
-      <div className="burger-bar"></div>
-      <div className="burger-bar"></div>
-      <div className="burger-bar"></div>
+      <div className="burger-bars">
+        <div className="burger-bar"></div>
+        <div className="burger-bar"></div>
+        <div className="burger-bar"></div>
+      </div>
     </div>
   );
 };

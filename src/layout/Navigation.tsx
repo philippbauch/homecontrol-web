@@ -14,20 +14,20 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   return (
     <nav id="navigation">
       <div id="navigation-left">
+        <Burger
+          onClick={() => setShowSidebar(!showSidebar)}
+          open={showSidebar}
+        />
         <Link
           className="nostyle"
+          id="brand"
           onClick={() => setShowSidebar(false)}
           to="/home"
         >
           <h1>Home</h1>
         </Link>
       </div>
-      <div id="navigation-right">
-        <Burger
-          onClick={() => setShowSidebar(!showSidebar)}
-          open={showSidebar}
-        />
-      </div>
+      <div id="navigation-right">Philipp</div>
     </nav>
   );
 };

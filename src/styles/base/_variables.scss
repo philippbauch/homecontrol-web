@@ -50,13 +50,14 @@ $screen-size-tablet: 768px;
 $color-white: white;
 $color-white-off: rgba(255, 255, 255, 0.5);
 
-$color-background: #282c34;
-$color-background-dark: #20242b;
+$color-background-lighter: #3a414e;
+$color-background-light: #30353f;
+$color-background: #f6fafc;
+$color-background-dark: #eaf2f8;
 $color-background-darker: #1d2027;
 $color-background-darkest: #1a1d24;
-$color-background-light: #30353f;
-$color-background-lighter: #3a414e;
-$color-font: $color-white;
+
+$color-font: #728797;
 $color-transparent: transparent;
 $color-danger: #da496d;
 $color-primary: #61dafb;

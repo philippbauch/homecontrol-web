@@ -45,7 +45,7 @@ class HttpClient {
     const url = this.prepareUrl(endpoint);
     const init: RequestInit = { body, headers, method };
 
-    var response = await fetch(url, init);
+    const response = await fetch(url, init);
 
     const { data, error } = await response.json();
 

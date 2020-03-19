@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { client } from "../api/client";
+import { Loader } from "../components";
 
 interface UserContext {
   user?: any;
@@ -15,13 +17,13 @@ const initialContext: UserContext = {
 const UserContext = React.createContext<UserContext>(initialContext);
 
 function decodeToken(token: string): any {
-  const { user } = jwt.decode(token) as any;
+  const { _id } = jwt.decode(token) as any;
 
-  if (!user) {
+  if (!_id) {
     throw new Error("Malformed token");
   }
 
-  return user;
+  return _id;
 }
 
 function findUser(): any | null {
@@ -38,21 +40,64 @@ function findUser(): any | null {
   return null;
 }
 
+function getToken() {
+  return localStorage.getItem("token");
+}
+
+function removeToken() {
+  return localStorage.removeItem("token");
+}
+
+function storeToken(token: string) {
+  return localStorage.setItem("token", token);
+}
+
+function isTokenPresent() {
+  return !!getToken();
+}
+
 const UserProvider: React.FunctionComponent = ({ children }) => {
+  const [loading, setLoading] = useState<boolean>(isTokenPresent());
   const [user, setUser] = useState<any>(findUser());
 
-  const onLogin = (token: string) => {
-    const user = decodeToken(token);
-    setUser(user);
+  const fetchUser = async () => {
+    setLoading(true);
 
-    localStorage.setItem("token", token);
+    try {
+      const user = await client.get("/identity");
+      setUser(user);
+      setLoading(false);
+    } catch (error) {
+      if (
+        error.message === "ERR_INVALID_TOKEN" ||
+        error.message === "ERR_LOCKED_USER"
+      ) {
+        removeToken();
+        setUser(null);
+      }
+      setLoading(false);
+    }
+  };
+
+  const onLogin = (token: string) => {
+    storeToken(token);
+    fetchUser();
   };
 
   const onLogout = () => {
-    localStorage.removeItem("token");
-
+    removeToken();
     setUser(null);
   };
+
+  useEffect(() => {
+    const token = getToken();
+
+    if (!token) {
+      return;
+    }
+
+    fetchUser();
+  }, []);
 
   return (
     <UserContext.Provider
@@ -62,7 +107,7 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
         user
       }}
     >
-      {children}
+      <Loader loading={loading}>{children}</Loader>
     </UserContext.Provider>
   );
 };

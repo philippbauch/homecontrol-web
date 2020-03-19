@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Button, Input, Translate, Alert } from "../components";
+import { Alert, Button, Input, Translate } from "../components";
 import { UserContext } from "../contexts/UserContext";
 
 export const Login: React.FunctionComponent = () => {
@@ -25,11 +25,11 @@ export const Login: React.FunctionComponent = () => {
     try {
       const { token } = await client.post("/login", credentials);
 
+      setLoading(false);
       onLogin(token);
     } catch (error) {
-      setError(error.message);
-    } finally {
       setLoading(false);
+      setError(error.message);
     }
   };
 
@@ -56,31 +56,37 @@ export const Login: React.FunctionComponent = () => {
   return (
     <div id="login-page">
       <section id="login-container">
-        <h3 id="login-title">Login</h3>
+        <h1 id="login-title">Login</h1>
         <form id="login-form" onSubmit={handleFormSubmit}>
           {error ? (
             <Alert>
               <Translate>{error}</Translate>
             </Alert>
           ) : null}
-          <Input
-            onChange={handleIdentifierChange}
-            placeholder="ID"
-            type="text"
-            value={identifier}
-          />
-          <Input
-            onChange={handlePasswordChange}
-            placeholder="Password"
-            type="password"
-            value={password}
-          />
-          <Button
-            disabled={!identifier || !password}
-            loading={loading}
-            type="submit"
-          >
-            Login
+          <div className="login-form-section">
+            <label className="login-form-label">Nutzername</label>
+
+            <Input
+              onChange={handleIdentifierChange}
+              placeholder="ID"
+              type="text"
+              value={identifier}
+            />
+          </div>
+
+          <div className="login-form-section">
+            <label className="login-form-label">Passwort</label>
+
+            <Input
+              onChange={handlePasswordChange}
+              placeholder="Password"
+              type="password"
+              value={password}
+            />
+          </div>
+
+          <Button loading={loading} type="submit">
+            Anmelden
           </Button>
         </form>
       </section>

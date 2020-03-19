@@ -1,23 +1,32 @@
+$burger-bar-height: $size-xxs;
+$burger-bar-margin: 3px;
+$burger-bar-radius: 1px;
+$burger-bar-width: 18px;
+
 .burger {
+  align-items: center;
   cursor: pointer;
-  padding: $padding-xs 0;
+  display: flex;
+  height: $nav-height;
+  margin-left: -$margin-lg;
+  padding: 0 $padding-lg;
 
   &-bar {
-    background-color: $color-white;
-    border-radius: 1px;
-    height: $size-xxs;
+    background-color: $color-font;
+    border-radius: $burger-bar-radius;
+    height: $burger-bar-height;
     transition: transform 0.2s, opacity 0.1s;
-    width: $size-lg;
+    width: $burger-bar-width;
 
     &:not(:last-child) {
-      margin-bottom: $margin-xs;
+      margin-bottom: $burger-bar-margin;
     }
   }
 
   &.is-open {
     .burger-bar {
       &:nth-child(1) {
-        transform: rotate(45deg) translateX($size-xs) translateY($size-xs);
+        transform: translateY(5px) rotate(45deg);
       }
 
       &:nth-child(2) {
@@ -25,7 +34,7 @@
       }
 
       &:nth-child(3) {
-        transform: rotate(-45deg) translateX($size-xs) translateY(-$size-xs);
+        transform: translateY(-5px) rotate(-45deg);
       }
     }
   }

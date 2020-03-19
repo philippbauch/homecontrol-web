@@ -3,6 +3,10 @@
   grid-area: navigation;
   justify-content: space-between;
 
+  #brand {
+    margin-bottom: $margin-xxs;
+  }
+
   &-left,
   &-right {
     align-items: center;
