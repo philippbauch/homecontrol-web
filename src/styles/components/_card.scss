@@ -1,0 +1,9 @@
+.card {
+  background-color: $color-white;
+  border-radius: $radius;
+  box-shadow: $box-shadow;
+
+  &.is-padded {
+    padding: $padding-md;
+  }
+}

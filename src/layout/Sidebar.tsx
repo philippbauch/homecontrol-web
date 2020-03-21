@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { Icon, Tile, UserIcon } from "../components";
+import { NavLink, useHistory } from "react-router-dom";
+import { Icon, Tile } from "../components";
 import { UserContext } from "../contexts/UserContext";
+import { HomeContext } from "../contexts/HomeContext";
 
 interface SidebarProps {
   setShowSidebar: (showSidebar: boolean) => void;
@@ -10,7 +11,15 @@ interface SidebarProps {
 export const Sidebar: React.FunctionComponent<SidebarProps> = ({
   setShowSidebar
 }) => {
-  const { onLogout, user } = useContext(UserContext);
+  const { home } = useContext(HomeContext);
+  const { onLogout } = useContext(UserContext);
+  const history = useHistory();
+
+  const showHomes = () => {
+    setShowSidebar(false);
+
+    history.push("/homes");
+  };
 
   return (
     <aside id="sidebar">
@@ -18,15 +27,13 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
         <section id="sidebar-top">
           <Tile>
             <div id="user-tile">
-              <UserIcon color="blue" username={user.identifier} />
               <div className="user-info">
-                <span className="user-name">{user.identifier}</span>
-                <span className="user-role">Admin</span>
+                <span className="user-name">{home.name}</span>
               </div>
               <Icon
                 className="sign-out"
                 icon="fas fa-sign-out-alt"
-                onClick={onLogout}
+                onClick={showHomes}
                 size="lg"
               />
             </div>
@@ -49,6 +56,9 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
           >
             Settings
           </NavLink>
+          <div className="sidebar-item" onClick={onLogout}>
+            Log out
+          </div>
         </section>
       </div>
     </aside>

@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { HomeProvider } from "./contexts/HomeContext";
 import { Layout } from "./layout/Layout";
-import { DeviceDetails, Devices, Home, Rooms } from "./pages";
+import { Home, Homes } from "./pages";
+import { UserContext } from "./contexts/UserContext";
 
 export const App: React.FunctionComponent = () => {
+  const { user } = useContext(UserContext);
+
   return (
-    <Layout>
-      <Switch>
-        <Route exact={true} path="/devices">
-          <Devices />
-        </Route>
-        <Route path="/devices/:deviceId">
-          <DeviceDetails />
-        </Route>
-        <Route exact={true} path="/rooms">
-          <Rooms />
-        </Route>
-        <Route path="/home">
-          <Home />
-        </Route>
-        <Route>
-          <Redirect to="/home" />
-        </Route>
-      </Switch>
-    </Layout>
+    <HomeProvider>
+      <Layout>
+        <Switch>
+          <Route component={Homes} exact={true} path="/homes" />
+          <Route component={Home} path="/homes/:homeId" />
+          <Route>
+            <Redirect
+              to={
+                user.preferences.activeHomeId
+                  ? `/homes/${user.preferences.activeHomeId}`
+                  : "/homes"
+              }
+            />
+          </Route>
+        </Switch>
+      </Layout>
+    </HomeProvider>
   );
 };

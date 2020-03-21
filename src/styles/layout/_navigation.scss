@@ -3,7 +3,7 @@
   grid-area: navigation;
   justify-content: space-between;
 
-  #brand {
+  &-brand {
     margin-bottom: $margin-xxs;
   }
 
@@ -12,5 +12,12 @@
     align-items: center;
     display: flex;
     margin: 0 $margin-lg;
+  }
+
+  &-username {
+    height: $nav-height;
+    line-height: $nav-height;
+    margin-right: -$margin-lg;
+    padding: 0 $padding-lg;
   }
 }

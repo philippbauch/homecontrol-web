@@ -49,7 +49,11 @@ export const Login: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (user) {
-      history.push("/home");
+      if (user.preferences.activeHomeId) {
+        history.push(`/homes/${user.preferences.activeHomeId}`);
+      } else {
+        history.push("/homes");
+      }
     }
   }, [history, user]);
 

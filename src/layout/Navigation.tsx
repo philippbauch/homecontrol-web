@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Burger } from "../components";
+import { UserContext } from "../contexts/UserContext";
 
 interface NavigationProps {
   setShowSidebar: (showSidebar: boolean) => void;
@@ -11,6 +12,8 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   setShowSidebar,
   showSidebar
 }) => {
+  const { user } = useContext(UserContext);
+
   return (
     <nav id="navigation">
       <div id="navigation-left">
@@ -20,14 +23,27 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
         />
         <Link
           className="nostyle"
-          id="brand"
+          id="navigation-brand"
           onClick={() => setShowSidebar(false)}
-          to="/home"
+          to={
+            user.preferences.activeHomeId
+              ? `/homes/${user.preferences.activeHomeId}`
+              : "/homes"
+          }
         >
           <h1>Home</h1>
         </Link>
       </div>
-      <div id="navigation-right">Philipp</div>
+      <div id="navigation-right">
+        <Link
+          className="nostyle"
+          id="navigation-username"
+          onClick={() => setShowSidebar(false)}
+          to={`/users/${user.identifier}`}
+        >
+          {user.identifier}
+        </Link>
+      </div>
     </nav>
   );
 };
