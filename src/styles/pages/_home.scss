@@ -9,6 +9,15 @@
   grid-gap: $size-sm;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
+
+  .home-menu-item {
+    align-items: center;
+    display: flex;
+
+    & > :not(:last-child) {
+      margin-right: $margin-md;
+    }
+  }
 }
 
 #home-header {
