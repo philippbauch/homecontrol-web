@@ -46,9 +46,9 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
             activeClassName="is-active"
             className="sidebar-item nostyle"
             onClick={() => setShowSidebar(false)}
-            to="/devices"
+            to="/invitations"
           >
-            Devices
+            Invitations
           </NavLink>
           <NavLink
             activeClassName="is-active"

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { HomeProvider } from "./contexts/HomeContext";
 import { Layout } from "./layout/Layout";
-import { AddHome, Home, Homes } from "./pages";
+import { AddHome, Home, Homes, Invitations } from "./pages";
 import { UserContext } from "./contexts/UserContext";
 
 export const App: React.FunctionComponent = () => {
@@ -15,6 +15,7 @@ export const App: React.FunctionComponent = () => {
           <Route component={Homes} exact={true} path="/homes" />
           <Route component={AddHome} path="/homes/new" />
           <Route component={Home} path="/homes/:homeId" />
+          <Route component={Invitations} path="/invitations" />
           <Route>
             <Redirect
               to={

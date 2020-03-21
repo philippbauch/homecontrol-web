@@ -29,7 +29,7 @@
     text-align: center;
 
     &.is-active {
-      background-color: $color-background-darker;
+      font-weight: bold;
     }
   }
 }
