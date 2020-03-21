@@ -4,27 +4,13 @@
   padding: $padding-lg;
 }
 
-.overview-header {
-  margin-bottom: $margin-md;
-
-  > *:not(:last-child) {
-    margin-bottom: $margin-md;
-  }
+#home-menu {
+  display: grid;
+  grid-gap: $size-sm;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
 }
 
-.overview-body {
-  > *:not(:last-child) {
-    margin-bottom: $margin-md;
-  }
-
-  .overview-tile {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-
-    &-title {
-      font-size: $font-lg;
-      margin-bottom: $margin-sm;
-    }
-  }
+#home-title {
+  margin-bottom: $margin-md;
 }

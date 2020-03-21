@@ -1,5 +1,5 @@
 .tile {
-  background-color: $color-background;
+  background-color: $color-background-dark;
   border-radius: $radius;
 
   &.is-clickable {
@@ -14,8 +14,8 @@
     }
   }
 
-  &.is-dark {
-    background-color: $color-background-dark;
+  &.is-bright {
+    background-color: $color-background;
   }
 
   &.is-padded {

@@ -15,11 +15,7 @@ export const DeviceItem: React.FunctionComponent<DeviceItemProps> = ({
     history.push(`/devices/${device._id}`);
   };
   return (
-    <Tile
-      className="devices-item"
-      dark={true}
-      onClick={() => handleDeviceSelect(device)}
-    >
+    <Tile className="devices-item" onClick={() => handleDeviceSelect(device)}>
       <div className="device-tile">
         <div className="device-info">
           <Status status="connected" />

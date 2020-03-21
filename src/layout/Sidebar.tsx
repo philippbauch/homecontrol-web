@@ -26,7 +26,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
       <div id="sidebar-container">
         <section id="sidebar-top">
           {home ? (
-            <Tile>
+            <Tile bright={true}>
               <div id="user-tile">
                 <div className="user-info">
                   <span className="user-name">{home.name}</span>
