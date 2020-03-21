@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Level, Input, Button } from "../components";
+import { Level, Input, Button, Breadcrumbs, Breadcrumb } from "../components";
 import { client } from "../api/client";
 import { useHistory } from "react-router-dom";
 import { HomeContext } from "../contexts/HomeContext";
@@ -39,6 +39,9 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
 
   return (
     <div id="add-home-page">
+      <Breadcrumbs>
+        <Breadcrumb link="/homes">Homes</Breadcrumb>
+      </Breadcrumbs>
       <Level id="add-home-header">
         <h2 id="add-home-title">Add new home</h2>
       </Level>

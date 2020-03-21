@@ -1,4 +1,6 @@
 export { Alert } from "./Alert";
+export { Breadcrumb } from "./Breadcrumb";
+export { Breadcrumbs } from "./Breadcrumbs";
 export { Burger } from "./Burger";
 export { Button } from "./Button";
 export { Card } from "./Card";
