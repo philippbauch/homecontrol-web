@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { HomeProvider } from "./contexts/HomeContext";
 import { UserContext } from "./contexts/UserContext";
-import { Layout } from "./layout/Layout";
+import { Layout } from "./layout";
 import { AddHome, Home, Homes, Invitations } from "./pages";
 
 export const App: React.FunctionComponent = () => {
