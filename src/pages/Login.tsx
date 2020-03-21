@@ -1,16 +1,22 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Alert, Button, Input, Translate } from "../components";
+import { Alert, Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
 
 export const Login: React.FunctionComponent = () => {
   const { user, onLogin } = useContext(UserContext);
   const history = useHistory();
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [identifier, setIdentifier] = useState("");
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+
+  const getDefaultRoute = useCallback(() => {
+    const { activeHomeId } = user.preferences;
+
+    return activeHomeId ? `/homes/${activeHomeId}` : "/homes";
+  }, [user]);
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,24 +55,16 @@ export const Login: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (user) {
-      if (user.preferences.activeHomeId) {
-        history.push(`/homes/${user.preferences.activeHomeId}`);
-      } else {
-        history.push("/homes");
-      }
+      history.push(getDefaultRoute());
     }
-  }, [history, user]);
+  }, [getDefaultRoute, history, user]);
 
   return (
     <div id="login-page">
       <section id="login-container">
         <h1 id="login-title">Login</h1>
         <form id="login-form" onSubmit={handleFormSubmit}>
-          {error ? (
-            <Alert>
-              <Translate>{error}</Translate>
-            </Alert>
-          ) : null}
+          {error ? <Alert>{error}</Alert> : null}
           <div className="login-form-section">
             <label className="login-form-label">Nutzername</label>
 

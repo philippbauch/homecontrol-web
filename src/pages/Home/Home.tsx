@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { HomeContext } from "../../contexts/HomeContext";
 import { Redirect, Link, useHistory, Switch, Route } from "react-router-dom";
-import { Level, Tile, ColorSquare, Divider } from "../../components";
 import { Rooms } from "../Rooms";
+import { Level, Tile, ColorSquare, Divider } from "../../components";
+import { HomeContext } from "../../contexts/HomeContext";
+import { Page } from "../../layout";
 
 export const Home: React.FunctionComponent = () => {
   const { home } = useContext(HomeContext);
@@ -12,12 +13,11 @@ export const Home: React.FunctionComponent = () => {
     <Switch>
       <Route component={Rooms} path={`/homes/${home._id}/rooms`} />
       <Route>
-        <div id="home-page">
+        <Page>
           <Level id="home-header">
             <h2 id="home-title">{home.name}</h2>
             <Link to={`/homes/${home._id}/edit`}>Edit</Link>
           </Level>
-
           <section id="home-menu">
             <Tile
               className="home-menu-item"
@@ -35,9 +35,7 @@ export const Home: React.FunctionComponent = () => {
               <span>Residents</span>
             </Tile>
           </section>
-
           <Divider />
-
           <section id="home-activity">
             <Level id="home-activity-header">
               <h3 id="home-activity-title">Activity</h3>
@@ -45,7 +43,7 @@ export const Home: React.FunctionComponent = () => {
             </Level>
             <div>No recent activities.</div>
           </section>
-        </div>
+        </Page>
       </Route>
     </Switch>
   ) : (

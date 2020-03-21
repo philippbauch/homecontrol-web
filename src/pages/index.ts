@@ -1,6 +1,6 @@
 export { AddHome } from "./AddHome";
 export { Devices } from "./Devices";
-export { DeviceDetails } from "./DeviceDetails";
+export { Device } from "./Device";
 export { Home } from "./Home";
 export { Homes } from "./Homes";
 export { Invitations } from "./Invitations";

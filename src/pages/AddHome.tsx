@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Level, Input, Button, Breadcrumbs, Breadcrumb } from "../components";
-import { client } from "../api/client";
 import { useHistory } from "react-router-dom";
+import { client } from "../api/client";
+import { Level, Input, Button, Breadcrumbs, Breadcrumb } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
+import { Page } from "../layout";
 
 interface AddHomeProps {
   home: any;
@@ -38,7 +39,7 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
   };
 
   return (
-    <div id="add-home-page">
+    <Page>
       <Breadcrumbs>
         <Breadcrumb link="/homes">Homes</Breadcrumb>
       </Breadcrumbs>
@@ -48,7 +49,6 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
       <form id="add-home-form" onSubmit={handleFormSubmit}>
         <div className="add-home-form-section">
           <label className="add-home-form-label">Name</label>
-
           <Input
             onChange={handleNameChange}
             placeholder="Name"
@@ -56,11 +56,10 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
             value={name}
           />
         </div>
-
         <Button loading={loading} type="submit">
           Add
         </Button>
       </form>
-    </div>
+    </Page>
   );
 };
