@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import { HomeContext } from "../contexts/HomeContext";
-import { Redirect } from "react-router-dom";
-import { Tile } from "../components";
+import { Redirect, Link } from "react-router-dom";
+import { Level, Tile } from "../components";
 
 export const Home: React.FunctionComponent = () => {
   const { home } = useContext(HomeContext);
 
   return home ? (
     <div id="home-page">
-      <h2 id="home-title">{home.name}</h2>
+      <Level id="home-header">
+        <h2 id="home-title">{home.name}</h2>
+        <Link to={`/homes/${home._id}/edit`}>Edit</Link>
+      </Level>
+
       <section id="home-menu">
         <Tile>Residents</Tile>
         <Tile>Rooms</Tile>
