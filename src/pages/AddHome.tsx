@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Level, Input, Button, Breadcrumbs, Breadcrumb } from "../components";
+import { Level, Input, Button } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
+import { BreadcrumbProps } from "../components/Breadcrumb";
 
 interface AddHomeProps {
   home: any;
@@ -14,6 +15,13 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
+
+  const breadcrumbs: BreadcrumbProps[] = [
+    {
+      link: "/homes",
+      title: "Homes"
+    }
+  ];
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,10 +47,7 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
   };
 
   return (
-    <Page>
-      <Breadcrumbs>
-        <Breadcrumb link="/homes">Homes</Breadcrumb>
-      </Breadcrumbs>
+    <Page breadcrumbs={breadcrumbs}>
       <Level id="add-home-header">
         <h2 id="add-home-title">Add new home</h2>
       </Level>

@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Level, Input, Button, Breadcrumbs, Breadcrumb } from "../components";
+import { Button, Input, Level } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
+import { BreadcrumbProps } from "../components/Breadcrumb";
 
 interface AddRoomProps {
   home: any;
@@ -14,6 +15,17 @@ export const AddRoom: React.FunctionComponent<AddRoomProps> = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
+
+  const breadcrumbs: BreadcrumbProps[] = [
+    {
+      link: `/homes/${home._id}`,
+      title: home.name as string
+    },
+    {
+      link: `/homes/${home._id}/rooms`,
+      title: "Rooms"
+    }
+  ];
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,11 +52,7 @@ export const AddRoom: React.FunctionComponent<AddRoomProps> = () => {
   };
 
   return (
-    <Page>
-      <Breadcrumbs>
-        <Breadcrumb link={`/homes/${home._id}`}>{home.name}</Breadcrumb>
-        <Breadcrumb link={`/homes/${home._id}/rooms`}>Rooms</Breadcrumb>
-      </Breadcrumbs>
+    <Page breadcrumbs={breadcrumbs}>
       <Level id="add-room-header">
         <h2 id="add-room-title">Add new room</h2>
       </Level>

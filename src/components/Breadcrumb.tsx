@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface BreadcrumbProps {
+export interface BreadcrumbProps {
   link: string;
+  title: string;
 }
 
 export const Breadcrumb: React.FunctionComponent<BreadcrumbProps> = ({
-  children,
-  link
+  link,
+  title
 }) => {
   return (
     <div className="breadcrumb">
-      <Link to={link}>{children}</Link>
+      <Link to={link}>{title}</Link>
     </div>
   );
 };
