@@ -2,6 +2,7 @@
   display: flex;
   grid-area: navigation;
   justify-content: space-between;
+  z-index: 2;
 
   &-brand {
     margin-bottom: $margin-xxs;

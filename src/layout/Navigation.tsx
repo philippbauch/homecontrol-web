@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Burger, UserIcon } from "../components";
+import { Link, useHistory } from "react-router-dom";
+import { Burger } from "../components";
 import { UserContext } from "../contexts/UserContext";
 
 interface NavigationProps {
@@ -13,26 +13,31 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   showSidebar
 }) => {
   const { user } = useContext(UserContext);
+  const history = useHistory();
+
+  const hideSidebar = () => setShowSidebar(false);
+
+  const getDefaultRoute = () => {
+    const { activeHomeId } = user.preferences;
+
+    return activeHomeId ? `/homes/${activeHomeId}` : "/homes";
+  };
+
+  const goToDefaultRoute = () => {
+    hideSidebar();
+
+    history.push(getDefaultRoute());
+  };
+
+  const toggleSidebar = () => setShowSidebar(!showSidebar);
 
   return (
     <nav id="navigation">
       <div id="navigation-left">
-        <Burger
-          onClick={() => setShowSidebar(!showSidebar)}
-          open={showSidebar}
-        />
-        <Link
-          className="nostyle"
-          id="navigation-brand"
-          onClick={() => setShowSidebar(false)}
-          to={
-            user.preferences.activeHomeId
-              ? `/homes/${user.preferences.activeHomeId}`
-              : "/homes"
-          }
-        >
-          <h1>Home</h1>
-        </Link>
+        <Burger onClick={toggleSidebar} open={showSidebar} />
+        <h1 id="navigation-brand" onClick={goToDefaultRoute}>
+          Home
+        </h1>
       </div>
       <div id="navigation-right">
         <Link
