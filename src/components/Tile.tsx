@@ -4,6 +4,7 @@ import React from "react";
 interface TileProps {
   className?: string;
   bright?: boolean;
+  id?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   padded?: boolean;
 }
@@ -12,6 +13,7 @@ export const Tile: React.FunctionComponent<TileProps> = ({
   children,
   className,
   bright,
+  id,
   onClick,
   padded = true
 }) => {
@@ -22,6 +24,7 @@ export const Tile: React.FunctionComponent<TileProps> = ({
         "is-bright": bright,
         "is-padded": padded
       })}
+      id={id}
       onClick={onClick}
     >
       {children}

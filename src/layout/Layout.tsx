@@ -24,11 +24,9 @@ export const Layout: React.FunctionComponent = ({ children }) => {
 
   return (
     <div id="layout" ref={layoutRef}>
+      {showSidebar ? <Sidebar setShowSidebar={setShowSidebar} /> : null}
       <Navigation setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
-      <div id="main">
-        {showSidebar ? <Sidebar setShowSidebar={setShowSidebar} /> : null}
-        <main id="page-container">{children}</main>
-      </div>
+      <main id="main">{children}</main>
     </div>
   );
 };

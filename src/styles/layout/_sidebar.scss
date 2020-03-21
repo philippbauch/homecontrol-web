@@ -7,53 +7,45 @@
   right: 0;
   top: 0;
   z-index: 1;
-}
 
-#sidebar-container {
-  display: flex;
-  flex-direction: column;
-}
-
-#sidebar-top {
-  padding: $padding-md;
-}
-
-#sidebar-bottom {
-  display: flex;
-  flex-direction: column;
-
-  .sidebar-item {
-    font-size: $font-lg;
-    padding: $padding-md;
-    position: relative;
-    text-align: center;
-
-    &.is-active {
-      font-weight: bold;
-    }
-  }
-}
-
-#user-tile {
-  align-items: center;
-  display: flex;
-
-  .user-info {
+  #sidebar-content {
     display: flex;
     flex-direction: column;
-    margin-left: $margin-md;
+    margin-top: $nav-height;
 
-    .user-name {
-      font-size: $font-lg;
-      font-weight: bold;
+    #sidebar-top {
+      padding: $padding-md;
+
+      #home-tile {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        #home-info {
+          display: flex;
+          flex-direction: column;
+
+          #home-name {
+            font-weight: bold;
+          }
+        }
+      }
     }
 
-    .user-role {
-      font-size: $font-sm;
-    }
-  }
+    #sidebar-bottom {
+      display: flex;
+      flex-direction: column;
 
-  .sign-out {
-    margin-left: auto;
+      .sidebar-item {
+        font-size: $font-lg;
+        padding: $padding-md;
+        position: relative;
+        text-align: center;
+
+        &.is-active {
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
