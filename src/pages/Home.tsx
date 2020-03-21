@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { HomeContext } from "../contexts/HomeContext";
 import { Redirect, Link } from "react-router-dom";
-import { Level, Tile, ColorSquare } from "../components";
+import { Level, Tile, ColorSquare, Divider } from "../components";
 
 export const Home: React.FunctionComponent = () => {
   const { home } = useContext(HomeContext);
@@ -26,6 +26,16 @@ export const Home: React.FunctionComponent = () => {
           <ColorSquare color="green" />
           <span>Residents</span>
         </Tile>
+      </section>
+
+      <Divider />
+
+      <section id="home-activity">
+        <Level id="home-activity-header">
+          <h3 id="home-activity-title">Activity</h3>
+          <Link to={`/homes/${home._id}/activity`}>Show all</Link>
+        </Level>
+        <div>No recent activities.</div>
       </section>
     </div>
   ) : (

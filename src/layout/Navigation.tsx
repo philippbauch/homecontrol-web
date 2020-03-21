@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Burger } from "../components";
+import { Burger, UserIcon } from "../components";
 import { UserContext } from "../contexts/UserContext";
 
 interface NavigationProps {
