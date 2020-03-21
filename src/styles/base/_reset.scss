@@ -9,17 +9,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:link {
-  color: $color-primary;
-}
-
-a:visited {
-  color: $color-primary-dark;
-}
-
-a.nostyle {
-  color: inherit;
+a {
   text-decoration: none;
+
+  &:link {
+    color: $color-purple;
+  }
+
+  &:visited {
+    color: $color-purple;
+  }
+
+  &.nostyle {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 button {

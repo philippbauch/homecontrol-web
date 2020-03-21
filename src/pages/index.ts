@@ -1,3 +1,4 @@
+export { AddHome } from "./AddHome";
 export { Devices } from "./Devices";
 export { DeviceDetails } from "./DeviceDetails";
 export { Home } from "./Home";

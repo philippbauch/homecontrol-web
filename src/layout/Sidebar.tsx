@@ -25,19 +25,21 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
     <aside id="sidebar">
       <div id="sidebar-container">
         <section id="sidebar-top">
-          <Tile>
-            <div id="user-tile">
-              <div className="user-info">
-                <span className="user-name">{home.name}</span>
+          {home ? (
+            <Tile>
+              <div id="user-tile">
+                <div className="user-info">
+                  <span className="user-name">{home.name}</span>
+                </div>
+                <Icon
+                  className="sign-out"
+                  icon="fas fa-sign-out-alt"
+                  onClick={showHomes}
+                  size="lg"
+                />
               </div>
-              <Icon
-                className="sign-out"
-                icon="fas fa-sign-out-alt"
-                onClick={showHomes}
-                size="lg"
-              />
-            </div>
-          </Tile>
+            </Tile>
+          ) : null}
         </section>
         <section id="sidebar-bottom">
           <NavLink

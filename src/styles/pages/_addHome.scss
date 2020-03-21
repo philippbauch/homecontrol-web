@@ -1,0 +1,28 @@
+#add-home-page {
+  display: flex;
+  flex-direction: column;
+  padding: $padding-lg;
+}
+
+#add-home-header {
+  margin-bottom: $margin-md;
+}
+
+#add-home-form {
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: $margin-lg;
+  }
+
+  .add-home-form-section {
+    display: flex;
+    flex-direction: column;
+
+    .add-home-form-label {
+      font-weight: 600;
+      margin-bottom: $margin-sm;
+    }
+  }
+}

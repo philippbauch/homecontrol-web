@@ -4,6 +4,12 @@
   padding: $padding-lg;
 }
 
-#homes-title {
-  margin-bottom: $margin-sm;
+#homes-header {
+  margin-bottom: $margin-md;
+}
+
+.home-list {
+  .home-item:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
 }

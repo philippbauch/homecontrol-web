@@ -4,6 +4,7 @@ import { Loader } from "../components";
 import { UserContext } from "./UserContext";
 
 interface HomeContext {
+  addHome: (home: any) => void;
   home: any;
   homes: any;
   loading: boolean;
@@ -11,6 +12,7 @@ interface HomeContext {
 }
 
 const initialContext: HomeContext = {
+  addHome: () => {},
   home: null,
   homes: [],
   loading: false,
@@ -25,6 +27,13 @@ const HomeProvider: React.FunctionComponent = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [activeHomeId, setActiveHomeId] = useState<number>(
     user.preferences.activeHomeId
+  );
+
+  const addHome = useCallback(
+    (home: any) => {
+      setHomes([...homes, home]);
+    },
+    [homes]
   );
 
   const fetchHomes = async () => {
@@ -58,6 +67,7 @@ const HomeProvider: React.FunctionComponent = ({ children }) => {
   return (
     <HomeContext.Provider
       value={{
+        addHome,
         homes,
         home: getSelectedHome(),
         loading,

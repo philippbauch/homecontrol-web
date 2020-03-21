@@ -6,6 +6,7 @@ type LevelAlign = "top" | "center" | "bottom";
 interface LevelProps {
   align?: LevelAlign;
   className?: string;
+  id?: string;
   style?: any;
 }
 
@@ -13,6 +14,7 @@ export const Level: React.FunctionComponent<LevelProps> = ({
   align = "center",
   children,
   className,
+  id,
   style
 }) => {
   return (
@@ -24,6 +26,7 @@ export const Level: React.FunctionComponent<LevelProps> = ({
         { "align-center": align === "center" },
         { "align-bottom": align === "bottom" }
       )}
+      id={id}
       style={{ ...style }}
     >
       {children}
