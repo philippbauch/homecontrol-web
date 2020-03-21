@@ -1,12 +1,22 @@
 import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { HomeProvider } from "./contexts/HomeContext";
+import { UserContext } from "./contexts/UserContext";
 import { Layout } from "./layout/Layout";
 import { AddHome, Home, Homes, Invitations } from "./pages";
-import { UserContext } from "./contexts/UserContext";
 
 export const App: React.FunctionComponent = () => {
   const { user } = useContext(UserContext);
+
+  if (!user) {
+    return <Redirect to="/login" />;
+  }
+
+  const getDefaultRoute = () => {
+    const { activeHomeId } = user.preferences;
+
+    return activeHomeId ? `/homes/${activeHomeId}` : "/homes";
+  };
 
   return (
     <HomeProvider>
@@ -16,15 +26,7 @@ export const App: React.FunctionComponent = () => {
           <Route component={AddHome} path="/homes/new" />
           <Route component={Home} path="/homes/:homeId" />
           <Route component={Invitations} path="/invitations" />
-          <Route>
-            <Redirect
-              to={
-                user.preferences.activeHomeId
-                  ? `/homes/${user.preferences.activeHomeId}`
-                  : "/homes"
-              }
-            />
-          </Route>
+          <Redirect to={getDefaultRoute()} />
         </Switch>
       </Layout>
     </HomeProvider>

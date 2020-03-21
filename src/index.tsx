@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { App } from "./App";
-import { PrivateRoute } from "./components/PrivateRoute";
 import { UserProvider } from "./contexts/UserContext";
 import { Login } from "./pages";
 import "./styles/main.scss";
@@ -13,7 +12,7 @@ const Root: React.FunctionComponent = () => {
       <UserProvider>
         <Switch>
           <Route path="/login" component={Login} />
-          <PrivateRoute path="" component={App} />
+          <Route component={App} />
         </Switch>
       </UserProvider>
     </Router>

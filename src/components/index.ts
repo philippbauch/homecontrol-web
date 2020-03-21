@@ -10,7 +10,6 @@ export { Icon } from "./Icon";
 export { Input } from "./Input";
 export { Level } from "./Level";
 export { Loader } from "./Loader";
-export { PrivateRoute } from "./PrivateRoute";
 export { Spinner } from "./Spinner";
 export { Status } from "./Status";
 export { Tile } from "./Tile";
