@@ -29,10 +29,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
         {home ? (
           <section id="sidebar-top">
             <Tile bright={true} id="home-tile">
-              <div id="home-info">
-                <h3 id="home-name">{home.name}</h3>
-                <span>Currently selected</span>
-              </div>
+              <h3 id="home-name">{home.name}</h3>
               <Icon icon="fas fa-sign-out-alt" onClick={showHomes} size="lg" />
             </Tile>
           </section>

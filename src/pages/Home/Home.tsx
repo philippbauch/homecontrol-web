@@ -9,20 +9,19 @@ export const Home: React.FunctionComponent = () => {
   const { home } = useContext(HomeContext);
   const history = useHistory();
 
+  const action = <Link to={`/homes/${home._id}/edit`}>Edit</Link>;
+
+  const goToRooms = () => {
+    history.push(`/homes/${home._id}/rooms`);
+  };
+
   return home ? (
     <Switch>
       <Route component={Rooms} path={`/homes/${home._id}/rooms`} />
       <Route>
-        <Page>
-          <Level id="home-header">
-            <h2 id="home-title">{home.name}</h2>
-            <Link to={`/homes/${home._id}/edit`}>Edit</Link>
-          </Level>
+        <Page action={action} title={home.name}>
           <section id="home-menu">
-            <Tile
-              className="home-menu-item"
-              onClick={() => history.push(`/homes/${home._id}/rooms`)}
-            >
+            <Tile className="home-menu-item" onClick={goToRooms}>
               <ColorSquare color="blue" />
               <span>Rooms</span>
             </Tile>

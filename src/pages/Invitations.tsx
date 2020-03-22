@@ -3,7 +3,7 @@ import { Page } from "../layout";
 
 export const Invitations: React.FunctionComponent = () => {
   return (
-    <Page>
+    <Page title="Invitations">
       <span>Invitations</span>
     </Page>
   );

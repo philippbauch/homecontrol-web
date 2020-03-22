@@ -1,21 +1,25 @@
 import classnames from "classnames";
 import React from "react";
-import { Breadcrumb, Breadcrumbs } from "../components";
+import { Breadcrumb, Breadcrumbs, Level } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 
 interface PageProps {
+  action?: React.ReactNode;
   breadcrumbs?: BreadcrumbProps[];
   className?: string;
   id?: string;
   style?: any;
+  title: string;
 }
 
 export const Page: React.FunctionComponent<PageProps> = ({
+  action,
   breadcrumbs = [],
   children,
   className,
   id,
-  style
+  style,
+  title
 }) => {
   return (
     <div className={classnames("page", className)} id={id} style={{ ...style }}>
@@ -26,6 +30,10 @@ export const Page: React.FunctionComponent<PageProps> = ({
           ))}
         </Breadcrumbs>
       ) : null}
+      <Level className="page-header">
+        <h2 className="page-title">{title}</h2>
+        {action}
+      </Level>
       {children}
     </div>
   );

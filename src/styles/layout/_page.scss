@@ -2,4 +2,12 @@
   display: flex;
   flex-direction: column;
   padding: $padding-lg;
+
+  .page-header {
+    margin-bottom: $margin-md;
+
+    &:first-child {
+      margin-top: calc(#{$size-lg} + #{$breadcrumbs-margin});
+    }
+  }
 }

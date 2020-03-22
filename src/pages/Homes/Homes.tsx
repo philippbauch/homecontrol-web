@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HomeList } from "./HomeList";
-import { Level } from "../../components";
 import { HomeContext } from "../../contexts/HomeContext";
 import { Page } from "../../layout";
 
 export const Homes: React.FunctionComponent = () => {
   const { homes } = useContext(HomeContext);
 
+  const action = <Link to="/homes/new">Add</Link>;
+
   return (
-    <Page>
-      <Level id="homes-header">
-        <h2 id="homes-title">Select your home</h2>
-        <Link to="/homes/new">Add</Link>
-      </Level>
+    <Page action={action} title="Select your home">
       <HomeList homes={homes} />
     </Page>
   );

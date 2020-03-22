@@ -1,4 +1,6 @@
+$breadcrumbs-margin: $margin-sm;
+
 .breadcrumbs {
   display: flex;
-  margin-bottom: $margin-sm;
+  margin-bottom: $breadcrumbs-margin;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Level, Input, Button } from "../components";
+import { Button, Input } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
@@ -47,10 +47,7 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
   };
 
   return (
-    <Page breadcrumbs={breadcrumbs}>
-      <Level id="add-home-header">
-        <h2 id="add-home-title">Add new home</h2>
-      </Level>
+    <Page breadcrumbs={breadcrumbs} title="Add new home">
       <form id="add-home-form" onSubmit={handleFormSubmit}>
         <div className="add-home-form-section">
           <label className="add-home-form-label">Name</label>

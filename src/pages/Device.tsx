@@ -3,7 +3,7 @@ import { Page } from "../layout";
 
 export const Device: React.FunctionComponent = () => {
   return (
-    <Page>
+    <Page title="Device">
       <span>Device Page</span>
     </Page>
   );

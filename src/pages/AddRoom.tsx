@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Button, Input, Level } from "../components";
+import { Button, Input } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
@@ -52,10 +52,7 @@ export const AddRoom: React.FunctionComponent<AddRoomProps> = () => {
   };
 
   return (
-    <Page breadcrumbs={breadcrumbs}>
-      <Level id="add-room-header">
-        <h2 id="add-room-title">Add new room</h2>
-      </Level>
+    <Page breadcrumbs={breadcrumbs} title="Add new room">
       <form id="add-room-form" onSubmit={handleFormSubmit}>
         <div className="add-room-form-section">
           <label className="add-room-form-label">Name</label>
