@@ -41,6 +41,7 @@ const HomeProvider: React.FunctionComponent = ({ children }) => {
 
     try {
       const homes = await client.get("/homes");
+
       setHomes(homes);
       setLoading(false);
     } catch (error) {

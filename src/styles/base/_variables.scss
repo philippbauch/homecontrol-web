@@ -58,14 +58,15 @@ $color-background-dark: #e9f2f6;
 $color-background-darker: #1d2027;
 $color-background-darkest: #1a1d24;
 
+$font-color-primary: #495a67;
+$font-color-secondary: #728797;
+
 $color-transparent: transparent;
-$color-font: #728797;
-$color-font-dark: #495a67;
 $color-danger: #da496d;
 $color-primary: #61dafb;
 $color-primary-dark: #55cdee;
 $color-pink: #e7b7ea;
-$color-purple: #8e9dec;
+$color-purple: #808fde;
 $color-success: #88eed1;
 
-$box-shadow: 0 1px 2px 0 transparentize($color-font, 0.5);
+$box-shadow: 0 1px 2px 0 transparentize($font-color-secondary, 0.5);

@@ -1,0 +1,5 @@
+.room-list {
+  .room-item:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
+}

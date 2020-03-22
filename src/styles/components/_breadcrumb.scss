@@ -1,6 +1,6 @@
 .breadcrumb {
   &:not(:last-of-type)::after {
-    color: $color-font;
+    color: $font-color-secondary;
     content: ">";
     margin: 0 $margin-sm;
   }

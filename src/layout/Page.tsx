@@ -25,8 +25,8 @@ export const Page: React.FunctionComponent<PageProps> = ({
     <div className={classnames("page", className)} id={id} style={{ ...style }}>
       {breadcrumbs.length ? (
         <Breadcrumbs>
-          {breadcrumbs.map(({ link, title }) => (
-            <Breadcrumb link={link} title={title} />
+          {breadcrumbs.map(({ link, title }, index) => (
+            <Breadcrumb key={index} link={link} title={title} />
           ))}
         </Breadcrumbs>
       ) : null}
