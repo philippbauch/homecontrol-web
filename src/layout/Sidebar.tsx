@@ -28,7 +28,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
       <div id="sidebar-content">
         {home ? (
           <section id="sidebar-top">
-            <Tile bright={true} id="home-tile">
+            <Tile darker={true} id="home-tile">
               <h3 id="home-name">{home.name}</h3>
               <Icon icon="fas fa-sign-out-alt" onClick={showHomes} size="lg" />
             </Tile>

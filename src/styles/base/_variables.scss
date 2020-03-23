@@ -51,12 +51,9 @@ $screen-size-tablet: 768px;
 $color-white: white;
 $color-white-off: rgba(255, 255, 255, 0.5);
 
-$color-background-lighter: #3a414e;
-$color-background-light: #30353f;
 $color-background: #f6fafc;
-$color-background-dark: #e9f2f6;
-$color-background-darker: #1d2027;
-$color-background-darkest: #1a1d24;
+$color-background-dark: #eef4f7;
+$color-background-darker: #d9e5ec;
 
 $font-color-primary: #495a67;
 $font-color-secondary: #728797;
@@ -69,4 +66,6 @@ $color-pink: #e7b7ea;
 $color-purple: #808fde;
 $color-success: #88eed1;
 
-$box-shadow: 0 1px 2px 0 transparentize($font-color-secondary, 0.5);
+$border-color: #a6b4bd;
+
+$box-shadow: 0 1px 2px 0 transparentize($font-color-primary, 0.5);

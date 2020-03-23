@@ -8,14 +8,10 @@
     &:hover {
       background-color: $color-background-dark;
     }
-
-    &.is-dark {
-      background-color: $color-background-darker;
-    }
   }
 
-  &.is-bright {
-    background-color: $color-background;
+  &.is-darker {
+    background-color: $color-background-darker;
   }
 
   &.is-padded {

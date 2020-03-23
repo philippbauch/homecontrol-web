@@ -1,5 +1,4 @@
 body {
-  background-color: $color-background;
   color: $font-color-primary;
   font-size: $base-font;
   font-family: $font-family;
@@ -51,14 +50,6 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: $font-weight-semi-bold;
   margin: 0;
-}
-
-h1 {
-  color: $font-color-secondary;
-}
-
-h2,
-h3 {
-  font-weight: 600;
 }

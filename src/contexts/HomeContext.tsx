@@ -22,6 +22,8 @@ const initialContext: HomeContext = {
 const HomeContext = React.createContext<HomeContext>(initialContext);
 
 const HomeProvider: React.FunctionComponent = ({ children }) => {
+  console.log("Re-render HomeProvider");
+
   const { user } = useContext(UserContext);
   const [homes, setHomes] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);

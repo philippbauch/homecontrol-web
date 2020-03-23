@@ -1,9 +1,10 @@
 .input {
   background-color: transparent;
   -webkit-appearance: none;
-  -webkit-box-shadow: 0 0 0 1px #c5d3dc;
-  box-shadow: 0 0 0 1px #c5d3dc;
+  -webkit-box-shadow: 0 0 0 1px $border-color;
+  box-shadow: 0 0 0 1px $border-color;
   border-radius: $radius;
+  color: $font-color-primary;
   font-size: $font-md;
   padding: 0.75em $padding-md;
   transition: box-shadow 0.2s;

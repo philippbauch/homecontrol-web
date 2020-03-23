@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Card, Status } from "../../components";
+import { Status, Tile } from "../../components";
 import { HomeContext } from "../../contexts/HomeContext";
 import { useHistory } from "react-router-dom";
 
@@ -18,13 +18,13 @@ export const HomeItem: React.FunctionComponent<HomeItemProps> = ({ home }) => {
   };
 
   return (
-    <Card className="home-item" onClick={selectHome}>
+    <Tile className="home-item" onClick={selectHome}>
       <div className="home-tile">
         <div className="home-info">
           <Status status="connected" />
           <span className="device-title">{home.name}</span>
         </div>
       </div>
-    </Card>
+    </Tile>
   );
 };

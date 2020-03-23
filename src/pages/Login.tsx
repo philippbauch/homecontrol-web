@@ -62,7 +62,7 @@ export const Login: React.FunctionComponent = () => {
   return (
     <div id="login-page">
       <section id="login-container">
-        <h1 id="login-title">Login</h1>
+        <h2 id="login-title">Login</h2>
         <form id="login-form" onSubmit={handleFormSubmit}>
           {error ? <Alert>{error}</Alert> : null}
           <div className="login-form-section">
