@@ -1,0 +1,5 @@
+.user-list {
+  .user-item:not(:last-child) {
+    margin-bottom: $margin-md;
+  }
+}

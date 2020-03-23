@@ -3,8 +3,8 @@ import { Page } from "../layout";
 
 export const Invitations: React.FunctionComponent = () => {
   return (
-    <Page title="Invitations">
-      <span>Invitations</span>
+    <Page title="Einladungen">
+      <span>Einladungen</span>
     </Page>
   );
 };

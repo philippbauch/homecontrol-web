@@ -1,4 +1,6 @@
 export { AddHome } from "./AddHome";
+export { AddRoom } from "./AddRoom";
+export { AddUser } from "./AddUser";
 export { Devices } from "./Devices";
 export { Device } from "./Device";
 export { Home } from "./Home";
@@ -6,3 +8,4 @@ export { Homes } from "./Homes";
 export { Invitations } from "./Invitations";
 export { Login } from "./Login";
 export { Rooms } from "./Rooms";
+export { Users } from "./Users";

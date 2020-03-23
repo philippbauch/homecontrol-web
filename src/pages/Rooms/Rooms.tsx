@@ -13,7 +13,7 @@ export const Rooms: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(true);
   const [rooms, setRooms] = useState([]);
 
-  const action = <Link to={`/homes/${home._id}/rooms/new`}>Add</Link>;
+  const action = <Link to={`/homes/${home._id}/rooms/new`}>Hinzufügen</Link>;
 
   const breadcrumbs: BreadcrumbProps[] = [
     {
@@ -43,7 +43,7 @@ export const Rooms: React.FunctionComponent = () => {
     <Switch>
       <Route component={AddRoom} path={`/homes/${home._id}/rooms/new`} />
       <Route>
-        <Page action={action} breadcrumbs={breadcrumbs} title="Rooms">
+        <Page action={action} breadcrumbs={breadcrumbs} title="Räume">
           <Loader loading={loading}>
             <RoomList rooms={rooms} />
           </Loader>

@@ -11,7 +11,7 @@
     flex-direction: column;
 
     .add-room-form-label {
-      font-weight: 600;
+      font-weight: $font-weight-semi-bold;
       margin-bottom: $margin-sm;
     }
   }

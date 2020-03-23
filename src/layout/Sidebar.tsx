@@ -12,7 +12,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
   setShowSidebar
 }) => {
   const { home } = useContext(HomeContext);
-  const { onLogout } = useContext(UserContext);
+  const { onLogout, user } = useContext(UserContext);
   const history = useHistory();
 
   const hideSidebar = () => setShowSidebar(false);
@@ -29,22 +29,32 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
         {home ? (
           <section id="sidebar-top">
             <Tile darker={true} id="home-tile">
-              <h3 id="home-name">{home.name}</h3>
-              <Icon icon="fas fa-sign-out-alt" onClick={showHomes} size="lg" />
+              <span id="home-name">{home.name}</span>
+              <Icon icon="fas fa-sign-out-alt" onClick={showHomes} />
             </Tile>
           </section>
         ) : null}
         <section id="sidebar-bottom">
+          {user.admin ? (
+            <NavLink
+              activeClassName="is-active"
+              className="sidebar-item nostyle"
+              onClick={hideSidebar}
+              to="/users"
+            >
+              Benutzer
+            </NavLink>
+          ) : null}
           <NavLink
             activeClassName="is-active"
             className="sidebar-item nostyle"
             onClick={hideSidebar}
             to="/invitations"
           >
-            Invitations
+            Einladungen
           </NavLink>
           <div className="sidebar-item" onClick={onLogout}>
-            Log out
+            Ausloggen
           </div>
         </section>
       </div>

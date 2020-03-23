@@ -1,4 +1,4 @@
-#add-home-form {
+#add-user-form {
   display: flex;
   flex-direction: column;
 
@@ -6,11 +6,11 @@
     margin-bottom: $margin-lg;
   }
 
-  .add-home-form-section {
+  .add-user-form-section {
     display: flex;
     flex-direction: column;
 
-    .add-home-form-label {
+    .add-user-form-label {
       font-weight: $font-weight-semi-bold;
       margin-bottom: $margin-sm;
     }

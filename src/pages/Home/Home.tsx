@@ -9,7 +9,7 @@ export const Home: React.FunctionComponent = () => {
   const { home } = useContext(HomeContext);
   const history = useHistory();
 
-  const action = <Link to={`/homes/${home._id}/edit`}>Edit</Link>;
+  const action = <Link to={`/homes/${home._id}/edit`}>Bearbeiten</Link>;
 
   const goToRooms = () => {
     history.push(`/homes/${home._id}/rooms`);
@@ -23,24 +23,24 @@ export const Home: React.FunctionComponent = () => {
           <section id="home-menu">
             <Tile className="home-menu-item" onClick={goToRooms}>
               <ColorSquare color="blue" />
-              <span>Rooms</span>
+              <span>Räume</span>
             </Tile>
             <Tile className="home-menu-item">
               <ColorSquare color="purple" />
-              <span>Devices</span>
+              <span>Geräte</span>
             </Tile>
             <Tile className="home-menu-item">
               <ColorSquare color="green" />
-              <span>Residents</span>
+              <span>Bewohner</span>
             </Tile>
           </section>
           <Divider />
           <section id="home-activity">
             <Level id="home-activity-header">
-              <h3 id="home-activity-title">Activity</h3>
-              <Link to={`/homes/${home._id}/activity`}>Show all</Link>
+              <h3 id="home-activity-title">Aktivitäten</h3>
+              <Link to={`/homes/${home._id}/activity`}>Alle anzeigen</Link>
             </Level>
-            <div>No recent activities.</div>
+            <div>Keine neuen Aktivitäten.</div>
           </section>
         </Page>
       </Route>

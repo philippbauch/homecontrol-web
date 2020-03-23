@@ -6,11 +6,7 @@ import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 
-interface AddHomeProps {
-  home: any;
-}
-
-export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
+export const AddHome: React.FunctionComponent = () => {
   const { addHome } = useContext(HomeContext);
   const history = useHistory();
   const [loading, setLoading] = useState(false);
@@ -47,7 +43,7 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
   };
 
   return (
-    <Page breadcrumbs={breadcrumbs} title="Add new home">
+    <Page breadcrumbs={breadcrumbs} title="Zuhause hinzufügen">
       <form id="add-home-form" onSubmit={handleFormSubmit}>
         <div className="add-home-form-section">
           <label className="add-home-form-label">Name</label>
@@ -59,7 +55,7 @@ export const AddHome: React.FunctionComponent<AddHomeProps> = () => {
           />
         </div>
         <Button loading={loading} type="submit">
-          Add
+          Hinzufügen
         </Button>
       </form>
     </Page>
