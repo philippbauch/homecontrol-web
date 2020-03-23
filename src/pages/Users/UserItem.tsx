@@ -1,5 +1,5 @@
 import React from "react";
-import { Tile, Level } from "../../components";
+import { Level, Tag, Tile } from "../../components";
 
 interface UserItemProps {
   user: any;
@@ -10,7 +10,7 @@ export const UserItem: React.FunctionComponent<UserItemProps> = ({ user }) => {
     <Tile className="user-item">
       <Level className="user-info">
         <span className="user-name">{user.identifier}</span>
-        {user.admin ? <span>Admin</span> : null}
+        {user.admin ? <Tag>Administrator</Tag> : null}
       </Level>
     </Tile>
   );

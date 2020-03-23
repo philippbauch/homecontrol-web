@@ -12,4 +12,5 @@ export { Level } from "./Level";
 export { Loader } from "./Loader";
 export { Spinner } from "./Spinner";
 export { Status } from "./Status";
+export { Tag } from "./Tag";
 export { Tile } from "./Tile";
