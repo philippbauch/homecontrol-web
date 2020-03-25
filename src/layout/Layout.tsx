@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Navigation } from "./Navigation";
 import { Sidebar } from "./Sidebar";
@@ -23,7 +24,11 @@ export const Layout: React.FunctionComponent = ({ children }) => {
   }, [resizeLayout]);
 
   return (
-    <div id="layout" ref={layoutRef}>
+    <div
+      className={classnames({ "no-scroll": showSidebar })}
+      id="layout"
+      ref={layoutRef}
+    >
       {showSidebar ? <Sidebar setShowSidebar={setShowSidebar} /> : null}
       <Navigation setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
       <main id="main">{children}</main>

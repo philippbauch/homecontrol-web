@@ -4,6 +4,8 @@
   grid-template-areas: "navigation" "main";
   position: relative;
 
+  @include no-scroll;
+
   #main {
     grid-area: main;
     position: relative;
