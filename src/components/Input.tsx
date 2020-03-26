@@ -5,7 +5,7 @@ type InputType = "password" | "text";
 
 interface InputProps {
   className?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   placeholder?: string;
   type?: InputType;
   value: string;
@@ -18,10 +18,14 @@ export const Input: React.FunctionComponent<InputProps> = ({
   value,
   type = "text"
 }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
+  };
+
   return (
     <input
       className={classnames("input", className)}
-      onChange={onChange}
+      onChange={handleChange}
       placeholder={placeholder}
       spellCheck={false}
       type={type}

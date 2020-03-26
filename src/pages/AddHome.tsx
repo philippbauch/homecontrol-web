@@ -36,19 +36,13 @@ export const AddHome: React.FunctionComponent = () => {
     }
   };
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setName(value);
-  };
-
   return (
     <Page breadcrumbs={breadcrumbs} title="Zuhause hinzufügen">
       <form id="add-home-form" onSubmit={handleFormSubmit}>
         <div className="add-home-form-section">
           <label className="add-home-form-label">Name</label>
           <Input
-            onChange={handleNameChange}
+            onChange={setName}
             placeholder="Name"
             type="text"
             value={name}

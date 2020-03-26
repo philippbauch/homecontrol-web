@@ -25,30 +25,12 @@ export const AddUser: React.FunctionComponent = () => {
     setLoading(true);
 
     try {
-      const user = await client.post(`/users`, { identifier, password });
-
-      console.log(user);
-
+      await client.post(`/users`, { identifier, password });
       setLoading(false);
-
       history.push(`/users`);
     } catch (error) {
       setLoading(false);
     }
-  };
-
-  const handleIdentifierChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { value } = event.target;
-
-    setIdentifier(value);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setPassword(value);
   };
 
   return (
@@ -57,7 +39,7 @@ export const AddUser: React.FunctionComponent = () => {
         <div className="add-user-form-section">
           <label className="add-user-form-label">Nutzername</label>
           <Input
-            onChange={handleIdentifierChange}
+            onChange={setIdentifier}
             placeholder="Name"
             type="text"
             value={identifier}
@@ -66,7 +48,7 @@ export const AddUser: React.FunctionComponent = () => {
         <div className="add-user-form-section">
           <label className="add-user-form-label">Passwort</label>
           <Input
-            onChange={handlePasswordChange}
+            onChange={setPassword}
             placeholder="Passwort"
             type="password"
             value={password}

@@ -3,7 +3,7 @@ import { Button, Input } from "../../components";
 
 interface DeviceInputProps {
   loading: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   onSave: () => void;
   value: string;
   visible: boolean;

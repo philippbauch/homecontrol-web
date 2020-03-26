@@ -41,19 +41,13 @@ export const AddRoom: React.FunctionComponent = () => {
     }
   };
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setName(value);
-  };
-
   return (
     <Page breadcrumbs={breadcrumbs} title="Raum hinzufügen">
       <form id="add-room-form" onSubmit={handleFormSubmit}>
         <div className="add-room-form-section">
           <label className="add-room-form-label">Name</label>
           <Input
-            onChange={handleNameChange}
+            onChange={setName}
             placeholder="Name"
             type="text"
             value={name}

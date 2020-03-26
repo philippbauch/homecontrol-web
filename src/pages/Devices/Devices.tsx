@@ -14,12 +14,6 @@ export const Devices: React.FunctionComponent = () => {
   const [postDeviceError, setPostDeviceError] = useState();
   const [postDeviceLoading, setPostDeviceLoading] = useState(false);
 
-  const handleDeviceNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDeviceName(event.target.value);
-  };
-
   const handleSaveDevice = async () => {
     setPostDeviceError(null);
     setPostDeviceLoading(true);
@@ -82,7 +76,7 @@ export const Devices: React.FunctionComponent = () => {
         {fetchDevicesError ? <span>{fetchDevicesError}</span> : null}
         <DeviceInput
           loading={postDeviceLoading}
-          onChange={handleDeviceNameChange}
+          onChange={setDeviceName}
           onSave={handleSaveDevice}
           value={deviceName}
           visible={createDeviceActive}

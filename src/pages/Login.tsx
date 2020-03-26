@@ -39,20 +39,6 @@ export const Login: React.FunctionComponent = () => {
     }
   };
 
-  const handleIdentifierChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { value } = event.target;
-
-    setIdentifier(value);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setPassword(value);
-  };
-
   useEffect(() => {
     if (user) {
       history.push(getDefaultRoute());
@@ -69,7 +55,7 @@ export const Login: React.FunctionComponent = () => {
             <label className="login-form-label">Nutzername</label>
 
             <Input
-              onChange={handleIdentifierChange}
+              onChange={setIdentifier}
               placeholder="ID"
               type="text"
               value={identifier}
@@ -80,7 +66,7 @@ export const Login: React.FunctionComponent = () => {
             <label className="login-form-label">Passwort</label>
 
             <Input
-              onChange={handlePasswordChange}
+              onChange={setPassword}
               placeholder="Password"
               type="password"
               value={password}
