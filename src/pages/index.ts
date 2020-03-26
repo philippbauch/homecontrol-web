@@ -8,4 +8,5 @@ export { Homes } from "./Homes";
 export { Invitations } from "./Invitations";
 export { Login } from "./Login";
 export { Rooms } from "./Rooms";
+export { User } from "./User";
 export { Users } from "./Users";
