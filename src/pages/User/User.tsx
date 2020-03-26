@@ -63,7 +63,6 @@ export const User: React.FunctionComponent = () => {
   return isAuthorized() ? (
     <Page breadcrumbs={user.admin && breadcrumbs} title={getPageTitle()}>
       <Loader loading={loading}>
-        <Divider />
         <ChangePassword />
         <Divider />
         <DeleteUser user={user} />
