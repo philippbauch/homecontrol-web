@@ -44,7 +44,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
           className="nostyle"
           id="navigation-username"
           onClick={() => setShowSidebar(false)}
-          to={`/users/${user.identifier}`}
+          to={`/users/${user._id}`}
         >
           {user.identifier}
         </Link>

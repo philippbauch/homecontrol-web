@@ -1,0 +1,24 @@
+#change-password-section {
+  display: flex;
+  flex-direction: column;
+
+  &-header {
+    margin-bottom: $margin-md;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+
+    .change-password-form-section {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: $margin-lg;
+
+      .change-password-form-label {
+        font-weight: $font-weight-semi-bold;
+        margin-bottom: $margin-sm;
+      }
+    }
+  }
+}
