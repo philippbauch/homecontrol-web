@@ -1,9 +1,9 @@
 .input {
   background-color: transparent;
-  -webkit-appearance: none;
-  -webkit-box-shadow: 0 0 0 1px $border-color;
-  box-shadow: 0 0 0 1px $border-color;
   border-radius: $radius;
+  box-shadow: $border-shadow;
+  -webkit-appearance: none;
+  -webkit-box-shadow: $border-shadow;
   color: $font-color-primary;
   font-size: $font-md;
   padding: 0.75em $padding-md;
@@ -11,8 +11,8 @@
 
   &:focus {
     -webkit-appearance: none;
-    -webkit-box-shadow: 0 0 0 1px #c5d3dc, 0 0 0 4px #bee1f3;
-    box-shadow: 0 0 0 1px #c5d3dc, 0 0 0 4px #bee1f3;
+    -webkit-box-shadow: $border-shadow-focus;
+    box-shadow: $border-shadow-focus;
   }
 
   &::placeholder {

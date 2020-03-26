@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
-import { Button, Input } from "../components";
+import { Button, Checkbox, Input } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 import { Page } from "../layout";
 
 export const AddUser: React.FunctionComponent = () => {
   const history = useHistory();
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -71,8 +72,13 @@ export const AddUser: React.FunctionComponent = () => {
             value={password}
           />
         </div>
+        <div className="add-user-form-section">
+          <Checkbox checked={isAdmin} onChange={setIsAdmin}>
+            Administrator
+          </Checkbox>
+        </div>
         <Button loading={loading} type="submit">
-          Hinzufügen
+          Erstellen
         </Button>
       </form>
     </Page>

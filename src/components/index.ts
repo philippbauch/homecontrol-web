@@ -4,6 +4,7 @@ export { Breadcrumbs } from "./Breadcrumbs";
 export { Burger } from "./Burger";
 export { Button } from "./Button";
 export { Card } from "./Card";
+export { Checkbox } from "./Checkbox";
 export { ColorSquare } from "./ColorSquare";
 export { Divider } from "./Divider";
 export { Icon } from "./Icon";
