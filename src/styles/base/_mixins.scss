@@ -16,6 +16,18 @@
   }
 }
 
+@mixin align-start {
+  &.align-start {
+    align-self: start;
+  }
+}
+
+@mixin align-end {
+  &.align-end {
+    align-self: end;
+  }
+}
+
 @mixin no-scroll {
   &.no-scroll {
     overflow: hidden;

@@ -15,7 +15,6 @@ export const AddDeviceButton: React.FunctionComponent<AddDeviceButtonProps> = ({
     <Button
       className={classnames("add-device-button", { "is-active": active })}
       onClick={onToggle}
-      primary={!active}
     >
       <Icon size="sm" icon="fas fa-plus" />
       {active ? "Cancel" : "Add"}

@@ -22,3 +22,21 @@
     }
   }
 }
+
+#delete-user-section {
+  display: flex;
+  flex-direction: column;
+
+  &-header {
+    margin-bottom: $margin-md;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: $margin-lg;
+    }
+  }
+}
