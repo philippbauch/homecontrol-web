@@ -9,6 +9,7 @@ interface PageProps {
   className?: string;
   id?: string;
   style?: any;
+  subtitle?: string;
   title: string;
 }
 
@@ -19,6 +20,7 @@ export const Page: React.FunctionComponent<PageProps> = ({
   className,
   id,
   style,
+  subtitle,
   title
 }) => {
   return (
@@ -30,10 +32,14 @@ export const Page: React.FunctionComponent<PageProps> = ({
           ))}
         </Breadcrumbs>
       ) : null}
-      <Level className="page-header">
-        <h2 className="page-title">{title}</h2>
-        {action}
-      </Level>
+      <div className="page-header">
+        <Level>
+          <h2 className="page-title">{title}</h2>
+          {action}
+        </Level>
+        {subtitle && <span className="page-sub-title">{subtitle}</span>}
+      </div>
+
       {children}
     </div>
   );

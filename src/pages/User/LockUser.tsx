@@ -3,11 +3,11 @@ import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { Page } from "../../layout";
 
-interface DeleteUserProps {
+interface LockUserProps {
   userId?: string;
 }
 
-export const DeleteUser: React.FunctionComponent<DeleteUserProps> = ({
+export const LockUser: React.FunctionComponent<LockUserProps> = ({
   userId
 }) => {
   const [loading, setLoading] = useState(false);
@@ -32,11 +32,11 @@ export const DeleteUser: React.FunctionComponent<DeleteUserProps> = ({
   };
 
   return (
-    <Page breadcrumbs={breadcrumbs} title="Account löschen">
-      <form id="delete-user-form" onSubmit={handleFormSubmit}>
-        <p>Diese Aktion kann nicht rückgängig gemacht werden.</p>
-        <Button align="start" kind="danger" loading={loading} type="submit">
-          Löschen
+    <Page breadcrumbs={breadcrumbs} title="Benutzer sperren">
+      <form id="lock-user-form" onSubmit={handleFormSubmit}>
+        <p>Der Benutzer ist momentan nicht gesperrt.</p>
+        <Button align="start" loading={loading} type="submit">
+          Sperren
         </Button>
       </form>
     </Page>

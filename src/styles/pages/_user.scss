@@ -1,42 +1,42 @@
-#change-password-section {
+#change-password-form {
   display: flex;
   flex-direction: column;
 
-  &-header {
-    margin-bottom: $margin-md;
-  }
-
-  &-form {
+  .change-password-form-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: $margin-lg;
 
-    .change-password-form-section {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: $margin-lg;
-
-      .change-password-form-label {
-        font-weight: $font-weight-semi-bold;
-        margin-bottom: $margin-sm;
-      }
+    .change-password-form-label {
+      font-weight: $font-weight-semi-bold;
+      margin-bottom: $margin-sm;
     }
   }
 }
 
-#delete-user-section {
+#delete-user-form {
   display: flex;
   flex-direction: column;
 
-  &-header {
-    margin-bottom: $margin-md;
+  p {
+    margin-bottom: $margin-lg;
   }
+}
 
-  &-form {
-    display: flex;
-    flex-direction: column;
+#lock-user-form {
+  display: flex;
+  flex-direction: column;
 
-    p {
-      margin-bottom: $margin-lg;
-    }
+  p {
+    margin-bottom: $margin-lg;
+  }
+}
+
+#user-menu {
+  display: flex;
+  flex-direction: column;
+
+  .user-menu-item:not(:last-child) {
+    margin-bottom: $margin-md;
   }
 }

@@ -1,10 +1,29 @@
 import React, { useState } from "react";
-import { Button, Input, Level } from "../../components";
+import { Button, Input } from "../../components";
+import { Page } from "../../layout";
+import { BreadcrumbProps } from "../../components/Breadcrumb";
 
-export const ChangePassword: React.FunctionComponent = () => {
+interface ChangePasswordProps {
+  userId?: string;
+}
+
+export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
+  userId
+}) => {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordRepeat, setNewPasswordRepeat] = useState("");
   const [oldPassword, setOldPassword] = useState("");
+
+  const breadcrumbs: BreadcrumbProps[] = [
+    {
+      link: "/users",
+      title: "Benutzer"
+    },
+    {
+      link: `/users/${userId}`,
+      title: "admin"
+    }
+  ];
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -13,11 +32,8 @@ export const ChangePassword: React.FunctionComponent = () => {
   };
 
   return (
-    <section id="change-password-section">
-      <Level id="change-password-section-header">
-        <h3 id="change-password-title">Passwort ändern</h3>
-      </Level>
-      <form id="change-password-section-form" onSubmit={handleFormSubmit}>
+    <Page breadcrumbs={breadcrumbs} title="Passwort ändern">
+      <form id="change-password-form" onSubmit={handleFormSubmit}>
         <div className="change-password-form-section">
           <label className="change-password-form-label">
             Aktuelles Passwort
@@ -53,6 +69,6 @@ export const ChangePassword: React.FunctionComponent = () => {
           Ändern
         </Button>
       </form>
-    </section>
+    </Page>
   );
 };

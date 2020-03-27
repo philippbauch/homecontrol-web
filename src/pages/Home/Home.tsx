@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Redirect, Link, useHistory, Switch, Route } from "react-router-dom";
 import { Rooms } from "../Rooms";
-import { Level, Tile, ColorSquare, Divider } from "../../components";
+import { Divider, Level, Tile } from "../../components";
 import { HomeContext } from "../../contexts/HomeContext";
 import { Page } from "../../layout";
 
@@ -22,15 +22,12 @@ export const Home: React.FunctionComponent = () => {
         <Page action={action} title={home.name}>
           <section id="home-menu">
             <Tile className="home-menu-item" onClick={goToRooms}>
-              <ColorSquare color="blue" />
               <span>Räume</span>
             </Tile>
             <Tile className="home-menu-item">
-              <ColorSquare color="purple" />
               <span>Geräte</span>
             </Tile>
             <Tile className="home-menu-item">
-              <ColorSquare color="green" />
               <span>Bewohner</span>
             </Tile>
           </section>
