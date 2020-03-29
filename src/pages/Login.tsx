@@ -1,22 +1,16 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
 import { Alert, Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
 
 export const Login: React.FunctionComponent = () => {
-  const { user, onLogin } = useContext(UserContext);
+  const { defaultRoute, onLogin, user } = useContext(UserContext);
   const history = useHistory();
   const [error, setError] = useState();
   const [identifier, setIdentifier] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
-
-  const getDefaultRoute = useCallback(() => {
-    const { activeHomeId } = user.preferences;
-
-    return activeHomeId ? `/homes/${activeHomeId}` : "/homes";
-  }, [user]);
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,9 +35,9 @@ export const Login: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (user) {
-      history.push(getDefaultRoute());
+      history.push(defaultRoute);
     }
-  }, [getDefaultRoute, history, user]);
+  }, [defaultRoute, history, user]);
 
   return (
     <div id="login-page">

@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import { client } from "../../api/client";
 import { Button, Input } from "../../components";
-import { Page } from "../../layout";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
+import { Page } from "../../layout";
 
 interface ChangePasswordProps {
-  userId?: string;
+  user: any;
 }
 
 export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
-  userId
+  user
 }) => {
+  const [loading, setLoading] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordRepeat, setNewPasswordRepeat] = useState("");
   const [oldPassword, setOldPassword] = useState("");
@@ -20,15 +22,26 @@ export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
       title: "Benutzer"
     },
     {
-      link: `/users/${userId}`,
-      title: "admin"
+      link: `/users/${user._id}`,
+      title: user.identifier
     }
   ];
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log("Change password");
+    setLoading(true);
+
+    try {
+      await client.put(`/users/${user._id}`, {
+        currentPassword: oldPassword,
+        password: newPassword
+      });
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,7 +78,7 @@ export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
             value={newPasswordRepeat}
           />
         </div>
-        <Button align="start" type="submit">
+        <Button align="start" loading={loading} type="submit">
           Ändern
         </Button>
       </form>

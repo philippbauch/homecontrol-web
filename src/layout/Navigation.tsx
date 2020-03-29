@@ -12,21 +12,15 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   setShowSidebar,
   showSidebar
 }) => {
-  const { user } = useContext(UserContext);
+  const { defaultRoute, user } = useContext(UserContext);
   const history = useHistory();
 
   const hideSidebar = () => setShowSidebar(false);
 
-  const getDefaultRoute = () => {
-    const { activeHomeId } = user.preferences;
-
-    return activeHomeId ? `/homes/${activeHomeId}` : "/homes";
-  };
-
   const goToDefaultRoute = () => {
     hideSidebar();
 
-    history.push(getDefaultRoute());
+    history.push(defaultRoute);
   };
 
   const toggleSidebar = () => setShowSidebar(!showSidebar);

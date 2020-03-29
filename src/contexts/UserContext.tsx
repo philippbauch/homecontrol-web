@@ -4,12 +4,14 @@ import { client } from "../api/client";
 import { Loader } from "../components";
 
 interface UserContext {
+  defaultRoute: string;
   user?: any;
   onLogin: (token: string) => void;
   onLogout: () => void;
 }
 
 const initialContext: UserContext = {
+  defaultRoute: "/homes",
   onLogin: () => {},
   onLogout: () => {}
 };
@@ -79,6 +81,12 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
     }
   };
 
+  const getDefaultRoute = () => {
+    const { activeHomeId } = user?.preferences || {};
+
+    return activeHomeId ? `/homes/${activeHomeId}` : "/homes";
+  };
+
   const onLogin = (token: string) => {
     storeToken(token);
     fetchUser();
@@ -102,6 +110,7 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
+        defaultRoute: getDefaultRoute(),
         onLogin,
         onLogout,
         user

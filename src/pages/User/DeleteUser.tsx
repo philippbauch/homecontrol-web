@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { Page } from "../../layout";
+import { client } from "../../api/client";
 
 interface DeleteUserProps {
-  userId?: string;
+  user: any;
 }
 
 export const DeleteUser: React.FunctionComponent<DeleteUserProps> = ({
-  userId
+  user
 }) => {
   const [loading, setLoading] = useState(false);
 
@@ -18,17 +19,23 @@ export const DeleteUser: React.FunctionComponent<DeleteUserProps> = ({
       title: "Benutzer"
     },
     {
-      link: `/users/${userId}`,
-      title: "admin"
+      link: `/users/${user._id}`,
+      title: user.identifier
     }
   ];
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
 
-    console.log("Delete user");
+    try {
+      await client.delete(`/users/${user._id}`);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
