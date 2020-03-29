@@ -97,7 +97,7 @@ export const User: React.FunctionComponent = () => {
         path={`/users/${userId}/delete`}
       />
       <Route
-        render={props => <LockUser {...props} userId={userId} />}
+        render={props => <LockUser {...props} user={fetchedUser || user} />}
         path={`/users/${userId}/lock`}
       />
       <Route

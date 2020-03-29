@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import { client } from "../../api/client";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { Page } from "../../layout";
 
 interface LockUserProps {
-  userId?: string;
+  user: any;
 }
 
-export const LockUser: React.FunctionComponent<LockUserProps> = ({
-  userId
-}) => {
+export const LockUser: React.FunctionComponent<LockUserProps> = ({ user }) => {
   const [loading, setLoading] = useState(false);
 
   const breadcrumbs: BreadcrumbProps[] = [
@@ -18,25 +17,39 @@ export const LockUser: React.FunctionComponent<LockUserProps> = ({
       title: "Benutzer"
     },
     {
-      link: `/users/${userId}`,
-      title: "admin"
+      link: `/users/${user._id}`,
+      title: user.identifier
     }
   ];
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
 
-    console.log("Delete user");
+    try {
+      const { locked } = await client.put(`/users/${user._id}/locked`, {
+        locked: !user.locked
+      });
+
+      user.locked = locked;
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
     <Page breadcrumbs={breadcrumbs} title="Benutzer sperren">
       <form id="lock-user-form" onSubmit={handleFormSubmit}>
-        <p>Der Benutzer ist momentan nicht gesperrt.</p>
+        {user.locked ? (
+          <p>Der Benutzer ist momentan gesperrt.</p>
+        ) : (
+          <p>Der Benutzer ist momentan nicht gesperrt.</p>
+        )}
         <Button align="start" loading={loading} type="submit">
-          Sperren
+          {user.locked ? "Entsperren" : "Sperren"}
         </Button>
       </form>
     </Page>

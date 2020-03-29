@@ -22,8 +22,6 @@ const initialContext: HomeContext = {
 const HomeContext = React.createContext<HomeContext>(initialContext);
 
 const HomeProvider: React.FunctionComponent = ({ children }) => {
-  console.log("Re-render HomeProvider");
-
   const { user } = useContext(UserContext);
   const [homes, setHomes] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -55,13 +53,18 @@ const HomeProvider: React.FunctionComponent = ({ children }) => {
     return homes.find((home: any) => home._id === activeHomeId);
   };
 
-  const setHome = useCallback(async (home: any) => {
-    setActiveHomeId(home._id);
+  const setHome = useCallback(
+    async (home: any) => {
+      setActiveHomeId(home._id);
 
-    try {
-      await client.put("/preferences", { activeHomeId: home._id });
-    } catch (error) {}
-  }, []);
+      try {
+        await client.put(`/users/${user._id}`, {
+          preferences: { activeHomeId: home._id }
+        });
+      } catch (error) {}
+    },
+    [user._id]
+  );
 
   useEffect(() => {
     fetchHomes();
