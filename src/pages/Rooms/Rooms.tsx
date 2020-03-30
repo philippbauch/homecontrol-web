@@ -12,7 +12,7 @@ export const Rooms: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(true);
   const [rooms, setRooms] = useState([]);
 
-  const action = <Link to={`/homes/${home._id}/rooms/new`}>Hinzufügen</Link>;
+  const extra = <Link to={`/homes/${home._id}/rooms/new`}>Hinzufügen</Link>;
 
   const breadcrumbs: BreadcrumbProps[] = [
     {
@@ -39,7 +39,7 @@ export const Rooms: React.FunctionComponent = () => {
   }, [fetchRooms]);
 
   return (
-    <Page action={action} breadcrumbs={breadcrumbs} title="Räume">
+    <Page extra={extra} breadcrumbs={breadcrumbs} title="Räume">
       <Loader loading={loading}>
         <RoomList rooms={rooms} />
       </Loader>

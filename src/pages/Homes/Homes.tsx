@@ -7,10 +7,10 @@ import { Page } from "../../layout";
 export const Homes: React.FunctionComponent = () => {
   const { homes } = useContext(HomeContext);
 
-  const action = <Link to="/homes/new">Hinzufügen</Link>;
+  const extra = <Link to="/homes/new">Hinzufügen</Link>;
 
   return (
-    <Page action={action} title="Zuhause auswählen">
+    <Page extra={extra} title="Zuhause auswählen">
       <HomeList homes={homes} />
     </Page>
   );

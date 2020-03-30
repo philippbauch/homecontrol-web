@@ -11,10 +11,10 @@ export const Users: React.FunctionComponent = () => {
     return <Redirect to={defaultRoute} />;
   }
 
-  const action = <Link to={"/users/new"}>Erstellen</Link>;
+  const extra = <Link to={"/users/new"}>Erstellen</Link>;
 
   return (
-    <Page action={action} title="Benutzer">
+    <Page extra={extra} title="Benutzer">
       <UserList />
     </Page>
   );

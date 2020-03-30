@@ -10,7 +10,7 @@ export const Home: React.FunctionComponent = () => {
   const { home } = useContext(HomeContext);
   const history = useHistory();
 
-  const action = <Link to={`/homes/${home._id}/edit`}>Bearbeiten</Link>;
+  const extra = <Link to={`/homes/${home._id}/edit`}>Bearbeiten</Link>;
 
   const goToRooms = () => {
     history.push(`/homes/${home._id}/rooms`);
@@ -21,7 +21,7 @@ export const Home: React.FunctionComponent = () => {
       <Route component={Rooms} exact={true} path={`/homes/:homeId/rooms`} />
       <Route component={AddRoom} path={`/homes/:homeId/rooms/new`} />
       <Route>
-        <Page action={action} title={home.name}>
+        <Page extra={extra} title={home.name}>
           <section id="home-menu">
             <Tile className="home-menu-item" onClick={goToRooms}>
               <span>Räume</span>

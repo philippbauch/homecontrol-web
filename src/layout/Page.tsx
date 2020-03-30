@@ -4,20 +4,20 @@ import { Breadcrumb, Breadcrumbs, Level } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 
 interface PageProps {
-  action?: React.ReactNode;
   breadcrumbs?: BreadcrumbProps[];
   className?: string;
+  extra?: React.ReactNode;
   id?: string;
   style?: any;
   subtitle?: string;
-  title: string;
+  title: React.ReactNode;
 }
 
 export const Page: React.FunctionComponent<PageProps> = ({
-  action,
   breadcrumbs = [],
   children,
   className,
+  extra,
   id,
   style,
   subtitle,
@@ -35,7 +35,7 @@ export const Page: React.FunctionComponent<PageProps> = ({
       <div className="page-header">
         <Level>
           <h2 className="page-title">{title}</h2>
-          {action}
+          {extra}
         </Level>
         {subtitle && <span className="page-sub-title">{subtitle}</span>}
       </div>

@@ -44,7 +44,7 @@ export const User: React.FunctionComponent = () => {
     }
   }, [userId]);
 
-  const getAction = () => {
+  const getExtra = () => {
     const tag = <Tag>Administrator</Tag>;
 
     if (isOwnUser()) {
@@ -116,7 +116,7 @@ export const User: React.FunctionComponent = () => {
       />
       <Route>
         <Page
-          action={getAction()}
+          extra={getExtra()}
           breadcrumbs={user.admin && breadcrumbs}
           subtitle="Erstellt am 23.03.2020"
           title={getPageTitle()}
