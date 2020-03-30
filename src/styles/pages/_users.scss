@@ -1,5 +1,16 @@
 .user-list {
-  .user-item:not(:last-child) {
-    margin-bottom: $margin-md;
+  .user-item {
+    &:not(:last-child) {
+      margin-bottom: $margin-md;
+    }
+
+    .user-info {
+      align-items: center;
+      display: inline-flex;
+
+      & > :not(:last-child) {
+        margin-right: $margin-sm;
+      }
+    }
   }
 }

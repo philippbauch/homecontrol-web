@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { Icon, Tile } from "../components";
+import { Tile } from "../components";
+import { SignOutIcon } from "../components/icons";
 import { HomeContext } from "../contexts/HomeContext";
 import { UserContext } from "../contexts/UserContext";
 
@@ -30,7 +31,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
           <section id="sidebar-top">
             <Tile darker={true} id="home-tile">
               <span id="home-name">{home.name}</span>
-              <Icon icon="fas fa-sign-out-alt" onClick={showHomes} />
+              <SignOutIcon onClick={showHomes} />
             </Tile>
           </section>
         ) : null}

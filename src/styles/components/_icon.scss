@@ -1,10 +1,11 @@
+$icon-size-xs: 0.75em;
 $icon-size-sm: 1em;
 $icon-size-md: 1.5em;
 $icon-size-lg: 2em;
 
 .icon {
   align-items: center;
-  color: $font-color-secondary;
+  color: $font-color-primary;
   display: inline-flex;
   justify-content: center;
 
@@ -16,30 +17,23 @@ $icon-size-lg: 2em;
     }
   }
 
-  &.is-small {
-    height: $size-lg;
-    width: $size-lg;
+  &.is-xs {
+    height: $icon-size-xs;
+    width: $icon-size-xs;
+  }
 
-    i {
-      font-size: $font-md;
-    }
+  &.is-sm {
+    height: $icon-size-sm;
+    width: $icon-size-sm;
   }
 
   &.is-md {
-    height: $size-xl;
-    width: $size-xl;
-
-    i {
-      font-size: $font-lg;
-    }
+    height: $icon-size-md;
+    width: $icon-size-md;
   }
 
   &.is-lg {
-    height: $size-xxl;
-    width: $size-xxl;
-
-    i {
-      font-size: $font-xl;
-    }
+    height: $icon-size-lg;
+    width: $icon-size-lg;
   }
 }

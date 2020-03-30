@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import React from "react";
-import { Button, Icon } from "../../components";
+import { Button } from "../../components";
 
 interface AddDeviceButtonProps {
   active: boolean;
@@ -16,7 +16,6 @@ export const AddDeviceButton: React.FunctionComponent<AddDeviceButtonProps> = ({
       className={classnames("add-device-button", { "is-active": active })}
       onClick={onToggle}
     >
-      <Icon size="sm" icon="fas fa-plus" />
       {active ? "Cancel" : "Add"}
     </Button>
   );

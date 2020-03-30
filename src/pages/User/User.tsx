@@ -14,7 +14,6 @@ import { Loader, Tile, Tag } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { UserContext } from "../../contexts/UserContext";
 import { Page } from "../../layout";
-import { AddUser } from "../AddUser";
 
 export const User: React.FunctionComponent = () => {
   const { defaultRoute, user } = useContext(UserContext);

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Redirect, Link, useHistory, Switch, Route } from "react-router-dom";
+import { AddRoom } from "../AddRoom";
 import { Rooms } from "../Rooms";
 import { Divider, Level, Tile } from "../../components";
 import { HomeContext } from "../../contexts/HomeContext";
@@ -17,7 +18,8 @@ export const Home: React.FunctionComponent = () => {
 
   return home ? (
     <Switch>
-      <Route component={Rooms} path={`/homes/${home._id}/rooms`} />
+      <Route component={Rooms} exact={true} path={`/homes/:homeId/rooms`} />
+      <Route component={AddRoom} path={`/homes/:homeId/rooms/new`} />
       <Route>
         <Page action={action} title={home.name}>
           <section id="home-menu">

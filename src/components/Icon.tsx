@@ -3,18 +3,21 @@ import React from "react";
 
 type IconSize = "sm" | "md" | "lg";
 
-interface IconProps {
+export interface IconProps {
   className?: string;
-  icon: string;
+  id?: string;
   onClick?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   size?: IconSize;
+  style?: any;
 }
 
 export const Icon: React.FunctionComponent<IconProps> = ({
   className,
-  icon,
+  children,
+  id,
   onClick,
-  size = "md"
+  size = "md",
+  style
 }) => {
   return (
     <span
@@ -24,9 +27,11 @@ export const Icon: React.FunctionComponent<IconProps> = ({
         "is-md": size === "md",
         "is-lg": size === "lg"
       })}
+      id={id}
       onClick={onClick}
+      style={{ ...style }}
     >
-      <i className={icon}></i>
+      {children}
     </span>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RoomList } from "./RoomList";
-import { AddRoom } from "../AddRoom";
 import { client } from "../../api/client";
 import { Loader } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
@@ -40,15 +39,10 @@ export const Rooms: React.FunctionComponent = () => {
   }, [fetchRooms]);
 
   return (
-    <Switch>
-      <Route component={AddRoom} path={`/homes/${home._id}/rooms/new`} />
-      <Route>
-        <Page action={action} breadcrumbs={breadcrumbs} title="Räume">
-          <Loader loading={loading}>
-            <RoomList rooms={rooms} />
-          </Loader>
-        </Page>
-      </Route>
-    </Switch>
+    <Page action={action} breadcrumbs={breadcrumbs} title="Räume">
+      <Loader loading={loading}>
+        <RoomList rooms={rooms} />
+      </Loader>
+    </Page>
   );
 };

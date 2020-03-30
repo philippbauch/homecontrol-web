@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Icon, Status, Tile } from "../../components";
+import { Status, Tile } from "../../components";
 
 interface DeviceItemProps {
   device: any;
@@ -21,7 +21,6 @@ export const DeviceItem: React.FunctionComponent<DeviceItemProps> = ({
           <Status status="connected" />
           <span className="device-title">{device.name}</span>
         </div>
-        <Icon icon="fas fa-chevron-right" size="sm" />
       </div>
     </Tile>
   );

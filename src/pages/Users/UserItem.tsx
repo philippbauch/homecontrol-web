@@ -1,6 +1,7 @@
 import React from "react";
-import { Level, Tag, Tile } from "../../components";
 import { useHistory } from "react-router-dom";
+import { Level, Tag, Tile } from "../../components";
+import { LockIcon } from "../../components/icons";
 
 interface UserItemProps {
   user: any;
@@ -15,9 +16,12 @@ export const UserItem: React.FunctionComponent<UserItemProps> = ({ user }) => {
 
   return (
     <Tile className="user-item" onClick={goToUser}>
-      <Level className="user-info">
-        <span className="user-name">{user.identifier}</span>
-        {user.admin ? <Tag>Administrator</Tag> : null}
+      <Level>
+        <span className="user-info">
+          {user.locked && <LockIcon size="sm" />}
+          <span className="user-name">{user.identifier}</span>
+        </span>
+        {user.admin && <Tag>Administrator</Tag>}
       </Level>
     </Tile>
   );
