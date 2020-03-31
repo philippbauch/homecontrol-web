@@ -39,7 +39,7 @@ export const Rooms: React.FunctionComponent = () => {
   }, [fetchRooms]);
 
   return (
-    <Page extra={extra} breadcrumbs={breadcrumbs} title="Räume">
+    <Page breadcrumbs={breadcrumbs} extra={extra} title="Räume">
       <Loader loading={loading}>
         <RoomList rooms={rooms} />
       </Loader>

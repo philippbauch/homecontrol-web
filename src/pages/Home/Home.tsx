@@ -3,6 +3,7 @@ import { Redirect, Link, useHistory, Switch, Route } from "react-router-dom";
 import { AddRoom } from "../AddRoom";
 import { Rooms } from "../Rooms";
 import { Divider, Level, Tile } from "../../components";
+import { PeopleIcon, RoomsIcon } from "../../components/icons";
 import { HomeContext } from "../../contexts/HomeContext";
 import { Page } from "../../layout";
 
@@ -24,12 +25,14 @@ export const Home: React.FunctionComponent = () => {
         <Page extra={extra} title={home.name}>
           <section id="home-menu">
             <Tile className="home-menu-item" onClick={goToRooms}>
+              <RoomsIcon />
               <span>Räume</span>
             </Tile>
             <Tile className="home-menu-item">
               <span>Geräte</span>
             </Tile>
             <Tile className="home-menu-item">
+              <PeopleIcon />
               <span>Bewohner</span>
             </Tile>
           </section>
