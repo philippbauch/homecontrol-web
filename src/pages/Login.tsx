@@ -3,9 +3,11 @@ import { useHistory } from "react-router-dom";
 import { client } from "../api/client";
 import { Alert, Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
+import { useDefaultRoute } from "../hooks";
 
 export const Login: React.FunctionComponent = () => {
-  const { defaultRoute, onLogin, user } = useContext(UserContext);
+  const { onLogin, user } = useContext(UserContext);
+  const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const [error, setError] = useState();
   const [identifier, setIdentifier] = useState("");

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Burger } from "../components";
 import { UserContext } from "../contexts/UserContext";
+import { useDefaultRoute } from "../hooks";
 
 interface NavigationProps {
   setShowSidebar: (showSidebar: boolean) => void;
@@ -12,7 +13,8 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   setShowSidebar,
   showSidebar
 }) => {
-  const { defaultRoute, user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const defaultRoute = useDefaultRoute();
   const history = useHistory();
 
   const hideSidebar = () => setShowSidebar(false);

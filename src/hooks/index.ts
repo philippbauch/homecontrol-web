@@ -1,0 +1,1 @@
+export { useDefaultRoute } from "./useDefaultRoute";

@@ -14,9 +14,11 @@ import { Loader, Tile, Tag } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { UserContext } from "../../contexts/UserContext";
 import { Page } from "../../layout";
+import { useDefaultRoute } from "../../hooks";
 
 export const User: React.FunctionComponent = () => {
-  const { defaultRoute, user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const { userId } = useParams();
   const [fetchedUser, setFetchedUser] = useState<any>(null);
