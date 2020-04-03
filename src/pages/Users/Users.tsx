@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { UserList } from "./UserList";
-import { UserContext } from "../../contexts/UserContext";
-import { Page } from "../../layout";
+import { useUserState } from "../../contexts/UserContext";
 import { useDefaultRoute } from "../../hooks";
+import { Page } from "../../layout";
 
 export const Users: React.FunctionComponent = () => {
-  const { user } = useContext(UserContext);
+  const user = useUserState();
   const defaultRoute = useDefaultRoute();
 
   if (!user.admin) {

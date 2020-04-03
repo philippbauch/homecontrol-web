@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 import { Button, Input } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { Page } from "../../layout";
@@ -32,16 +32,14 @@ export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
 
     setLoading(true);
 
-    try {
-      await client.put(`/users/${user._id}`, {
+    http
+      .put(`/users/${user._id}`, {
         currentPassword: oldPassword,
         password: newPassword
+      })
+      .then(([error]) => {
+        setLoading(false);
       });
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
   };
 
   return (

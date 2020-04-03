@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import http from "../HttpClient";
 import { Tile } from "../components";
 import { SignOutIcon } from "../components/icons";
 import { HomeContext } from "../contexts/HomeContext";
-import { UserContext } from "../contexts/UserContext";
+import { useUserState, useLogout } from "../contexts/UserContext";
 
 interface SidebarProps {
   setShowSidebar: (showSidebar: boolean) => void;
@@ -13,8 +14,13 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
   setShowSidebar
 }) => {
   const { home } = useContext(HomeContext);
-  const { onLogout, user } = useContext(UserContext);
   const history = useHistory();
+  const logout = useLogout();
+  const user = useUserState();
+
+  const handleLogout = () => {
+    http.post("/logout").then(logout);
+  };
 
   const hideSidebar = () => setShowSidebar(false);
 
@@ -54,7 +60,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = ({
           >
             Einladungen
           </NavLink>
-          <div className="sidebar-item" onClick={onLogout}>
+          <div className="sidebar-item" onClick={handleLogout}>
             Ausloggen
           </div>
         </section>

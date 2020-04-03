@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { Page } from "../../layout";
@@ -27,17 +27,19 @@ export const LockUser: React.FunctionComponent<LockUserProps> = ({ user }) => {
 
     setLoading(true);
 
-    try {
-      const { locked } = await client.put(`/users/${user._id}/locked`, {
+    http
+      .put(`/users/${user._id}/locked`, {
         locked: !user.locked
+      })
+      .then(({ locked }) => {
+        user.locked = locked;
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-
-      user.locked = locked;
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
   };
 
   return (

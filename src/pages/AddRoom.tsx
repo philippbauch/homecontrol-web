@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { client } from "../api/client";
+import http from "../HttpClient";
 import { Button, Input } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
@@ -28,17 +28,15 @@ export const AddRoom: React.FunctionComponent = () => {
 
     setLoading(true);
 
-    try {
-      const room = await client.post(`/homes/${home._id}/rooms`, { name });
+    http
+      .post(`/homes/${home._id}/rooms`, { name })
+      .then(room => {
+        console.log(room);
 
-      console.log(room);
-
-      setLoading(false);
-
-      history.push(`/homes/${home._id}/rooms`);
-    } catch (error) {
-      setLoading(false);
-    }
+        history.push(`/homes/${home._id}/rooms`);
+      })
+      .catch(error => console.error(error))
+      .finally(() => setLoading(false));
   };
 
   return (

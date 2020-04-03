@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { client } from "../api/client";
+import http from "../HttpClient";
 import { Button, Input } from "../components";
 import { HomeContext } from "../contexts/HomeContext";
 import { Page } from "../layout";
@@ -24,16 +24,19 @@ export const AddHome: React.FunctionComponent = () => {
 
     setLoading(true);
 
-    try {
-      const home = await client.post("/homes", { name });
+    http
+      .post("/homes", { name })
+      .then(home => {
+        addHome(home);
 
-      addHome(home);
-      setLoading(false);
-
-      history.push("/homes");
-    } catch (error) {
-      setLoading(false);
-    }
+        history.push("/homes");
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (

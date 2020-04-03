@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Redirect,
   Route,
@@ -9,15 +9,15 @@ import {
 import { ChangePassword } from "./ChangePassword";
 import { DeleteUser } from "./DeleteUser";
 import { LockUser } from "./LockUser";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 import { Loader, Tile, Tag } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
-import { UserContext } from "../../contexts/UserContext";
+import { useUserState } from "../../contexts/UserContext";
 import { Page } from "../../layout";
 import { useDefaultRoute } from "../../hooks";
 
 export const User: React.FunctionComponent = () => {
-  const { user } = useContext(UserContext);
+  const user = useUserState();
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const { userId } = useParams();
@@ -36,14 +36,13 @@ export const User: React.FunctionComponent = () => {
   const fetchUser = useCallback(async () => {
     setLoading(true);
 
-    try {
-      const user = await client.get(`/users/${userId}`);
-
-      setFetchedUser(user);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
+    http
+      .get(`/users/${userId}`)
+      .then(setFetchedUser)
+      .catch(error => console.error(error))
+      .finally(() => {
+        setLoading(false);
+      });
   }, [userId]);
 
   const getExtra = () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AddDeviceButton } from "./AddDeviceButton";
 import { DeviceInput } from "./DeviceInput";
 import { DeviceList } from "./DeviceList";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 import { Divider, Level, Loader } from "../../components";
 
 export const Devices: React.FunctionComponent = () => {
@@ -23,7 +23,7 @@ export const Devices: React.FunctionComponent = () => {
     };
 
     try {
-      const { _id } = await client.post("/devices", device);
+      const { _id } = await http.post("/devices", device);
 
       setCreateDeviceActive(false);
       setDeviceName("");
@@ -49,7 +49,7 @@ export const Devices: React.FunctionComponent = () => {
 
     async function fetchDevices() {
       try {
-        const devices = await client.get("/devices");
+        const devices = await http.get("/devices");
 
         setDevices(devices);
       } catch (error) {

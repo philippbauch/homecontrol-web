@@ -1,115 +1,93 @@
-import jwt from "jsonwebtoken";
-import React, { useState, useEffect } from "react";
-import { client } from "../api/client";
+import React, { useEffect, useReducer, useState } from "react";
 import { Loader } from "../components";
+import http from "../HttpClient";
 
-interface UserContext {
-  user?: any;
-  onLogin: (token: string) => void;
-  onLogout: () => void;
-}
+type ResetUserAction = { type: "reset_user" };
+type SetUserAction = { type: "set_user"; user: any };
+type UpdateUserAction = { type: "update_user"; update: any };
 
-const initialContext: UserContext = {
-  onLogin: () => {},
-  onLogout: () => {}
-};
+type Action = ResetUserAction | SetUserAction | UpdateUserAction;
 
-const UserContext = React.createContext<UserContext>(initialContext);
+type Dispatch = (action: Action) => void;
 
-function decodeToken(token: string): any {
-  const { _id } = jwt.decode(token) as any;
+const UserStateContext = React.createContext<any | undefined>(undefined);
+const UserDispatchContext = React.createContext<Dispatch | undefined>(
+  undefined
+);
 
-  if (!_id) {
-    throw new Error("Malformed token");
-  }
-
-  return _id;
-}
-
-function findUser(): any | null {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    try {
-      return decodeToken(token);
-    } catch (error) {
-      localStorage.removeItem("token");
+function userReducer(user: any, action: Action): any {
+  switch (action.type) {
+    case "reset_user": {
+      return null;
+    }
+    case "set_user": {
+      return action.user;
+    }
+    case "update_user": {
+      return { ...user, ...action.update };
     }
   }
-
-  return null;
-}
-
-function getToken() {
-  return localStorage.getItem("token");
-}
-
-function removeToken() {
-  return localStorage.removeItem("token");
-}
-
-function storeToken(token: string) {
-  return localStorage.setItem("token", token);
-}
-
-function isTokenPresent() {
-  return !!getToken();
 }
 
 const UserProvider: React.FunctionComponent = ({ children }) => {
-  const [loading, setLoading] = useState<boolean>(isTokenPresent());
-  const [user, setUser] = useState<any>(findUser());
-
-  const fetchUser = async () => {
-    setLoading(true);
-
-    try {
-      const user = await client.get("/identity");
-      setUser(user);
-      setLoading(false);
-    } catch (error) {
-      if (
-        error.message === "ERR_INVALID_TOKEN" ||
-        error.message === "ERR_LOCKED_USER"
-      ) {
-        removeToken();
-        setUser(null);
-      }
-      setLoading(false);
-    }
-  };
-
-  const onLogin = (token: string) => {
-    storeToken(token);
-    fetchUser();
-  };
-
-  const onLogout = () => {
-    removeToken();
-    setUser(null);
-  };
+  const [user, dispatchUser] = useReducer(userReducer, null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = getToken();
-
-    if (!token) {
-      return;
-    }
-
-    fetchUser();
+    http
+      .get("/identity")
+      .then(user => dispatchUser({ type: "set_user", user }))
+      .catch(() => dispatchUser({ type: "reset_user" }))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <UserContext.Provider
-      value={{
-        onLogin,
-        onLogout,
-        user
-      }}
-    >
-      <Loader loading={loading}>{children}</Loader>
-    </UserContext.Provider>
+    <UserStateContext.Provider value={user}>
+      <UserDispatchContext.Provider value={dispatchUser}>
+        <Loader loading={loading}>{children}</Loader>
+      </UserDispatchContext.Provider>
+    </UserStateContext.Provider>
   );
 };
 
-export { UserProvider, UserContext };
+function useLogin() {
+  const dispatch = useUserDispatch();
+
+  const login = async (user: any) => {
+    dispatch({ type: "set_user", user });
+  };
+
+  return login;
+}
+
+function useLogout() {
+  const dispatch = useUserDispatch();
+
+  const logout = () => {
+    dispatch({ type: "reset_user" });
+  };
+
+  return logout;
+}
+
+function useUserState() {
+  const context = React.useContext(UserStateContext);
+
+  if (context === undefined) {
+    throw new Error("useUserState must be used within a UserProvider");
+  }
+
+  return context;
+}
+
+function useUserDispatch() {
+  const context = React.useContext(UserDispatchContext);
+
+  if (context === undefined) {
+    throw new Error("useUserDispatch must be used within a UserProvider");
+  }
+
+  return context;
+}
+
+export { useLogin, useLogout, UserProvider, useUserState, useUserDispatch };

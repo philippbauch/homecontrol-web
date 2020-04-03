@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Burger } from "../components";
-import { UserContext } from "../contexts/UserContext";
+import { useUserState } from "../contexts/UserContext";
 import { useDefaultRoute } from "../hooks";
 
 interface NavigationProps {
@@ -13,7 +13,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   setShowSidebar,
   showSidebar
 }) => {
-  const { user } = useContext(UserContext);
+  const user = useUserState();
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
 

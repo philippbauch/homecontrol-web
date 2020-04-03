@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RoomList } from "./RoomList";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 import { Loader } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { HomeContext } from "../../contexts/HomeContext";
@@ -24,15 +24,14 @@ export const Rooms: React.FunctionComponent = () => {
   const fetchRooms = useCallback(async () => {
     setLoading(true);
 
-    try {
-      const rooms = await client.get(`/homes/${home._id}/rooms`);
-
-      setRooms(rooms);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  }, [home]);
+    http
+      .get(`/homes/${home._id}/rooms`)
+      .then(setRooms)
+      .catch(error => console.error(error))
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [home._id]);
 
   useEffect(() => {
     fetchRooms();

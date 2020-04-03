@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { Page } from "../../layout";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 
 interface DeleteUserProps {
   user: any;
@@ -29,13 +29,7 @@ export const DeleteUser: React.FunctionComponent<DeleteUserProps> = ({
 
     setLoading(true);
 
-    try {
-      await client.delete(`/users/${user._id}`);
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
+    http.delete(`/users/${user._id}`).finally(() => setLoading(false));
   };
 
   return (

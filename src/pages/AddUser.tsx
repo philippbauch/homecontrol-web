@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { client } from "../api/client";
+import http from "../HttpClient";
 import { Button, Checkbox, Input } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 import { Page } from "../layout";
@@ -24,13 +24,11 @@ export const AddUser: React.FunctionComponent = () => {
 
     setLoading(true);
 
-    try {
-      await client.post(`/users`, { identifier, password });
-      setLoading(false);
-      history.push(`/users`);
-    } catch (error) {
-      setLoading(false);
-    }
+    http
+      .post(`/users`, { identifier, password })
+      .then(() => history.push(`/users`))
+      .catch(error => console.error(error))
+      .finally(() => setLoading(false));
   };
 
   return (

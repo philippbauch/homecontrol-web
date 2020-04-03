@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { client } from "../api/client";
+import React, { useState, useEffect, useCallback } from "react";
+import http from "../HttpClient";
 import { Loader } from "../components";
-import { UserContext } from "./UserContext";
+import { useUserState } from "./UserContext";
 
 interface HomeContext {
   addHome: (home: any) => void;
@@ -22,7 +22,7 @@ const initialContext: HomeContext = {
 const HomeContext = React.createContext<HomeContext>(initialContext);
 
 const HomeProvider: React.FunctionComponent = ({ children }) => {
-  const { user } = useContext(UserContext);
+  const user = useUserState();
   const [homes, setHomes] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [activeHomeId, setActiveHomeId] = useState<number>(
@@ -36,17 +36,18 @@ const HomeProvider: React.FunctionComponent = ({ children }) => {
     [homes]
   );
 
-  const fetchHomes = async () => {
+  const fetchHomes = () => {
     setLoading(true);
 
-    try {
-      const homes = await client.get("/homes");
-
-      setHomes(homes);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
+    http
+      .get("/homes")
+      .then(setHomes)
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const getSelectedHome = () => {
@@ -54,21 +55,17 @@ const HomeProvider: React.FunctionComponent = ({ children }) => {
   };
 
   const setHome = useCallback(
-    async (home: any) => {
+    (home: any) => {
       setActiveHomeId(home._id);
 
-      try {
-        await client.put(`/users/${user._id}`, {
-          preferences: { activeHomeId: home._id }
-        });
-      } catch (error) {}
+      http.put(`/users/${user._id}`, {
+        preferences: { activeHomeId: home._id }
+      });
     },
     [user._id]
   );
 
-  useEffect(() => {
-    fetchHomes();
-  }, []);
+  useEffect(fetchHomes, []);
 
   return (
     <HomeContext.Provider

@@ -1,38 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { client } from "../api/client";
 import { Alert, Button, Input } from "../components";
-import { UserContext } from "../contexts/UserContext";
+import { useLogin, useUserState } from "../contexts/UserContext";
 import { useDefaultRoute } from "../hooks";
+import http from "../HttpClient";
 
 export const Login: React.FunctionComponent = () => {
-  const { onLogin, user } = useContext(UserContext);
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
-  const [error, setError] = useState();
-  const [identifier, setIdentifier] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const login = useLogin();
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const user = useUserState();
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    setLoading(true);
 
     const credentials = {
       identifier,
       password
     };
 
-    setLoading(true);
-
-    try {
-      const { token } = await client.post("/login", credentials);
-
-      setLoading(false);
-      onLogin(token);
-    } catch (error) {
-      setLoading(false);
-      setError(error.message);
-    }
+    http
+      .post("/login", credentials)
+      .then(login)
+      .catch(error => setError(error))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {

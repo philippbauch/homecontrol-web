@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { HomeProvider } from "./contexts/HomeContext";
-import { UserContext } from "./contexts/UserContext";
+import { useUserState } from "./contexts/UserContext";
 import { useDefaultRoute } from "./hooks";
 import { Layout } from "./layout";
 import {
@@ -15,7 +15,7 @@ import {
 } from "./pages";
 
 export const App: React.FunctionComponent = () => {
-  const { user } = useContext(UserContext);
+  const user = useUserState();
   const defaultRoute = useDefaultRoute();
 
   if (!user) {

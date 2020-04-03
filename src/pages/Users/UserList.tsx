@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { UserItem } from "./UserItem";
 import { Loader } from "../../components";
-import { client } from "../../api/client";
+import http from "../../HttpClient";
 
 export const UserList: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(true);
@@ -10,14 +10,15 @@ export const UserList: React.FunctionComponent = () => {
   const fetchUsers = useCallback(async () => {
     setLoading(true);
 
-    try {
-      const users = await client.get(`/users`);
-
-      setUsers(users);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
+    http
+      .get(`/users`)
+      .then(setUsers)
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   useEffect(() => {
