@@ -30,19 +30,19 @@ function userReducer(user: any, action: Action): any {
 }
 
 const UserProvider: React.FunctionComponent = ({ children }) => {
-  const [user, dispatchUser] = useReducer(userReducer, null);
+  const [userState, dispatchUser] = useReducer(userReducer, null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     http
       .get("/identity")
-      .then(user => dispatchUser({ type: "set_user", user }))
-      .catch(() => dispatchUser({ type: "reset_user" }))
+      .then((user) => dispatchUser({ type: "set_user", user }))
+      .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
 
   return (
-    <UserStateContext.Provider value={user}>
+    <UserStateContext.Provider value={userState}>
       <UserDispatchContext.Provider value={dispatchUser}>
         <Loader loading={loading}>{children}</Loader>
       </UserDispatchContext.Provider>

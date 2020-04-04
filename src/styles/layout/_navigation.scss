@@ -1,4 +1,6 @@
 #navigation {
+  background-color: $color-background-alt;
+  color: $color-white;
   display: flex;
   grid-area: navigation;
   justify-content: space-between;

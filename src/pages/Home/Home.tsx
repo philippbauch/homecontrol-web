@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect, Link, useHistory, Switch, Route } from "react-router-dom";
 import { AddRoom } from "../AddRoom";
 import { Rooms } from "../Rooms";
 import { Divider, Level, Tile } from "../../components";
 import { PeopleIcon, RoomsIcon } from "../../components/icons";
-import { HomeContext } from "../../contexts/HomeContext";
+import { useHome } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
 
 export const Home: React.FunctionComponent = () => {
-  const { home } = useContext(HomeContext);
+  const home = useHome();
   const history = useHistory();
 
   const extra = <Link to={`/homes/${home._id}/edit`}>Bearbeiten</Link>;

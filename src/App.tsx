@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { HomeProvider } from "./contexts/HomeContext";
+import { HomesProvider } from "./contexts/HomesContext";
 import { useUserState } from "./contexts/UserContext";
 import { useDefaultRoute } from "./hooks";
 import { Layout } from "./layout";
@@ -11,7 +11,7 @@ import {
   Homes,
   Invitations,
   User,
-  Users
+  Users,
 } from "./pages";
 
 export const App: React.FunctionComponent = () => {
@@ -23,7 +23,7 @@ export const App: React.FunctionComponent = () => {
   }
 
   return (
-    <HomeProvider>
+    <HomesProvider>
       <Layout>
         <Switch>
           <Route component={Homes} exact={true} path="/homes" />
@@ -36,6 +36,6 @@ export const App: React.FunctionComponent = () => {
           <Redirect to={defaultRoute} />
         </Switch>
       </Layout>
-    </HomeProvider>
+    </HomesProvider>
   );
 };

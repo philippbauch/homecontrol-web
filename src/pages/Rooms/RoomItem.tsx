@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { Tile } from "../../components";
-import { HomeContext } from "../../contexts/HomeContext";
+import { useHome } from "../../contexts/HomesContext";
 
 interface RoomItemProps {
   room: any;
 }
 
 export const RoomItem: React.FunctionComponent<RoomItemProps> = ({ room }) => {
-  const { home } = useContext(HomeContext);
+  const home = useHome();
   const history = useHistory();
 
   const selectRoom = () => {

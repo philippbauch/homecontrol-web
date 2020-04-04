@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import http from "../HttpClient";
 import { Button, Input } from "../components";
-import { HomeContext } from "../contexts/HomeContext";
+import { useHome } from "../contexts/HomesContext";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 
 export const AddRoom: React.FunctionComponent = () => {
-  const { home } = useContext(HomeContext);
+  const home = useHome();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
@@ -15,12 +15,12 @@ export const AddRoom: React.FunctionComponent = () => {
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: `/homes/${home._id}`,
-      title: home.name as string
+      title: home.name as string,
     },
     {
       link: `/homes/${home._id}/rooms`,
-      title: "Rooms"
-    }
+      title: "Rooms",
+    },
   ];
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,12 +30,12 @@ export const AddRoom: React.FunctionComponent = () => {
 
     http
       .post(`/homes/${home._id}/rooms`, { name })
-      .then(room => {
+      .then((room) => {
         console.log(room);
 
         history.push(`/homes/${home._id}/rooms`);
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
 

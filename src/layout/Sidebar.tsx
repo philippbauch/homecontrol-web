@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import http from "../HttpClient";
 import { Tile } from "../components";
 import { SignOutIcon } from "../components/icons";
-import { HomeContext } from "../contexts/HomeContext";
+import { useHome } from "../contexts/HomesContext";
 import { useUserState, useLogout } from "../contexts/UserContext";
+import http from "../HttpClient";
 
 interface SidebarProps {
   setShowSidebar: (showSidebar: boolean) => void;
 }
 
 export const Sidebar: React.FunctionComponent<SidebarProps> = ({
-  setShowSidebar
+  setShowSidebar,
 }) => {
-  const { home } = useContext(HomeContext);
+  const home = useHome();
   const history = useHistory();
   const logout = useLogout();
   const user = useUserState();

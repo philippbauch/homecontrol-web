@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { HomeList } from "./HomeList";
-import { HomeContext } from "../../contexts/HomeContext";
+import { useHomesState } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
 
 export const Homes: React.FunctionComponent = () => {
-  const { homes } = useContext(HomeContext);
+  const homes = useHomesState();
 
   const extra = <Link to="/homes/new">Hinzufügen</Link>;
 

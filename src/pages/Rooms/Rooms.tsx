@@ -1,14 +1,14 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RoomList } from "./RoomList";
-import http from "../../HttpClient";
 import { Loader } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
-import { HomeContext } from "../../contexts/HomeContext";
+import { useHome } from "../../contexts/HomesContext";
+import http from "../../HttpClient";
 import { Page } from "../../layout";
 
 export const Rooms: React.FunctionComponent = () => {
-  const { home } = useContext(HomeContext);
+  const home = useHome();
   const [loading, setLoading] = useState(true);
   const [rooms, setRooms] = useState([]);
 
@@ -17,8 +17,8 @@ export const Rooms: React.FunctionComponent = () => {
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: `/homes/${home._id}`,
-      title: home.name as string
-    }
+      title: home.name as string,
+    },
   ];
 
   const fetchRooms = useCallback(async () => {
@@ -27,7 +27,7 @@ export const Rooms: React.FunctionComponent = () => {
     http
       .get(`/homes/${home._id}/rooms`)
       .then(setRooms)
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error))
       .finally(() => {
         setLoading(false);
       });

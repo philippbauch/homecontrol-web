@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import http from "../HttpClient";
 import { Button, Input } from "../components";
-import { HomeContext } from "../contexts/HomeContext";
+import { useHomesDispatch } from "../contexts/HomesContext";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 
 export const AddHome: React.FunctionComponent = () => {
-  const { addHome } = useContext(HomeContext);
+  const dispatch = useHomesDispatch();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
@@ -15,8 +15,8 @@ export const AddHome: React.FunctionComponent = () => {
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: "/homes",
-      title: "Homes"
-    }
+      title: "Homes",
+    },
   ];
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,12 +26,12 @@ export const AddHome: React.FunctionComponent = () => {
 
     http
       .post("/homes", { name })
-      .then(home => {
-        addHome(home);
+      .then((home) => {
+        dispatch({ type: "add_home", home });
 
         history.push("/homes");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       })
       .finally(() => {
