@@ -53,7 +53,7 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
 function useLogin() {
   const dispatch = useUserDispatch();
 
-  const login = async (user: any) => {
+  const login = (user: any) => {
     dispatch({ type: "set_user", user });
   };
 

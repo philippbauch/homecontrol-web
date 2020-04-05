@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Link, useHistory, Switch, Route } from "react-router-dom";
+import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { AddRoom } from "../AddRoom";
 import { Rooms } from "../Rooms";
 import { Divider, Level, Tile } from "../../components";
@@ -8,8 +8,8 @@ import { useHome } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
 
 export const Home: React.FunctionComponent = () => {
-  const home = useHome();
   const history = useHistory();
+  const home = useHome();
 
   const extra = <Link to={`/homes/${home._id}/edit`}>Bearbeiten</Link>;
 

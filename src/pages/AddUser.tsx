@@ -15,19 +15,19 @@ export const AddUser: React.FunctionComponent = () => {
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: `/users`,
-      title: "Benutzer"
-    }
+      title: "Benutzer",
+    },
   ];
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
 
     http
-      .post(`/users`, { identifier, password })
+      .post(`/users`, { admin: isAdmin, identifier, password })
       .then(() => history.push(`/users`))
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
 

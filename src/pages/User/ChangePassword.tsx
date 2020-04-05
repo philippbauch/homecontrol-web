@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import http from "../../HttpClient";
 import { Button, Input } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
+import http from "../../HttpClient";
 import { Page } from "../../layout";
 
 interface ChangePasswordProps {
@@ -9,7 +9,7 @@ interface ChangePasswordProps {
 }
 
 export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
-  user
+  user,
 }) => {
   const [loading, setLoading] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -19,15 +19,15 @@ export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: "/users",
-      title: "Benutzer"
+      title: "Benutzer",
     },
     {
       link: `/users/${user._id}`,
-      title: user.identifier
-    }
+      title: user.identifier,
+    },
   ];
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
@@ -35,9 +35,10 @@ export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
     http
       .put(`/users/${user._id}`, {
         currentPassword: oldPassword,
-        password: newPassword
+        password: newPassword,
       })
-      .then(([error]) => {
+      .catch((error) => console.error(error))
+      .finally(() => {
         setLoading(false);
       });
   };

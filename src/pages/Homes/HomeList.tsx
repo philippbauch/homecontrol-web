@@ -9,9 +9,9 @@ export const HomeList: React.FunctionComponent<HomeListProps> = ({ homes }) => {
   return (
     <div className="home-list">
       {homes.length ? (
-        homes.map(home => <HomeItem home={home} key={home._id} />)
+        homes.map((home) => <HomeItem home={home} key={home._id} />)
       ) : (
-        <span>No homes found.</span>
+        <span>Kein Zuhause gefunden.</span>
       )}
     </div>
   );

@@ -23,18 +23,14 @@ export const AddRoom: React.FunctionComponent = () => {
     },
   ];
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
 
     http
       .post(`/homes/${home._id}/rooms`, { name })
-      .then((room) => {
-        console.log(room);
-
-        history.push(`/homes/${home._id}/rooms`);
-      })
+      .then(() => history.push(`/homes/${home._id}/rooms`))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };

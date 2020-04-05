@@ -4,7 +4,7 @@ import {
   Route,
   Switch,
   useHistory,
-  useParams
+  useParams,
 } from "react-router-dom";
 import { ChangePassword } from "./ChangePassword";
 import { DeleteUser } from "./DeleteUser";
@@ -17,33 +17,21 @@ import { Page } from "../../layout";
 import { useDefaultRoute } from "../../hooks";
 
 export const User: React.FunctionComponent = () => {
-  const user = useUserState();
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const { userId } = useParams();
   const [fetchedUser, setFetchedUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const user = useUserState();
 
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: "/users",
-      title: "Benutzer"
-    }
+      title: "Benutzer",
+    },
   ];
 
   const defaultPageTitle = "Benutzer";
-
-  const fetchUser = useCallback(async () => {
-    setLoading(true);
-
-    http
-      .get(`/users/${userId}`)
-      .then(setFetchedUser)
-      .catch(error => console.error(error))
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [userId]);
 
   const getExtra = () => {
     const tag = <Tag>Administrator</Tag>;
@@ -93,27 +81,39 @@ export const User: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (isAuthorized() && !isOwnUser()) {
-      fetchUser();
-    } else {
-      setLoading(false);
+      setLoading(true);
+
+      http
+        .get(`/users/${userId}`)
+        .then(setFetchedUser)
+        .catch((error) => console.error(error))
+        .finally(() => {
+          setLoading(false);
+        });
     }
-  }, [fetchUser, isAuthorized, isOwnUser]);
+  }, [isAuthorized, isOwnUser, userId]);
 
   return isAuthorized() ? (
     <Switch>
       <Route
         path={`/users/:userId/password`}
-        render={props => (
+        render={(props) => (
           <ChangePassword {...props} user={fetchedUser || user} />
         )}
       />
       <Route
         path={`/users/:userId/delete`}
-        render={props => <DeleteUser {...props} user={fetchedUser || user} />}
+        render={(props) => (
+          <DeleteUser
+            {...props}
+            ownUser={isOwnUser()}
+            user={fetchedUser || user}
+          />
+        )}
       />
       <Route
         path={`/users/:userId/lock`}
-        render={props => <LockUser {...props} user={fetchedUser || user} />}
+        render={(props) => <LockUser {...props} user={fetchedUser || user} />}
       />
       <Route>
         <Page

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RoomList } from "./RoomList";
 import { Loader } from "../../components";
@@ -21,21 +21,15 @@ export const Rooms: React.FunctionComponent = () => {
     },
   ];
 
-  const fetchRooms = useCallback(async () => {
+  useEffect(() => {
     setLoading(true);
 
     http
       .get(`/homes/${home._id}/rooms`)
       .then(setRooms)
       .catch((error) => console.error(error))
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }, [home._id]);
-
-  useEffect(() => {
-    fetchRooms();
-  }, [fetchRooms]);
 
   return (
     <Page breadcrumbs={breadcrumbs} extra={extra} title="Räume">

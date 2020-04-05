@@ -1,35 +1,50 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
-import { Page } from "../../layout";
+import { useLogout } from "../../contexts/UserContext";
 import http from "../../HttpClient";
+import { Page } from "../../layout";
 
 interface DeleteUserProps {
+  ownUser: boolean;
   user: any;
 }
 
 export const DeleteUser: React.FunctionComponent<DeleteUserProps> = ({
-  user
+  ownUser,
+  user,
 }) => {
+  const history = useHistory();
+  const logout = useLogout();
   const [loading, setLoading] = useState(false);
 
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: "/users",
-      title: "Benutzer"
+      title: "Benutzer",
     },
     {
       link: `/users/${user._id}`,
-      title: user.identifier
-    }
+      title: user.identifier,
+    },
   ];
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
 
-    http.delete(`/users/${user._id}`).finally(() => setLoading(false));
+    http
+      .delete(`/users/${user._id}`)
+      .then(() => {
+        if (ownUser) {
+          return logout();
+        }
+
+        history.push("/users");
+      })
+      .finally(() => setLoading(false));
   };
 
   return (

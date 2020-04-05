@@ -14,11 +14,17 @@ export const HomeItem: React.FunctionComponent<HomeItemProps> = ({ home }) => {
   const userDispatch = useUserDispatch();
 
   const selectHome = () => {
-    http.put(`/users/${user._id}`);
+    const update = {
+      preferences: {
+        activeHomeId: home._id,
+      },
+    };
+
+    http.put(`/users/${user._id}`, update);
 
     userDispatch({
       type: "update_user",
-      update: { preferences: { activeHomeId: home._id } },
+      update,
     });
 
     history.push(`/homes/${home._id}`);

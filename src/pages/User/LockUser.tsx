@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import http from "../../HttpClient";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
+import { useUserDispatch } from "../../contexts/UserContext";
 import { Page } from "../../layout";
 
 interface LockUserProps {
@@ -9,37 +10,34 @@ interface LockUserProps {
 }
 
 export const LockUser: React.FunctionComponent<LockUserProps> = ({ user }) => {
+  const dispatch = useUserDispatch();
   const [loading, setLoading] = useState(false);
 
   const breadcrumbs: BreadcrumbProps[] = [
     {
       link: "/users",
-      title: "Benutzer"
+      title: "Benutzer",
     },
     {
       link: `/users/${user._id}`,
-      title: user.identifier
-    }
+      title: user.identifier,
+    },
   ];
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
 
     http
       .put(`/users/${user._id}/locked`, {
-        locked: !user.locked
+        locked: !user.locked,
       })
-      .then(({ locked }) => {
-        user.locked = locked;
-      })
-      .catch(error => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .then(({ locked }) =>
+        dispatch({ type: "update_user", update: { locked } })
+      )
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   };
 
   return (

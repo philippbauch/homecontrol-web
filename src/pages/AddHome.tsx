@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import http from "../HttpClient";
 import { Button, Input } from "../components";
-import { useHomesDispatch } from "../contexts/HomesContext";
-import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
+import { useHomesDispatch } from "../contexts/HomesContext";
+import http from "../HttpClient";
+import { Page } from "../layout";
 
 export const AddHome: React.FunctionComponent = () => {
   const dispatch = useHomesDispatch();
@@ -19,7 +19,7 @@ export const AddHome: React.FunctionComponent = () => {
     },
   ];
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
