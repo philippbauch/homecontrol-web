@@ -6,6 +6,7 @@ import { Divider, Level, Tile } from "../../components";
 import { PeopleIcon, RoomsIcon } from "../../components/icons";
 import { useHome } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
+import { Residents } from "../Residents";
 
 export const Home: React.FunctionComponent = () => {
   const history = useHistory();
@@ -13,12 +14,21 @@ export const Home: React.FunctionComponent = () => {
 
   const extra = <Link to={`/homes/${home._id}/edit`}>Bearbeiten</Link>;
 
+  const goToResidents = () => {
+    history.push(`/homes/${home._id}/residents`);
+  };
+
   const goToRooms = () => {
     history.push(`/homes/${home._id}/rooms`);
   };
 
   return home ? (
     <Switch>
+      <Route
+        component={Residents}
+        exact={true}
+        path={`/homes/:homeId/residents`}
+      />
       <Route component={Rooms} exact={true} path={`/homes/:homeId/rooms`} />
       <Route component={AddRoom} path={`/homes/:homeId/rooms/new`} />
       <Route>
@@ -31,7 +41,7 @@ export const Home: React.FunctionComponent = () => {
             <Tile className="home-menu-item">
               <span>Geräte</span>
             </Tile>
-            <Tile className="home-menu-item">
+            <Tile className="home-menu-item" onClick={goToResidents}>
               <PeopleIcon />
               <span>Bewohner</span>
             </Tile>
