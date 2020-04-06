@@ -1,21 +1,29 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Burger } from "../components";
-import { useUserState } from "../contexts/UserContext";
+import React, { useState } from "react";
+import { Link, useHistory, NavLink } from "react-router-dom";
+import { Burger, Tile } from "../components";
+import { useUserState, useLogout } from "../contexts/UserContext";
 import { useDefaultRoute } from "../hooks";
+import { SignOutIcon } from "../components/icons";
+import { useHome } from "../contexts/HomesContext";
+import http from "../HttpClient";
 
-interface NavigationProps {
-  setShowSidebar: (showSidebar: boolean) => void;
-  showSidebar: boolean;
-}
-
-export const Navigation: React.FunctionComponent<NavigationProps> = ({
-  setShowSidebar,
-  showSidebar
-}) => {
+export const Navigation: React.FunctionComponent = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
   const user = useUserState();
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
+  const home = useHome();
+  const logout = useLogout();
+
+  const handleLogout = () => {
+    http.post("/logout").then(logout);
+  };
+
+  const showHomes = () => {
+    setShowSidebar(false);
+
+    history.push("/homes");
+  };
 
   const hideSidebar = () => setShowSidebar(false);
 
@@ -29,22 +37,57 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
 
   return (
     <nav id="navigation">
-      <div id="navigation-left">
-        <Burger onClick={toggleSidebar} open={showSidebar} />
-        <h1 id="navigation-brand" onClick={goToDefaultRoute}>
-          Home
-        </h1>
-      </div>
-      <div id="navigation-right">
-        <Link
-          className="nostyle"
-          id="navigation-username"
-          onClick={() => setShowSidebar(false)}
-          to={`/users/${user._id}`}
-        >
-          {user.identifier}
-        </Link>
-      </div>
+      <section className="navigation-header">
+        <div className="navigation-left">
+          <Burger onClick={toggleSidebar} open={showSidebar} />
+          <h1 className="navigation-brand" onClick={goToDefaultRoute}>
+            Home
+          </h1>
+        </div>
+        <div className="navigation-right">
+          <Link
+            className="nostyle"
+            id="navigation-username"
+            onClick={() => setShowSidebar(false)}
+            to={`/users/${user._id}`}
+          >
+            {user.identifier}
+          </Link>
+        </div>
+      </section>
+      {showSidebar && (
+        <section className="navigation-extension">
+          {home ? (
+            <Tile className="home-tile" darker={true}>
+              <span>{home.name}</span>
+              <SignOutIcon onClick={showHomes} />
+            </Tile>
+          ) : null}
+          <div className="navigation-menu-vertical">
+            {user.admin ? (
+              <NavLink
+                activeClassName="is-active"
+                className="sidebar-item nostyle"
+                onClick={hideSidebar}
+                to="/users"
+              >
+                Benutzer
+              </NavLink>
+            ) : null}
+            <NavLink
+              activeClassName="is-active"
+              className="sidebar-item nostyle"
+              onClick={hideSidebar}
+              to="/invitations"
+            >
+              Einladungen
+            </NavLink>
+            <div className="sidebar-item" onClick={handleLogout}>
+              Ausloggen
+            </div>
+          </div>
+        </section>
+      )}
     </nav>
   );
 };

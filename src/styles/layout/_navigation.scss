@@ -2,23 +2,57 @@
   background-color: $color-background-alt;
   color: $color-white;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
-  &-brand {
-    margin-bottom: $margin-xxs;
-  }
-
-  &-left,
-  &-right {
-    align-items: center;
+  .navigation-header {
     display: flex;
-    margin: 0 $margin-lg;
+    justify-content: space-between;
+
+    .navigation-brand {
+      margin-bottom: $margin-xxs;
+    }
+
+    .navigation-left,
+    .navigation-right {
+      align-items: center;
+      display: flex;
+      margin: 0 $margin-lg;
+    }
+
+    .navigation-username {
+      height: $nav-height;
+      line-height: $nav-height;
+      margin-right: -$margin-lg;
+      padding: 0 $padding-lg;
+    }
   }
 
-  &-username {
-    height: $nav-height;
-    line-height: $nav-height;
-    margin-right: -$margin-lg;
+  .navigation-extension {
+    display: flex;
+    flex-direction: column;
     padding: 0 $padding-lg;
+
+    .home-tile {
+      align-items: center;
+      background-color: $color-background-alt-light;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navigation-menu-vertical {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-item {
+      font-size: $font-lg;
+      padding: $padding-md;
+      position: relative;
+      text-align: center;
+
+      &.is-active {
+        font-weight: bold;
+      }
+    }
   }
 }
