@@ -1,11 +1,7 @@
 #layout {
   display: flex;
   flex-direction: column;
-  grid-template-rows: $nav-height 1fr;
-  grid-template-areas: "navigation" "main";
   position: relative;
-
-  @include no-scroll;
 
   #main {
     position: relative;

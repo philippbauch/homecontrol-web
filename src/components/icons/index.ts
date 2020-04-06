@@ -1,4 +1,7 @@
+export { CheckmarkIcon } from "./CheckmarkIcon";
+export { ErrorIcon } from "./ErrorIcon";
 export { HomeIcon } from "./HomeIcon";
+export { InfoIcon } from "./InfoIcon";
 export { LockIcon } from "./LockIcon";
 export { PeopleIcon } from "./PeopleIcon";
 export { PlusIcon } from "./PlusIcon";

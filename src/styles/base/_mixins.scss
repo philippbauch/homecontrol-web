@@ -27,9 +27,3 @@
     align-self: end;
   }
 }
-
-@mixin no-scroll {
-  &.no-scroll {
-    overflow: hidden;
-  }
-}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { Notifications } from "./components/Notifications";
 import { HomesProvider } from "./contexts/HomesContext";
 import { useUserState } from "./contexts/UserContext";
 import { useDefaultRoute } from "./hooks";
@@ -36,6 +37,7 @@ export const App: React.FunctionComponent = () => {
           <Redirect to={defaultRoute} />
         </Switch>
       </Layout>
+      <Notifications />
     </HomesProvider>
   );
 };

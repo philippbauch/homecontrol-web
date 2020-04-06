@@ -1,0 +1,10 @@
+.notifications {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  &-list {
+    padding: $padding-md;
+  }
+}
