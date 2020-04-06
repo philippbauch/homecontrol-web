@@ -7,6 +7,7 @@ import { PeopleIcon, RoomsIcon } from "../../components/icons";
 import { useHome } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
 import { Residents } from "../Residents";
+import { InviteUser } from "../InviteUser";
 
 export const Home: React.FunctionComponent = () => {
   const history = useHistory();
@@ -24,11 +25,8 @@ export const Home: React.FunctionComponent = () => {
 
   return home ? (
     <Switch>
-      <Route
-        component={Residents}
-        exact={true}
-        path={`/homes/:homeId/residents`}
-      />
+      <Route component={InviteUser} path={`/homes/:homeId/invite`} />
+      <Route component={Residents} path={`/homes/:homeId/residents`} />
       <Route component={Rooms} exact={true} path={`/homes/:homeId/rooms`} />
       <Route component={AddRoom} path={`/homes/:homeId/rooms/new`} />
       <Route>

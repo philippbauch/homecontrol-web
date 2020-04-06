@@ -19,7 +19,10 @@ export const InvitationItem: React.FunctionComponent<InvitationItemProps> = ({
   return (
     <Tile className="invitation-item">
       <div className="invitation-info">
-        <span className="invitation-name">Invitation</span>
+        <span className="invitation-name">
+          <b>{invitation.inviter.identifier}</b> hat dich zu{" "}
+          <b>{invitation.home.name}</b> eingeladen.
+        </span>
       </div>
     </Tile>
   );
