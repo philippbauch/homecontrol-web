@@ -5,10 +5,12 @@ import { Button, Input } from "../components";
 import { useHome } from "../contexts/HomesContext";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
+import { useNotify } from "../contexts/NotificationContext";
 
 export const AddRoom: React.FunctionComponent = () => {
   const home = useHome();
   const history = useHistory();
+  const notify = useNotify();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
 
@@ -30,7 +32,10 @@ export const AddRoom: React.FunctionComponent = () => {
 
     http
       .post(`/homes/${home._id}/rooms`, { name })
-      .then(() => history.push(`/homes/${home._id}/rooms`))
+      .then(() => {
+        notify("success", "Room added");
+        history.push(`/homes/${home._id}/rooms`);
+      })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
