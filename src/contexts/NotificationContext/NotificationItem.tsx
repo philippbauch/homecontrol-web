@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import React, { useEffect } from "react";
 import { Card } from "../../components";
 import { useNotificationDispatch } from "./NotificationContext";
@@ -32,7 +33,13 @@ export const NotificationItem: React.FunctionComponent<NotificationItemProps> = 
   }, [dispatch, notification]);
 
   return (
-    <Card className="notification-item">
+    <Card
+      className={classnames("notifications-item", {
+        "is-error": notification.type === "error",
+        "is-info": notification.type === "info",
+        "is-success": notification.type === "success",
+      })}
+    >
       {icon}
       <span>{notification.message}</span>
     </Card>

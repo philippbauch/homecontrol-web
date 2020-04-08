@@ -7,4 +7,25 @@
   &-list {
     padding: $padding-md;
   }
+
+  &-item {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      margin-right: $margin-md;
+    }
+
+    &.is-error .icon {
+      color: $color-danger;
+    }
+
+    &.is-info .icon {
+      color: $color-primary;
+    }
+
+    &.is-success .icon {
+      color: $color-success;
+    }
+  }
 }

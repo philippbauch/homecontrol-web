@@ -62,6 +62,8 @@ export function useNotificationDispatch() {
   return dispatch;
 }
 
+let NOTIFICATION_COUNTER = 0;
+
 export function useNotify() {
   const dispatch = useNotificationDispatch();
 
@@ -70,12 +72,21 @@ export function useNotify() {
     message: string,
     action?: () => void
   ) {
-    const id = 0;
+    const id = NOTIFICATION_COUNTER++;
 
     const notification = { id, type, message, action };
 
     dispatch({ type: "add_notification", notification });
   }
+
+  notify.info = (message: string, action?: () => void) =>
+    notify("info", message, action);
+
+  notify.success = (message: string, action?: () => void) =>
+    notify("success", message, action);
+
+  notify.error = (message: string, action?: () => void) =>
+    notify("error", message, action);
 
   return notify;
 }

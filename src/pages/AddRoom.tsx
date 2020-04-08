@@ -33,7 +33,7 @@ export const AddRoom: React.FunctionComponent = () => {
     http
       .post(`/homes/${home._id}/rooms`, { name })
       .then(() => {
-        notify("success", "Room added");
+        notify.success("Raum erstellt");
         history.push(`/homes/${home._id}/rooms`);
       })
       .catch((error) => console.error(error))
