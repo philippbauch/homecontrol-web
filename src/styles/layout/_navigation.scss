@@ -8,10 +8,6 @@
     display: flex;
     justify-content: space-between;
 
-    .navigation-brand {
-      margin-bottom: $margin-xxs;
-    }
-
     .navigation-left,
     .navigation-right {
       align-items: center;
@@ -30,6 +26,7 @@
   .navigation-extension {
     display: flex;
     flex-direction: column;
+    margin: $margin-sm 0;
     padding: 0 $padding-lg;
 
     .home-tile {
@@ -45,7 +42,6 @@
     }
 
     .sidebar-item {
-      font-size: $font-lg;
       padding: $padding-md;
       position: relative;
       text-align: center;
