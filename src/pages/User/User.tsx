@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   Redirect,
@@ -9,12 +10,12 @@ import {
 import { ChangePassword } from "./ChangePassword";
 import { DeleteUser } from "./DeleteUser";
 import { LockUser } from "./LockUser";
-import http from "../../HttpClient";
-import { Loader, Tile, Tag } from "../../components";
+import { Level, Loader, Tile, Tag } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { useUserState } from "../../contexts/UserContext";
-import { Page } from "../../layout";
 import { useDefaultRoute } from "../../hooks";
+import http from "../../HttpClient";
+import { Page } from "../../layout";
 
 export const User: React.FunctionComponent = () => {
   const defaultRoute = useDefaultRoute();
@@ -119,19 +120,34 @@ export const User: React.FunctionComponent = () => {
         <Page
           extra={getExtra()}
           breadcrumbs={user.admin && breadcrumbs}
-          subtitle="Erstellt am 23.03.2020"
           title={getPageTitle()}
         >
           <Loader loading={loading}>
+            <section id="user-details">
+              <Level>
+                <span>Erstellt am</span>
+                <span>
+                  {moment(user._id.getTimestamp()).format("DD.MM.YYYY")}
+                </span>
+              </Level>
+
+              <Level>
+                <span>Zuletzt eingeloggt</span>
+                <span>{user.lastLogin.format("DD.MM.YYYY hh:mm:ss")}</span>
+              </Level>
+            </section>
+
             <section id="user-menu">
               {user.admin && (
                 <Tile className="user-menu-item" onClick={goToLockUser}>
                   <span>{getLockLabel()}</span>
                 </Tile>
               )}
+
               <Tile className="user-menu-item" onClick={goToChangePassword}>
                 <span>Passwort ändern</span>
               </Tile>
+
               <Tile className="user-menu-item" onClick={goToDeleteUser}>
                 <span>Account löschen</span>
               </Tile>

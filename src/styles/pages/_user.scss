@@ -32,6 +32,14 @@
   }
 }
 
+#user-details {
+  margin-bottom: $margin-lg;
+
+  & > :not(:last-child) {
+    margin-bottom: $margin-xs;
+  }
+}
+
 #user-menu {
   display: flex;
   flex-direction: column;

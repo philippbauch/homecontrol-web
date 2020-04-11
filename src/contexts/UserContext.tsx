@@ -1,3 +1,5 @@
+import { ObjectId } from "bson";
+import moment from "moment";
 import React, { useEffect, useReducer, useState } from "react";
 import { Loader } from "../components";
 import http from "../HttpClient";
@@ -33,9 +35,17 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
   const [userState, dispatchUser] = useReducer(userReducer, null);
   const [loading, setLoading] = useState(true);
 
+  const mapUser = (user: any) => {
+    const _id = ObjectId.createFromHexString(user._id);
+    const lastLogin = moment(user.lastLogin);
+
+    return { ...user, _id, lastLogin };
+  };
+
   useEffect(() => {
     http
       .get("/identity")
+      .then(mapUser)
       .then((user) => dispatchUser({ type: "set_user", user }))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
