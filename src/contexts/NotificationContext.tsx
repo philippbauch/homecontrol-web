@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { NotificationList } from "./NotificationList";
+import { Notification as NotificationComponent } from "../components/Notification";
 
 type AddNotificationAction = {
   type: "add_notification";
@@ -47,9 +47,28 @@ export const NotificationProvider: React.FunctionComponent = ({ children }) => {
   return (
     <NotificationContext.Provider value={dispatch}>
       {children}
-      <NotificationList notifications={notifications} />
+      <Notifications notifications={notifications} />
     </NotificationContext.Provider>
   );
+};
+
+interface NotificationProps {
+  notifications: Notification[];
+}
+
+export const Notifications: React.FunctionComponent<NotificationProps> = ({
+  notifications,
+}) => {
+  return notifications.length ? (
+    <div className="notifications">
+      {notifications.map((notification) => (
+        <NotificationComponent
+          key={notification.id}
+          notification={notification}
+        />
+      ))}
+    </div>
+  ) : null;
 };
 
 export function useNotificationDispatch() {

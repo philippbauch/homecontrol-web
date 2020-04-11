@@ -5,10 +5,12 @@ import { BreadcrumbProps } from "../components/Breadcrumb";
 import { useHomesDispatch } from "../contexts/HomesContext";
 import http from "../HttpClient";
 import { Page } from "../layout";
+import { useNotify } from "../contexts/NotificationContext";
 
 export const AddHome: React.FunctionComponent = () => {
   const dispatch = useHomesDispatch();
   const history = useHistory();
+  const notify = useNotify();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
 
@@ -28,6 +30,7 @@ export const AddHome: React.FunctionComponent = () => {
       .post("/homes", { name })
       .then((home) => {
         dispatch({ type: "add_home", home });
+        notify.success("Zuhause erstellt");
 
         history.push("/homes");
       })

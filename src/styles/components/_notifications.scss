@@ -1,16 +1,34 @@
 .notifications {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
   left: 0;
+  padding: $padding-md;
   position: absolute;
+  right: 0;
   top: 0;
-  width: 100%;
-
-  &-list {
-    padding: $padding-md;
-  }
 
   &-item {
-    display: flex;
+    align-self: stretch;
     align-items: center;
+    display: flex;
+
+    &:not(:last-child) {
+      margin-bottom: $margin-md;
+    }
+
+    @include screen-tablet {
+      align-self: inherit;
+      width: 40%;
+    }
+
+    @include screen-desktop {
+      width: 30%;
+    }
+
+    @include screen-large {
+      width: 20%;
+    }
 
     .icon {
       margin-right: $margin-md;

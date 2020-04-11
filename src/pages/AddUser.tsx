@@ -4,9 +4,11 @@ import http from "../HttpClient";
 import { Button, Checkbox, Input } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 import { Page } from "../layout";
+import { useNotify } from "../contexts/NotificationContext";
 
 export const AddUser: React.FunctionComponent = () => {
   const history = useHistory();
+  const notify = useNotify();
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [identifier, setIdentifier] = useState("");
@@ -26,7 +28,11 @@ export const AddUser: React.FunctionComponent = () => {
 
     http
       .post(`/users`, { admin: isAdmin, identifier, password })
-      .then(() => history.push(`/users`))
+      .then(() => {
+        notify.success("Benutzer erstellt");
+
+        history.push(`/users`);
+      })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
