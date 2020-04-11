@@ -9,9 +9,9 @@ export const RoomList: React.FunctionComponent<RoomListProps> = ({ rooms }) => {
   return (
     <div className="room-list">
       {rooms.length ? (
-        rooms.map(room => <RoomItem room={room} key={room._id} />)
+        rooms.map((room) => <RoomItem room={room} key={room._id} />)
       ) : (
-        <span>No rooms found.</span>
+        <span>Keine Räume gefunden.</span>
       )}
     </div>
   );

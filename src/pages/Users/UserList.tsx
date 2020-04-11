@@ -27,7 +27,7 @@ export const UserList: React.FunctionComponent = () => {
         {users.length ? (
           users.map((user) => <UserItem user={user} key={user._id} />)
         ) : (
-          <span>No users found.</span>
+          <span>Keine Benutzer gefunden.</span>
         )}
       </div>
     </Loader>

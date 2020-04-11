@@ -47,28 +47,18 @@ export const NotificationProvider: React.FunctionComponent = ({ children }) => {
   return (
     <NotificationContext.Provider value={dispatch}>
       {children}
-      <Notifications notifications={notifications} />
+      {notifications.length ? (
+        <div className="notifications">
+          {notifications.map((notification) => (
+            <NotificationComponent
+              key={notification.id}
+              notification={notification}
+            />
+          ))}
+        </div>
+      ) : null}
     </NotificationContext.Provider>
   );
-};
-
-interface NotificationProps {
-  notifications: Notification[];
-}
-
-export const Notifications: React.FunctionComponent<NotificationProps> = ({
-  notifications,
-}) => {
-  return notifications.length ? (
-    <div className="notifications">
-      {notifications.map((notification) => (
-        <NotificationComponent
-          key={notification.id}
-          notification={notification}
-        />
-      ))}
-    </div>
-  ) : null;
 };
 
 export function useNotificationDispatch() {
