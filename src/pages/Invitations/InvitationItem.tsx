@@ -1,5 +1,5 @@
 import React from "react";
-import { Tile } from "../../components";
+import { Tile, Button } from "../../components";
 
 interface InvitationItemProps {
   invitation: any;
@@ -8,21 +8,27 @@ interface InvitationItemProps {
 export const InvitationItem: React.FunctionComponent<InvitationItemProps> = ({
   invitation,
 }) => {
-  //   const acceptInvitation = () => {
-  //     console.log("Accept");
-  //   };
+  const acceptInvitation = () => {
+    console.log("Accept");
+  };
 
-  //   const denyInvitation = () => {
-  //     console.log("Deny");
-  //   };
+  const denyInvitation = () => {
+    console.log("Deny");
+  };
 
   return (
     <Tile className="invitation-item">
       <div className="invitation-info">
-        <span className="invitation-name">
-          <b>{invitation.inviter.identifier}</b> hat dich zu{" "}
-          <b>{invitation.home.name}</b> eingeladen.
-        </span>
+        <strong>{invitation.inviter.identifier}</strong> hat dich zu{" "}
+        <strong>{invitation.home.name}</strong> eingeladen.
+      </div>
+      <div className="invitation-actions">
+        <Button kind="primary" onClick={acceptInvitation} size="small">
+          Annehmen
+        </Button>
+        <Button onClick={denyInvitation} size="small">
+          Ablehnen
+        </Button>
       </div>
     </Tile>
   );

@@ -54,7 +54,7 @@ export const AddHome: React.FunctionComponent = () => {
             value={name}
           />
         </div>
-        <Button loading={loading} type="submit">
+        <Button kind="primary" loading={loading} type="submit">
           Hinzufügen
         </Button>
       </form>

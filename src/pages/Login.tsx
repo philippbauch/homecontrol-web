@@ -22,13 +22,13 @@ export const Login: React.FunctionComponent = () => {
 
     const credentials = {
       identifier,
-      password
+      password,
     };
 
     http
       .post("/login", credentials)
       .then(login)
-      .catch(error => setError(error))
+      .catch((error) => setError(error))
       .finally(() => setLoading(false));
   };
 
@@ -66,7 +66,7 @@ export const Login: React.FunctionComponent = () => {
             />
           </div>
 
-          <Button loading={loading} type="submit">
+          <Button kind="primary" loading={loading} type="submit">
             Anmelden
           </Button>
         </form>

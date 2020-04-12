@@ -48,7 +48,7 @@ export const LockUser: React.FunctionComponent<LockUserProps> = ({ user }) => {
         ) : (
           <p>Der Benutzer ist momentan nicht gesperrt.</p>
         )}
-        <Button align="start" loading={loading} type="submit">
+        <Button align="start" kind="primary" loading={loading} type="submit">
           {user.locked ? "Entsperren" : "Sperren"}
         </Button>
       </form>

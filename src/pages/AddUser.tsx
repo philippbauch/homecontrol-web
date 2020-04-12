@@ -63,7 +63,7 @@ export const AddUser: React.FunctionComponent = () => {
             Administrator
           </Checkbox>
         </div>
-        <Button loading={loading} type="submit">
+        <Button kind="primary" loading={loading} type="submit">
           Erstellen
         </Button>
       </form>

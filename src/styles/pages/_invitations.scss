@@ -1,0 +1,17 @@
+.invitation-item {
+  & > :not(:last-child) {
+    margin-bottom: $margin-sm;
+  }
+
+  .invitation-actions {
+    display: flex;
+
+    & > * {
+      flex-grow: 1;
+    }
+
+    & > :not(:last-child) {
+      margin-right: $margin-md;
+    }
+  }
+}

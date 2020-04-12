@@ -47,7 +47,7 @@ export const InviteUser: React.FunctionComponent = () => {
             value={inviteeIdentifier}
           />
         </div>
-        <Button loading={loading} type="submit">
+        <Button kind="primary" loading={loading} type="submit">
           Einladen
         </Button>
       </form>

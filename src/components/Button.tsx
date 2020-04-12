@@ -4,9 +4,11 @@ import { Spinner } from "./Spinner";
 
 type ButtonAlign = "start" | "end";
 
-type ButtonKind = "primary" | "danger";
+type ButtonKind = "primary" | "danger" | "normal";
 
 type ButtonType = "button" | "reset" | "submit";
+
+type ButtonSize = "small" | "normal";
 
 interface ButtonProps {
   align?: ButtonAlign;
@@ -15,6 +17,7 @@ interface ButtonProps {
   kind?: ButtonKind;
   loading?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  size?: ButtonSize;
   type?: ButtonType;
 }
 
@@ -23,10 +26,11 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   children,
   className,
   disabled,
-  kind = "primary",
+  kind = "normal",
   loading,
   onClick,
-  type = "button"
+  size,
+  type = "button",
 }) => {
   return (
     <button
@@ -34,7 +38,8 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
         "align-end": align === "end",
         "align-start": align === "start",
         "is-danger": kind === "danger",
-        "is-primary": kind === "primary"
+        "is-primary": kind === "primary",
+        "is-small": size === "small",
       })}
       disabled={disabled}
       onClick={onClick}

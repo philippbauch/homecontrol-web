@@ -77,7 +77,7 @@ export const ChangePassword: React.FunctionComponent<ChangePasswordProps> = ({
             value={newPasswordRepeat}
           />
         </div>
-        <Button align="start" loading={loading} type="submit">
+        <Button align="start" kind="primary" loading={loading} type="submit">
           Ändern
         </Button>
       </form>
