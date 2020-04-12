@@ -20,7 +20,7 @@ type NotificationType = "info" | "success" | "error";
 type Notification = {
   id: number;
   type: NotificationType;
-  message: string;
+  message: React.ReactNode;
   action?: () => void;
 };
 
@@ -78,7 +78,7 @@ export function useNotify() {
 
   function notify(
     type: NotificationType,
-    message: string,
+    message: React.ReactNode,
     action?: () => void
   ) {
     const id = NOTIFICATION_COUNTER++;
@@ -88,13 +88,13 @@ export function useNotify() {
     dispatch({ type: "add_notification", notification });
   }
 
-  notify.info = (message: string, action?: () => void) =>
+  notify.info = (message: React.ReactNode, action?: () => void) =>
     notify("info", message, action);
 
-  notify.success = (message: string, action?: () => void) =>
+  notify.success = (message: React.ReactNode, action?: () => void) =>
     notify("success", message, action);
 
-  notify.error = (message: string, action?: () => void) =>
+  notify.error = (message: React.ReactNode, action?: () => void) =>
     notify("error", message, action);
 
   return notify;

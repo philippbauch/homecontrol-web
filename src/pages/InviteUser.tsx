@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import http from "../HttpClient";
 import { Button, Input } from "../components";
-import { useHome } from "../contexts/HomesContext";
-import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
+import { useHome } from "../contexts/HomesContext";
+import { useNotify } from "../contexts/NotificationContext";
+import http from "../HttpClient";
+import { Page } from "../layout";
 
 export const InviteUser: React.FunctionComponent = () => {
   const home = useHome();
   const history = useHistory();
+  const notify = useNotify();
   const [loading, setLoading] = useState(false);
   const [inviteeIdentifier, setInviteeIdentifier] = useState("");
 
@@ -30,7 +32,16 @@ export const InviteUser: React.FunctionComponent = () => {
 
     http
       .post("/invitations", { homeId: home._id, inviteeIdentifier })
-      .then(() => history.push(`/homes/${home._id}/residents`))
+      .then(() => {
+        notify.success(
+          <span>
+            Du hast <strong>{inviteeIdentifier}</strong> zu{" "}
+            <strong>{home.name}</strong> eingeladen
+          </span>
+        );
+
+        history.push(`/homes/${home._id}/residents`);
+      })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   };
