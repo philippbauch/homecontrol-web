@@ -1,5 +1,6 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Notification as NotificationComponent } from "../components/Notification";
+import ws from "../WebSocketClient";
 
 type AddNotificationAction = {
   type: "add_notification";
@@ -47,18 +48,40 @@ export const NotificationProvider: React.FunctionComponent = ({ children }) => {
   return (
     <NotificationContext.Provider value={dispatch}>
       {children}
-      {notifications.length ? (
-        <div className="notifications">
-          {notifications.map((notification) => (
-            <NotificationComponent
-              key={notification.id}
-              notification={notification}
-            />
-          ))}
-        </div>
-      ) : null}
+      <Notifications notifications={notifications} />
     </NotificationContext.Provider>
   );
+};
+
+interface NotificationsProps {
+  notifications: Notification[];
+}
+
+export const Notifications: React.FunctionComponent<NotificationsProps> = ({
+  notifications,
+}) => {
+  const notify = useNotify();
+
+  useEffect(() => {
+    const off = ws.on("invitation", (invitation) => {
+      notify.info(
+        `${invitation.inviter.identifier} hat dich zu ${invitation.home.name} eingeladen.`
+      );
+    });
+
+    return off;
+  }, [notify]);
+
+  return notifications.length ? (
+    <div className="notifications">
+      {notifications.map((notification) => (
+        <NotificationComponent
+          key={notification.id}
+          notification={notification}
+        />
+      ))}
+    </div>
+  ) : null;
 };
 
 export function useNotificationDispatch() {

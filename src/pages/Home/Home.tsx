@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { AddRoom } from "../AddRoom";
+import { InviteUser } from "../InviteUser";
+import { Residents } from "../Residents";
 import { Rooms } from "../Rooms";
 import { Divider, Level, Tile } from "../../components";
 import { PeopleIcon, RoomsIcon } from "../../components/icons";
 import { useHome } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
-import { Residents } from "../Residents";
-import { InviteUser } from "../InviteUser";
 
 export const Home: React.FunctionComponent = () => {
   const history = useHistory();
