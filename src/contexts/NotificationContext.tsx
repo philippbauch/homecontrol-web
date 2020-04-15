@@ -63,13 +63,13 @@ export const Notifications: React.FunctionComponent<NotificationsProps> = ({
   const notify = useNotify();
 
   useEffect(() => {
-    const off = ws.on("invitation", (invitation) => {
+    const unsubscribe = ws.subscribe("invitation", (invitation) => {
       notify.info(
         `${invitation.inviter.identifier} hat dich zu ${invitation.home.name} eingeladen.`
       );
     });
 
-    return off;
+    return unsubscribe;
   }, [notify]);
 
   return notifications.length ? (

@@ -7,7 +7,7 @@ interface DeviceItemProps {
 }
 
 export const DeviceItem: React.FunctionComponent<DeviceItemProps> = ({
-  device
+  device,
 }) => {
   const history = useHistory();
 
@@ -18,7 +18,7 @@ export const DeviceItem: React.FunctionComponent<DeviceItemProps> = ({
     <Tile className="devices-item" onClick={() => handleDeviceSelect(device)}>
       <div className="device-tile">
         <div className="device-info">
-          <Status status="connected" />
+          <Status connected={true} />
           <span className="device-title">{device.name}</span>
         </div>
       </div>

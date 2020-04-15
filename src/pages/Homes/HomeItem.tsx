@@ -34,7 +34,7 @@ export const HomeItem: React.FunctionComponent<HomeItemProps> = ({ home }) => {
     <Tile className="home-item" onClick={selectHome}>
       <div className="home-tile">
         <div className="home-info">
-          <Status status="connected" />
+          <Status connected={true} />
           <span className="device-title">{home.name}</span>
         </div>
       </div>

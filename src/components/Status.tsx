@@ -1,18 +1,16 @@
 import classnames from "classnames";
 import React from "react";
 
-type StatusType = "connected" | "disconnected";
-
 interface StatusProps {
-  status: StatusType;
+  connected: boolean;
 }
 
-export const Status: React.FunctionComponent<StatusProps> = ({ status }) => {
+export const Status: React.FunctionComponent<StatusProps> = ({ connected }) => {
   return (
     <span
       className={classnames("status", {
-        "is-connected": status === "connected",
-        "is-disconnected": status === "disconnected"
+        "is-connected": connected,
+        "is-disconnected": !connected,
       })}
     ></span>
   );

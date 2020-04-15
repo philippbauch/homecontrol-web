@@ -15,6 +15,12 @@
       margin: 0 $margin-lg;
     }
 
+    .navigation-right {
+      .status {
+        margin-left: $margin-md;
+      }
+    }
+
     .navigation-username {
       height: $nav-height;
       line-height: $nav-height;

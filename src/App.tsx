@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { HomesProvider } from "./contexts/HomesContext";
+import { NotificationProvider } from "./contexts/NotificationContext";
 import { useUserState } from "./contexts/UserContext";
 import { useDefaultRoute } from "./hooks";
 import { Layout } from "./layout";
@@ -13,11 +14,19 @@ import {
   User,
   Users,
 } from "./pages";
-import { NotificationProvider } from "./contexts/NotificationContext";
+import ws from "./WebSocketClient";
 
 export const App: React.FunctionComponent = () => {
-  const user = useUserState();
   const defaultRoute = useDefaultRoute();
+  const user = useUserState();
+
+  useEffect(() => {
+    if (user) {
+      ws.connect();
+    } else {
+      ws.disconnect();
+    }
+  }, [user]);
 
   if (!user) {
     return <Redirect to="/login" />;

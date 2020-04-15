@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { Burger, Tile } from "../components";
+import { Burger, Tile, Status } from "../components";
 import { useUserState, useLogout } from "../contexts/UserContext";
 import { useDefaultRoute } from "../hooks";
 import { SignOutIcon } from "../components/icons";
 import { useHome } from "../contexts/HomesContext";
 import http from "../HttpClient";
+import ws from "../WebSocketClient";
 
 export const Navigation: React.FunctionComponent = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
-  const user = useUserState();
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const home = useHome();
   const logout = useLogout();
+  const [isWebSocketConnected, setIsWebSocketConnected] = useState(
+    ws.isConnected()
+  );
+  const [showSidebar, setShowSidebar] = useState(false);
+  const user = useUserState();
 
   const handleLogout = () => {
     http.post("/logout").then(logout);
@@ -35,6 +39,18 @@ export const Navigation: React.FunctionComponent = () => {
 
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
+  useEffect(() => {
+    const off = ws.on("open", () => setIsWebSocketConnected(true));
+
+    return off;
+  }, []);
+
+  useEffect(() => {
+    const off = ws.on("closed", () => setIsWebSocketConnected(false));
+
+    return off;
+  }, []);
+
   return (
     <nav id="navigation">
       <section className="navigation-header">
@@ -53,6 +69,7 @@ export const Navigation: React.FunctionComponent = () => {
           >
             {user.identifier}
           </Link>
+          <Status connected={isWebSocketConnected} />
         </div>
       </section>
       {showSidebar && (

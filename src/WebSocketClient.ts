@@ -1,82 +1,144 @@
-type WebSocketMessageHandler = (data: any) => void;
+type WebSocketMessage = {
+  type: WebSocketMessageType;
+  data: any;
+};
 
-type WebSocketMessageCallback = {
-  handler: WebSocketMessageHandler;
+type WebSocketMessageCallback = (data: any) => void;
+
+type WebSocketMessageSubscription = {
+  callback: WebSocketMessageCallback;
   id: number;
   type: WebSocketMessageType;
 };
 
 type WebSocketMessageType = "invitation";
 
-type WebSocketMessage = {
-  type: WebSocketMessageType;
-  data: any;
+type WebSocketStatusType = "open" | "closed" | "error";
+
+type WebSocketStatusCallback = () => void;
+
+type WebSocketStatusListener = {
+  callback: WebSocketStatusCallback;
+  id: number;
+  status: WebSocketStatusType;
 };
 
-let CALLBACK_IDENTIFIER = 0;
+let LISTENER_IDENTIFIER = 0;
+let SUBSCRIPTION_IDENTIFIER = 0;
 
 export class WebSocketClient {
-  private cbs: WebSocketMessageCallback[];
-
+  private listeners: WebSocketStatusListener[];
+  private subscriptions: WebSocketMessageSubscription[];
   private url: string;
-
-  private ws: WebSocket;
+  private ws: WebSocket | null = null;
 
   constructor(url: string) {
-    this.cbs = [];
+    this.listeners = [];
+    this.subscriptions = [];
     this.url = url;
-    this.ws = new WebSocket(url);
-
-    this.ws.onclose = this.handleClose;
-    this.ws.onerror = this.handleError;
-    this.ws.onmessage = this.handleMessage.bind(this);
-    this.ws.onopen = this.handleOpen;
   }
 
-  on(type: WebSocketMessageType, handler: WebSocketMessageHandler) {
-    const id = CALLBACK_IDENTIFIER++;
-
-    const callback: WebSocketMessageCallback = {
-      handler,
-      id,
-      type,
-    };
-
-    this.cbs.push(callback);
-
-    return this.off.bind(this, id);
-  }
-
-  off(id: number) {
-    const index = this.cbs.findIndex((cb) => cb.id === id);
-
-    if (index < 0) {
-      return;
-    }
-
-    this.cbs.splice(index, 1);
+  private emit(status: WebSocketStatusType) {
+    this.listeners
+      .filter((l) => l.status === status)
+      .forEach((l) => l.callback());
   }
 
   private handleClose() {
-    console.log("Closed");
+    this.emit("closed");
   }
 
   private handleError() {
-    console.log("Error occured");
+    this.emit("error");
   }
 
   private handleMessage(event: MessageEvent) {
     const message: WebSocketMessage = JSON.parse(event.data);
 
-    console.log("Message received:", message);
-
-    this.cbs
-      .filter((cb) => cb.type === message.type)
-      .forEach((cb) => cb.handler(message.data));
+    this.publish(message);
   }
 
   private handleOpen() {
-    console.log("Opened");
+    this.emit("open");
+  }
+
+  private publish(message: WebSocketMessage) {
+    this.subscriptions
+      .filter((s) => s.type === message.type)
+      .forEach((s) => s.callback(message.data));
+  }
+
+  connect() {
+    if (this.isConnected()) {
+      return;
+    }
+
+    this.ws = new WebSocket(this.url);
+
+    this.ws.onclose = this.handleClose.bind(this);
+    this.ws.onerror = this.handleError.bind(this);
+    this.ws.onmessage = this.handleMessage.bind(this);
+    this.ws.onopen = this.handleOpen.bind(this);
+  }
+
+  disconnect() {
+    if (this.ws) {
+      this.ws.close();
+    }
+
+    this.ws = null;
+  }
+
+  isConnected(): boolean {
+    return !!this.ws && this.ws.readyState === WebSocket.OPEN;
+  }
+
+  on(status: WebSocketStatusType, callback: WebSocketStatusCallback) {
+    const id = LISTENER_IDENTIFIER++;
+
+    const listener: WebSocketStatusListener = {
+      callback,
+      id,
+      status,
+    };
+
+    this.listeners.push(listener);
+
+    return this.unsubscribe.bind(this, id);
+  }
+
+  off(id: number) {
+    const index = this.listeners.findIndex((s) => s.id === id);
+
+    if (index < 0) {
+      return;
+    }
+
+    this.listeners.splice(index, 1);
+  }
+
+  subscribe(type: WebSocketMessageType, callback: WebSocketMessageCallback) {
+    const id = SUBSCRIPTION_IDENTIFIER++;
+
+    const subscription: WebSocketMessageSubscription = {
+      callback,
+      id,
+      type,
+    };
+
+    this.subscriptions.push(subscription);
+
+    return this.unsubscribe.bind(this, id);
+  }
+
+  unsubscribe(id: number) {
+    const index = this.subscriptions.findIndex((s) => s.id === id);
+
+    if (index < 0) {
+      return;
+    }
+
+    this.subscriptions.splice(index, 1);
   }
 }
 
