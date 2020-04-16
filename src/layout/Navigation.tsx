@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { Burger, Tile, Status } from "../components";
 import { useUserState, useLogout } from "../contexts/UserContext";
-import { useDefaultRoute } from "../hooks";
+import { useDefaultRoute, useWebSocket } from "../hooks";
 import { SignOutIcon } from "../components/icons";
 import { useHome } from "../contexts/HomesContext";
 import http from "../HttpClient";
-import ws from "../WebSocketClient";
 
 export const Navigation: React.FunctionComponent = () => {
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const home = useHome();
   const logout = useLogout();
-  const [isWebSocketConnected, setIsWebSocketConnected] = useState(
-    ws.isConnected()
-  );
+  const { connected } = useWebSocket();
   const [showSidebar, setShowSidebar] = useState(false);
   const user = useUserState();
 
@@ -39,18 +36,6 @@ export const Navigation: React.FunctionComponent = () => {
 
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
-  useEffect(() => {
-    const off = ws.on("open", () => setIsWebSocketConnected(true));
-
-    return off;
-  }, []);
-
-  useEffect(() => {
-    const off = ws.on("closed", () => setIsWebSocketConnected(false));
-
-    return off;
-  }, []);
-
   return (
     <nav id="navigation">
       <section className="navigation-header">
@@ -69,7 +54,7 @@ export const Navigation: React.FunctionComponent = () => {
           >
             {user.identifier}
           </Link>
-          <Status connected={isWebSocketConnected} />
+          <Status connected={connected} />
         </div>
       </section>
       {showSidebar && (

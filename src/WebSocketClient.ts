@@ -13,7 +13,7 @@ type WebSocketMessageSubscription = {
 
 type WebSocketMessageType = "invitation";
 
-type WebSocketStatusType = "open" | "closed" | "error";
+type WebSocketStatusType = "open" | "close" | "error";
 
 type WebSocketStatusCallback = () => void;
 
@@ -45,7 +45,7 @@ export class WebSocketClient {
   }
 
   private handleClose() {
-    this.emit("closed");
+    this.emit("close");
   }
 
   private handleError() {

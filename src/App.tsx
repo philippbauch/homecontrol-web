@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { HomesProvider } from "./contexts/HomesContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
 import { useUserState } from "./contexts/UserContext";
-import { useDefaultRoute } from "./hooks";
+import { useDefaultRoute, useWebSocket } from "./hooks";
 import { Layout } from "./layout";
 import {
   AddHome,
@@ -14,11 +14,11 @@ import {
   User,
   Users,
 } from "./pages";
-import ws from "./WebSocketClient";
 
 export const App: React.FunctionComponent = () => {
   const defaultRoute = useDefaultRoute();
   const user = useUserState();
+  const { ws } = useWebSocket();
 
   useEffect(() => {
     if (user) {
@@ -26,7 +26,7 @@ export const App: React.FunctionComponent = () => {
     } else {
       ws.disconnect();
     }
-  }, [user]);
+  }, [user, ws]);
 
   if (!user) {
     return <Redirect to="/login" />;

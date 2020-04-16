@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import { Notification as NotificationComponent } from "../components/Notification";
-import ws from "../WebSocketClient";
+import { useWebSocket } from "../hooks";
 
 type AddNotificationAction = {
   type: "add_notification";
@@ -18,7 +18,7 @@ type Dispatch = (action: Action) => void;
 
 type NotificationType = "info" | "success" | "error";
 
-type Notification = {
+export type Notification = {
   id: number;
   type: NotificationType;
   message: React.ReactNode;
@@ -61,6 +61,7 @@ export const Notifications: React.FunctionComponent<NotificationsProps> = ({
   notifications,
 }) => {
   const notify = useNotify();
+  const { ws } = useWebSocket();
 
   useEffect(() => {
     const unsubscribe = ws.subscribe("invitation", (invitation) => {
@@ -70,7 +71,7 @@ export const Notifications: React.FunctionComponent<NotificationsProps> = ({
     });
 
     return unsubscribe;
-  }, [notify]);
+  }, [notify, ws]);
 
   return notifications.length ? (
     <div className="notifications">
