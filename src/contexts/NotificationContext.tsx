@@ -66,7 +66,10 @@ export const Notifications: React.FunctionComponent<NotificationsProps> = ({
   useEffect(() => {
     const unsubscribe = ws.subscribe("invitation", (invitation) => {
       notify.info(
-        `${invitation.inviter.identifier} hat dich zu ${invitation.home.name} eingeladen.`
+        <span>
+          <strong>{invitation.inviter.identifier}</strong> hat dich zu{" "}
+          <strong>{invitation.home.name}</strong> eingeladen.
+        </span>
       );
     });
 

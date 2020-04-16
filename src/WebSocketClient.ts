@@ -1,3 +1,13 @@
+type WebSocketCallback = (...args: any[]) => void;
+
+type WebSocketEvent = "open" | "close" | "error" | "message";
+
+type WebSocketListener = {
+  callback: WebSocketCallback;
+  event: WebSocketEvent;
+  id: number;
+};
+
 type WebSocketMessage = {
   type: WebSocketMessageType;
   data: any;
@@ -5,43 +15,24 @@ type WebSocketMessage = {
 
 type WebSocketMessageCallback = (data: any) => void;
 
-type WebSocketMessageSubscription = {
-  callback: WebSocketMessageCallback;
-  id: number;
-  type: WebSocketMessageType;
-};
-
 type WebSocketMessageType = "invitation";
 
-type WebSocketStatusType = "open" | "close" | "error";
-
-type WebSocketStatusCallback = () => void;
-
-type WebSocketStatusListener = {
-  callback: WebSocketStatusCallback;
-  id: number;
-  status: WebSocketStatusType;
-};
-
 let LISTENER_IDENTIFIER = 0;
-let SUBSCRIPTION_IDENTIFIER = 0;
 
 export class WebSocketClient {
-  private listeners: WebSocketStatusListener[];
-  private subscriptions: WebSocketMessageSubscription[];
+  private listeners: WebSocketListener[];
   private url: string;
   private ws: WebSocket | null = null;
 
   constructor(url: string) {
     this.listeners = [];
-    this.subscriptions = [];
     this.url = url;
   }
 
-  private emit(status: WebSocketStatusType) {
+  private emit(event: WebSocketEvent, ...args: any[]) {
     this.listeners
-      .filter((l) => l.status === status)
-      .forEach((l) => l.callback());
+      .filter((l) => l.event === event)
+      .forEach((l) => l.callback(...args));
   }
 
   private handleClose() {
@@ -55,17 +46,11 @@ export class WebSocketClient {
   private handleMessage(event: MessageEvent) {
     const message: WebSocketMessage = JSON.parse(event.data);
 
-    this.publish(message);
+    this.emit("message", message);
   }
 
   private handleOpen() {
     this.emit("open");
-  }
-
-  private publish(message: WebSocketMessage) {
-    this.subscriptions
-      .filter((s) => s.type === message.type)
-      .forEach((s) => s.callback(message.data));
   }
 
   connect() {
@@ -93,18 +78,18 @@ export class WebSocketClient {
     return !!this.ws && this.ws.readyState === WebSocket.OPEN;
   }
 
-  on(status: WebSocketStatusType, callback: WebSocketStatusCallback) {
+  on(event: WebSocketEvent, callback: WebSocketCallback) {
     const id = LISTENER_IDENTIFIER++;
 
-    const listener: WebSocketStatusListener = {
+    const listener: WebSocketListener = {
       callback,
+      event,
       id,
-      status,
     };
 
     this.listeners.push(listener);
 
-    return this.unsubscribe.bind(this, id);
+    return this.off.bind(this, id);
   }
 
   off(id: number) {
@@ -118,27 +103,15 @@ export class WebSocketClient {
   }
 
   subscribe(type: WebSocketMessageType, callback: WebSocketMessageCallback) {
-    const id = SUBSCRIPTION_IDENTIFIER++;
+    function _callback(message: WebSocketMessage) {
+      if (message.type !== type) {
+        return;
+      }
 
-    const subscription: WebSocketMessageSubscription = {
-      callback,
-      id,
-      type,
-    };
-
-    this.subscriptions.push(subscription);
-
-    return this.unsubscribe.bind(this, id);
-  }
-
-  unsubscribe(id: number) {
-    const index = this.subscriptions.findIndex((s) => s.id === id);
-
-    if (index < 0) {
-      return;
+      callback(message.data);
     }
 
-    this.subscriptions.splice(index, 1);
+    return this.on("message", _callback);
   }
 }
 
