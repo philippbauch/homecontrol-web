@@ -3,6 +3,10 @@
   border-radius: $radius;
   box-shadow: $box-shadow;
 
+  &.is-clickable {
+    cursor: pointer;
+  }
+
   &.is-padded {
     padding: $padding-md;
   }

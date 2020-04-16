@@ -1,6 +1,6 @@
 import anime from "animejs";
 import classnames from "classnames";
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Card } from "../components";
 import { CheckmarkIcon, ErrorIcon, InfoIcon } from "../components/icons";
 import { useNotificationDispatch } from "../contexts/NotificationContext";
@@ -17,6 +17,25 @@ export const Notification: React.FunctionComponent<NotificationItemProps> = ({
 }) => {
   const dispatch = useNotificationDispatch();
   const elementRef = useRef<HTMLDivElement>(null);
+
+  const dismiss = useCallback(() => {
+    const element = elementRef.current;
+
+    anime({
+      complete: () =>
+        dispatch({ type: "remove_notification", id: notification.id }),
+      duration: TRANSITION_DURATION,
+      easing: "easeInOutCubic",
+      opacity: [1, 0],
+      targets: element,
+      translateX: [0, "100%"],
+    });
+  }, [dispatch, notification.id]);
+
+  const handleClick = () => {
+    dismiss();
+    notification.action();
+  };
 
   const icon = React.useMemo(() => {
     switch (notification.type) {
@@ -42,22 +61,10 @@ export const Notification: React.FunctionComponent<NotificationItemProps> = ({
   }, [dispatch, notification]);
 
   useEffect(() => {
-    const element = elementRef.current;
-
-    const timeout = setTimeout(() => {
-      anime({
-        complete: () =>
-          dispatch({ type: "remove_notification", id: notification.id }),
-        duration: TRANSITION_DURATION,
-        easing: "easeInOutCubic",
-        opacity: [1, 0],
-        targets: element,
-        translateX: [0, "100%"],
-      });
-    }, TRANSITION_DURATION + DISPLAY_DURATION);
+    const timeout = setTimeout(dismiss, TRANSITION_DURATION + DISPLAY_DURATION);
 
     return () => clearTimeout(timeout);
-  }, [dispatch, notification.id]);
+  }, [dismiss]);
 
   return (
     <Card
@@ -66,7 +73,7 @@ export const Notification: React.FunctionComponent<NotificationItemProps> = ({
         "is-info": notification.type === "info",
         "is-success": notification.type === "success",
       })}
-      onClick={notification.action}
+      onClick={handleClick}
       ref={elementRef}
     >
       {icon}

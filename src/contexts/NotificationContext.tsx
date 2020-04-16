@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Notification as NotificationComponent } from "../components/Notification";
 import { useWebSocket } from "../hooks";
 
@@ -60,6 +61,7 @@ interface NotificationsProps {
 export const Notifications: React.FunctionComponent<NotificationsProps> = ({
   notifications,
 }) => {
+  const history = useHistory();
   const notify = useNotify();
   const { ws } = useWebSocket();
 
@@ -69,12 +71,13 @@ export const Notifications: React.FunctionComponent<NotificationsProps> = ({
         <span>
           <strong>{invitation.inviter.identifier}</strong> hat dich zu{" "}
           <strong>{invitation.home.name}</strong> eingeladen.
-        </span>
+        </span>,
+        () => history.push("/invitations")
       );
     });
 
     return unsubscribe;
-  }, [notify, ws]);
+  }, [history, notify, ws]);
 
   return notifications.length ? (
     <div className="notifications">
