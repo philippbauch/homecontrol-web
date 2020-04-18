@@ -1,5 +1,6 @@
 import React from "react";
 import { ResidentItem } from "./ResidentItem";
+import { Stack } from "../../components";
 
 interface ResidentListProps {
   residents: any[];
@@ -9,7 +10,7 @@ export const ResidentList: React.FunctionComponent<ResidentListProps> = ({
   residents,
 }) => {
   return (
-    <div className="resident-list">
+    <Stack className="resident-list" vertical={true}>
       {residents.length ? (
         residents.map((resident) => (
           <ResidentItem resident={resident} key={resident._id} />
@@ -17,6 +18,6 @@ export const ResidentList: React.FunctionComponent<ResidentListProps> = ({
       ) : (
         <span>Keine Bewohner gefunden.</span>
       )}
-    </div>
+    </Stack>
   );
 };
