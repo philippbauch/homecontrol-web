@@ -1,9 +1,17 @@
-import React, { Fragment, useCallback, useEffect, useState } from "react";
+import anime from "animejs";
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import { InvitationAction } from "./Invitations";
-import { Tile, Button } from "../../components";
+import { Tile, Button, Stack } from "../../components";
 import { CheckmarkIcon } from "../../components/icons";
 import { useNotify } from "../../contexts/NotificationContext";
 import http from "../../HttpClient";
+import { getObjectIdTime } from "../../utils";
 
 interface InvitationItemProps {
   dispatch: (action: InvitationAction) => void;
@@ -17,6 +25,7 @@ export const InvitationItem: React.FunctionComponent<InvitationItemProps> = ({
   const [accepted, setAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const notify = useNotify();
+  const elementRef = useRef<HTMLDivElement>(null);
 
   const handleAccept = () => {
     setLoading(true);
@@ -46,26 +55,46 @@ export const InvitationItem: React.FunctionComponent<InvitationItemProps> = ({
     dispatch({ type: "remove_invitation", invitation });
   }, [dispatch, invitation]);
 
+  const dismiss = useCallback(() => {
+    const element = elementRef.current;
+
+    anime({
+      complete: removeInvitation,
+      duration: 200,
+      easing: "easeInOutCubic",
+      opacity: [1, 0],
+      targets: element,
+    });
+  }, [removeInvitation]);
+
   useEffect(() => {
-    console.log("Run effect");
-    const timeout = setTimeout(removeInvitation, 30000);
+    if (!accepted) {
+      return;
+    }
+
+    const timeout = setTimeout(dismiss, 3000);
 
     return () => clearTimeout(timeout);
-  }, [invitation, removeInvitation]);
+  }, [accepted, dismiss]);
 
   return (
-    <Tile className="invitation-item">
+    <Tile className="invitation-item" ref={elementRef}>
       {accepted ? (
-        <span>
+        <Stack align="center" className="invitation-accepted">
           <CheckmarkIcon />
-          Einladung wurde angenommen.
-        </span>
+          <span>Einladung wurde angenommen.</span>
+        </Stack>
       ) : (
         <Fragment>
-          <div className="invitation-info">
-            <strong>{invitation.inviter.identifier}</strong> hat dich zu{" "}
-            <strong>{invitation.home.name}</strong> eingeladen.
-          </div>
+          <Stack className="invitation-info" gap={false} vertical={true}>
+            <span className="invitation-date">
+              {getObjectIdTime(invitation._id, "DD.MM.YY HH:MM")}
+            </span>
+            <span className="invitation-text">
+              <strong>{invitation.inviter.identifier}</strong> hat dich zu{" "}
+              <strong>{invitation.home.name}</strong> eingeladen.
+            </span>
+          </Stack>
           <div className="invitation-actions">
             <Button
               disabled={loading}
