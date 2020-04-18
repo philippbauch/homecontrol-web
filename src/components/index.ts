@@ -13,6 +13,7 @@ export { Level } from "./Level";
 export { Loader } from "./Loader";
 export { Notification } from "./Notification";
 export { Spinner } from "./Spinner";
+export { Stack } from "./Stack";
 export { Status } from "./Status";
 export { Tag } from "./Tag";
 export { Tile } from "./Tile";

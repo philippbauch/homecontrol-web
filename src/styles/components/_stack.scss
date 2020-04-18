@@ -1,0 +1,67 @@
+.stack {
+  display: flex;
+
+  &.is-align {
+    &-center {
+      align-items: center;
+    }
+
+    &-end {
+      align-items: flex-end;
+    }
+
+    &-start {
+      align-items: flex-start;
+    }
+  }
+
+  &.is-justify {
+    &-center {
+      justify-content: center;
+    }
+
+    &-end {
+      justify-content: flex-end;
+    }
+
+    &-space-between {
+      justify-content: space-between;
+    }
+
+    &-start {
+      justify-content: flex-start;
+    }
+  }
+
+  &.has-gap:not(.is-vertical) {
+    &-sm > :not(:last-child) {
+      margin-right: $margin-sm;
+    }
+
+    &-md > :not(:last-child) {
+      margin-right: $margin-md;
+    }
+
+    &-lg > :not(:last-child) {
+      margin-right: $margin-lg;
+    }
+  }
+
+  &.is-vertical {
+    flex-direction: column;
+
+    &.has-gap {
+      &-sm > :not(:last-child) {
+        margin-bottom: $margin-sm;
+      }
+
+      &-md > :not(:last-child) {
+        margin-bottom: $margin-md;
+      }
+
+      &-lg > :not(:last-child) {
+        margin-bottom: $margin-lg;
+      }
+    }
+  }
+}
