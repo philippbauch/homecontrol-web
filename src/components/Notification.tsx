@@ -33,6 +33,10 @@ export const Notification: React.FunctionComponent<NotificationItemProps> = ({
   }, [dispatch, notification.id]);
 
   const handleClick = () => {
+    if (!notification.action) {
+      return;
+    }
+
     dismiss();
     notification.action();
   };
