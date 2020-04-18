@@ -1,31 +1,31 @@
 import classnames from "classnames";
 import React from "react";
 
-type IconSize = "sm" | "md" | "lg";
+export type IconType = "primary" | "success" | "danger";
 
 export interface IconProps {
   className?: string;
   id?: string;
   onClick?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
-  size?: IconSize;
+  size?: "sm" | "md" | "lg";
   style?: any;
+  type?: IconType;
 }
 
 export const Icon: React.FunctionComponent<IconProps> = ({
-  className,
   children,
+  className,
   id,
   onClick,
   size = "md",
-  style
+  style,
+  type,
 }) => {
   return (
     <span
-      className={classnames("icon", className, {
+      className={classnames(className, "icon", `is-${size}`, {
         "is-clickable": !!onClick,
-        "is-sm": size === "sm",
-        "is-md": size === "md",
-        "is-lg": size === "lg"
+        [`is-${type}`]: type,
       })}
       id={id}
       onClick={onClick}

@@ -16,6 +16,18 @@ $icon-size-lg: 1.5em;
     }
   }
 
+  &.is-danger {
+    color: $color-danger;
+  }
+
+  &.is-primary {
+    color: $color-primary;
+  }
+
+  &.is-success {
+    color: $color-success;
+  }
+
   &.is-xs {
     height: $icon-size-xs;
     width: $icon-size-xs;

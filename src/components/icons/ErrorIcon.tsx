@@ -4,7 +4,7 @@ import { ReactComponent as Error } from "../../assets/icons/error.svg";
 
 export const ErrorIcon: React.FunctionComponent<IconProps> = (props) => {
   return (
-    <Icon {...props}>
+    <Icon type="danger" {...props}>
       <Error />
     </Icon>
   );
