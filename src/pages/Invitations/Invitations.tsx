@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { InvitationItem } from "./InvitationItem";
 import { Loader, Stack } from "../../components";
-import { useWebSocket } from "../../hooks";
+import { useSocketEvent } from "../../hooks";
 import http from "../../HttpClient";
 import { Page } from "../../layout";
 
@@ -33,7 +33,6 @@ function invitationsReducer(invitations: any[], action: InvitationAction) {
 export const Invitations: React.FunctionComponent = () => {
   const [invitations, dispatch] = useReducer(invitationsReducer, []);
   const [loading, setLoading] = useState(true);
-  const { ws } = useWebSocket();
 
   useEffect(() => {
     setLoading(true);
@@ -47,13 +46,9 @@ export const Invitations: React.FunctionComponent = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    const unsubscribe = ws.subscribe("invitation", (invitation: any) => {
-      dispatch({ type: "add_invitation", invitation });
-    });
-
-    return unsubscribe;
-  }, [ws]);
+  useSocketEvent("invitation", (invitation: any) => {
+    dispatch({ type: "add_invitation", invitation });
+  });
 
   return (
     <Page title="Einladungen">

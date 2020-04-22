@@ -1,2 +1,3 @@
 export { useDefaultRoute } from "./useDefaultRoute";
-export { useWebSocket } from "./useWebSocket";
+export { useSocket } from "./useSocket";
+export { useSocketEvent } from "./useSocketEvent";

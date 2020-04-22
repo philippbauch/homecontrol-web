@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { Burger, Tile, Status } from "../components";
 import { useUserState, useLogout } from "../contexts/UserContext";
-import { useDefaultRoute, useWebSocket } from "../hooks";
+import { useDefaultRoute, useSocket } from "../hooks";
 import { SignOutIcon } from "../components/icons";
 import { useHome } from "../contexts/HomesContext";
 import http from "../HttpClient";
@@ -12,7 +12,7 @@ export const Navigation: React.FunctionComponent = () => {
   const history = useHistory();
   const home = useHome();
   const logout = useLogout();
-  const { connected } = useWebSocket();
+  const { connected } = useSocket();
   const [showSidebar, setShowSidebar] = useState(false);
   const user = useUserState();
 

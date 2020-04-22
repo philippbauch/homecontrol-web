@@ -1,5 +1,3 @@
-import moment from "moment";
-
 type HttpMethod = "DELETE" | "GET" | "POST" | "PUT";
 
 export class HttpClient {
@@ -10,13 +8,8 @@ export class HttpClient {
   }
 
   private prepareRequest(method: HttpMethod, body?: any): RequestInit {
-    const timestamp = moment()
-      .valueOf()
-      .toString();
-
     const headers: HeadersInit = {
       "Content-Type": "application/json",
-      Timestamp: timestamp
     };
 
     if (body) {
