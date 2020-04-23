@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import http from "../HttpClient";
 import { Button, Input } from "../components";
 import { useHome } from "../contexts/HomesContext";
+import { useNotify } from "../hooks";
 import { Page } from "../layout";
 import { BreadcrumbProps } from "../components/Breadcrumb";
-import { useNotify } from "../contexts/NotificationContext";
 
 export const AddRoom: React.FunctionComponent = () => {
   const home = useHome();

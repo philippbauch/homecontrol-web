@@ -11,7 +11,6 @@ export { Icon } from "./Icon";
 export { Input } from "./Input";
 export { Level } from "./Level";
 export { Loader } from "./Loader";
-export { Notification } from "./Notification";
 export { Spinner } from "./Spinner";
 export { Stack } from "./Stack";
 export { Status } from "./Status";

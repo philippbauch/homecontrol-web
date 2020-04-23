@@ -12,7 +12,7 @@ interface NotificationItemProps {
   notification: any;
 }
 
-export const Notification: React.FunctionComponent<NotificationItemProps> = ({
+export const NotificationItem: React.FunctionComponent<NotificationItemProps> = ({
   notification,
 }) => {
   const dispatch = useNotificationDispatch();

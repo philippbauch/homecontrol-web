@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import http from "../HttpClient";
 import { Button, Checkbox, Input } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
+import { useNotify } from "../hooks";
 import { Page } from "../layout";
-import { useNotify } from "../contexts/NotificationContext";
 
 export const AddUser: React.FunctionComponent = () => {
   const history = useHistory();

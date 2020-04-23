@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { HomesProvider } from "./contexts/HomesContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
 import { useUserState } from "./contexts/UserContext";
-import { useDefaultRoute, useSocket } from "./hooks";
+import { useDefaultRoute } from "./hooks";
 import { Layout } from "./layout";
 import {
   AddHome,
@@ -18,15 +18,6 @@ import {
 export const App: React.FunctionComponent = () => {
   const defaultRoute = useDefaultRoute();
   const user = useUserState();
-  const { socket } = useSocket();
-
-  useEffect(() => {
-    if (user) {
-      socket.open();
-    } else {
-      socket.close();
-    }
-  }, [socket, user]);
 
   if (!user) {
     return <Redirect to="/login" />;

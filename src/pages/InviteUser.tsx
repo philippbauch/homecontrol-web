@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, Input } from "../components";
 import { BreadcrumbProps } from "../components/Breadcrumb";
 import { useHome } from "../contexts/HomesContext";
-import { useNotify } from "../contexts/NotificationContext";
+import { useNotify } from "../hooks";
 import http from "../HttpClient";
 import { Page } from "../layout";
 

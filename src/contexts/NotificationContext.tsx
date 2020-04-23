@@ -1,7 +1,4 @@
 import React, { useReducer } from "react";
-import { useHistory } from "react-router-dom";
-import { Notification as NotificationComponent } from "../components/Notification";
-import { useSocketEvent } from "../hooks";
 
 type AddNotificationAction = {
   type: "add_notification";
@@ -17,7 +14,7 @@ type Action = AddNotificationAction | RemoveNotificationAction;
 
 type Dispatch = (action: Action) => void;
 
-type NotificationType = "info" | "success" | "error";
+export type NotificationType = "info" | "success" | "error";
 
 export type Notification = {
   id: number;
@@ -39,7 +36,10 @@ function notificationReducer(notifications: Notification[], action: Action) {
   }
 }
 
-const NotificationContext = React.createContext<Dispatch | undefined>(
+const NotificationStateContext = React.createContext<
+  Notification[] | undefined
+>(undefined);
+const NotificationDispatchContext = React.createContext<Dispatch | undefined>(
   undefined
 );
 
@@ -47,80 +47,34 @@ export const NotificationProvider: React.FunctionComponent = ({ children }) => {
   const [notifications, dispatch] = useReducer(notificationReducer, []);
 
   return (
-    <NotificationContext.Provider value={dispatch}>
-      {children}
-      <Notifications notifications={notifications} />
-    </NotificationContext.Provider>
+    <NotificationStateContext.Provider value={notifications}>
+      <NotificationDispatchContext.Provider value={dispatch}>
+        {children}
+      </NotificationDispatchContext.Provider>
+    </NotificationStateContext.Provider>
   );
 };
 
-interface NotificationsProps {
-  notifications: Notification[];
+export function useNotificationState() {
+  const context = React.useContext(NotificationStateContext);
+
+  if (context === undefined) {
+    throw new Error(
+      "useNotificationState must be used within a NotificationProvider"
+    );
+  }
+
+  return context;
 }
 
-export const Notifications: React.FunctionComponent<NotificationsProps> = ({
-  notifications,
-}) => {
-  const history = useHistory();
-  const notify = useNotify();
-
-  useSocketEvent("invitation", (invitation: any) => {
-    notify.info(
-      <span>
-        <strong>{invitation.inviter.identifier}</strong> hat dich zu{" "}
-        <strong>{invitation.home.name}</strong> eingeladen.
-      </span>,
-      () => history.push("/invitations")
-    );
-  });
-
-  return notifications.length ? (
-    <div className="notifications">
-      {notifications.map((notification) => (
-        <NotificationComponent
-          key={notification.id}
-          notification={notification}
-        />
-      ))}
-    </div>
-  ) : null;
-};
-
 export function useNotificationDispatch() {
-  const dispatch = React.useContext(NotificationContext);
+  const dispatch = React.useContext(NotificationDispatchContext);
 
   if (dispatch === undefined) {
-    throw new Error("useNotify must be used within a NotificationProvider");
+    throw new Error(
+      "useNotificationDispatch must be used within a NotificationProvider"
+    );
   }
 
   return dispatch;
-}
-
-let NOTIFICATION_COUNTER = 0;
-
-export function useNotify() {
-  const dispatch = useNotificationDispatch();
-
-  function notify(
-    type: NotificationType,
-    message: React.ReactNode,
-    action?: () => void
-  ) {
-    const id = NOTIFICATION_COUNTER++;
-
-    const notification = { id, type, message, action };
-
-    dispatch({ type: "add_notification", notification });
-  }
-
-  notify.info = (message: React.ReactNode, action?: () => void) =>
-    notify("info", message, action);
-
-  notify.success = (message: React.ReactNode, action?: () => void) =>
-    notify("success", message, action);
-
-  notify.error = (message: React.ReactNode, action?: () => void) =>
-    notify("error", message, action);
-
-  return notify;
 }

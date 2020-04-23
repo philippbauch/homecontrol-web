@@ -9,7 +9,7 @@ import React, {
 import { InvitationAction } from "./Invitations";
 import { Tile, Button, Stack } from "../../components";
 import { CheckmarkIcon } from "../../components/icons";
-import { useNotify } from "../../contexts/NotificationContext";
+import { useNotify } from "../../hooks";
 import http from "../../HttpClient";
 import { getObjectIdTime } from "../../utils";
 
