@@ -1,6 +1,5 @@
-import anime from "animejs";
-import classnames from "classnames";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import { Card } from "../components";
 import { CheckmarkIcon, ErrorIcon, InfoIcon } from "../components/icons";
 import { useNotificationDispatch } from "../contexts/NotificationContext";
@@ -16,30 +15,17 @@ export const NotificationItem: React.FunctionComponent<NotificationItemProps> = 
   notification,
 }) => {
   const dispatch = useNotificationDispatch();
-  const elementRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
 
-  const dismiss = useCallback(() => {
-    const element = elementRef.current;
-
-    anime({
-      complete: () =>
-        dispatch({ type: "remove_notification", id: notification.id }),
-      duration: TRANSITION_DURATION,
-      easing: "easeInOutCubic",
-      opacity: [1, 0],
-      targets: element,
-      translateX: [0, "100%"],
-    });
-  }, [dispatch, notification.id]);
+  const dismiss = useCallback(() => setVisible(false), []);
 
   const handleClick = () => {
-    if (!notification.action) {
-      return;
-    }
-
     dismiss();
     notification.action();
   };
+
+  const removeNotification = () =>
+    dispatch({ type: "remove_notification", id: notification.id });
 
   const icon = React.useMemo(() => {
     switch (notification.type) {
@@ -50,19 +36,7 @@ export const NotificationItem: React.FunctionComponent<NotificationItemProps> = 
       case "error":
         return <ErrorIcon />;
     }
-  }, [notification.type]);
-
-  useEffect(() => {
-    const element = elementRef.current;
-
-    anime({
-      duration: TRANSITION_DURATION,
-      easing: "easeInOutCubic",
-      opacity: [0, 1],
-      targets: element,
-      translateX: ["100%", 0],
-    });
-  }, [dispatch, notification]);
+  }, [notification]);
 
   useEffect(() => {
     const timeout = setTimeout(dismiss, TRANSITION_DURATION + DISPLAY_DURATION);
@@ -71,17 +45,20 @@ export const NotificationItem: React.FunctionComponent<NotificationItemProps> = 
   }, [dismiss]);
 
   return (
-    <Card
-      className={classnames("notifications-item", {
-        "is-error": notification.type === "error",
-        "is-info": notification.type === "info",
-        "is-success": notification.type === "success",
-      })}
-      onClick={handleClick}
-      ref={elementRef}
+    <CSSTransition
+      appear={true}
+      classNames="notifications-item"
+      in={visible}
+      onExited={removeNotification}
+      timeout={TRANSITION_DURATION}
     >
-      {icon}
-      <span>{notification.message}</span>
-    </Card>
+      <Card
+        className="notifications-item"
+        onClick={notification.action && handleClick}
+      >
+        {icon}
+        <span>{notification.message}</span>
+      </Card>
+    </CSSTransition>
   );
 };
