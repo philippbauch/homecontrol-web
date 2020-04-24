@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
-import { useLogout } from "../../contexts/UserContext";
+import { useLogout } from "../../hooks";
 import http from "../../HttpClient";
 import { Page } from "../../layout";
 

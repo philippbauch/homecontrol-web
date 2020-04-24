@@ -60,26 +60,6 @@ const UserProvider: React.FunctionComponent = ({ children }) => {
   );
 };
 
-function useLogin() {
-  const dispatch = useUserDispatch();
-
-  const login = (user: any) => {
-    dispatch({ type: "set_user", user });
-  };
-
-  return login;
-}
-
-function useLogout() {
-  const dispatch = useUserDispatch();
-
-  const logout = () => {
-    dispatch({ type: "reset_user" });
-  };
-
-  return logout;
-}
-
 function useUserState() {
   const context = React.useContext(UserStateContext);
 
@@ -100,4 +80,4 @@ function useUserDispatch() {
   return context;
 }
 
-export { useLogin, useLogout, UserProvider, useUserState, useUserDispatch };
+export { UserProvider, useUserState, useUserDispatch };

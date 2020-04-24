@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Alert, Button, Input } from "../components";
-import { useLogin, useUserState } from "../contexts/UserContext";
-import { useDefaultRoute } from "../hooks";
+import { useUserState } from "../contexts/UserContext";
+import { useDefaultRoute, useError, useLogin } from "../hooks";
 import http from "../HttpClient";
 
 export const Login: React.FunctionComponent = () => {
   const defaultRoute = useDefaultRoute();
+  const [error, setError] = useError();
   const history = useHistory();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const login = useLogin();
+  const [loading, setLoading] = useState(false);
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const user = useUserState();
@@ -28,7 +28,7 @@ export const Login: React.FunctionComponent = () => {
     http
       .post("/login", credentials)
       .then(login)
-      .catch((error) => setError(error))
+      .catch(setError)
       .finally(() => setLoading(false));
   };
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { Burger, Tile, Status } from "../components";
-import { useUserState, useLogout } from "../contexts/UserContext";
-import { useDefaultRoute, useSocket } from "../hooks";
+import { useUserState } from "../contexts/UserContext";
+import { useDefaultRoute, useLogout, useSocket } from "../hooks";
 import { SignOutIcon } from "../components/icons";
 import { useHome } from "../contexts/HomesContext";
 import http from "../HttpClient";
