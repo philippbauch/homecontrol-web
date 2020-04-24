@@ -1,19 +1,23 @@
 import React from "react";
+import classnames from "classnames";
+import { CloseIcon } from "./icons";
+
+type AlertType = "error" | "info";
 
 interface AlertProps {
-  onClose?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  type?: string;
+  onClose?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  type?: AlertType;
 }
 
 export const Alert: React.FunctionComponent<AlertProps> = ({
   children,
   onClose,
-  type
+  type = "info",
 }) => {
   return (
-    <div className="alert">
+    <div className={classnames("alert", `is-${type}`)}>
       <span>{children}</span>
-      <span>Close</span>
+      {onClose && <CloseIcon onClick={onClose} />}
     </div>
   );
 };
