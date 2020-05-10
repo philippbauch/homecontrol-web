@@ -23,6 +23,10 @@ export const Home: React.FunctionComponent = () => {
     history.push(`/homes/${home._id}/rooms`);
   };
 
+  const goToCourses = () => {
+    history.push(`/courses`);
+  };
+
   return home ? (
     <Switch>
       <Route component={InviteUser} path={`/homes/:homeId/invite`} />
@@ -38,6 +42,9 @@ export const Home: React.FunctionComponent = () => {
             </Tile>
             <Tile className="home-menu-item">
               <span>Geräte</span>
+            </Tile>
+            <Tile className="home-menu-item" onClick={goToCourses}>
+              <span>Kurse</span>
             </Tile>
             <Tile className="home-menu-item" onClick={goToResidents}>
               <PeopleIcon />
