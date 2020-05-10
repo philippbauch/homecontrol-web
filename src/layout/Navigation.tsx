@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { Burger, Tile, Status } from "../components";
+import { Burger, Tile, Status, UserIcon } from "../components";
 import { useUserState } from "../contexts/UserContext";
 import { useDefaultRoute, useLogout, useSocket } from "../hooks";
 import { SignOutIcon } from "../components/icons";
@@ -42,19 +42,19 @@ export const Navigation: React.FunctionComponent = () => {
         <div className="navigation-left">
           <Burger onClick={toggleSidebar} open={showSidebar} />
           <h1 className="navigation-brand" onClick={goToDefaultRoute}>
-            Home
+            teapot
           </h1>
         </div>
         <div className="navigation-right">
+          <Status connected={connected} />
           <Link
-            className="nostyle"
-            id="navigation-username"
+            className="nostyle navigation-username"
             onClick={() => setShowSidebar(false)}
             to={`/users/${user._id}`}
           >
             {user.identifier}
           </Link>
-          <Status connected={connected} />
+          <UserIcon user={user} />
         </div>
       </section>
       {showSidebar && (

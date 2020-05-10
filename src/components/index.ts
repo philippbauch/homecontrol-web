@@ -16,3 +16,4 @@ export { Stack } from "./Stack";
 export { Status } from "./Status";
 export { Tag } from "./Tag";
 export { Tile } from "./Tile";
+export { UserIcon } from "./UserIcon";

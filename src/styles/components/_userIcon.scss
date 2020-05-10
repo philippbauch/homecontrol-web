@@ -1,0 +1,17 @@
+$icon-size: 32px;
+
+.user-icon {
+  height: $icon-size;
+  border-radius: $radius;
+  background-color: $color__darker;
+  width: $icon-size;
+}
+
+.user-letter {
+  color: $color__font-secondary;
+  font-size: $font-lg;
+  font-weight: $font-weight-semi-bold;
+  text-align: center;
+  line-height: $icon-size;
+  text-transform: uppercase;
+}

@@ -1,5 +1,11 @@
-$base-font: 16px;
 $font-family: "Titillium Web", "Open Sans", "Helvetica Neue", sans-serif;
+
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 18px;
+$font-xl: 21px;
+$font-xxl: 24px;
 
 $font-weight-light: 300;
 $font-weight-regular: 400;
@@ -14,12 +20,6 @@ $size-md: 1em;
 $size-lg: 1.5em;
 $size-xl: 2em;
 $size-xxl: 3em;
-
-$font-sm: 0.75em;
-$font-md: 1em;
-$font-lg: 1.25em;
-$font-xl: 1.5em;
-$font-xxl: 2em;
 
 $margin-xxs: $size-xxs;
 $margin-xs: $size-xs;
@@ -39,8 +39,8 @@ $padding-lg: $size-lg;
 $padding-xl: $size-xl;
 $padding-xxl: $size-xxl;
 
-$nav-height: 60px;
-
+$nav-height: 64px;
+$border-width: 1px;
 $radius: $size-xs;
 $radius-round: 50%;
 
@@ -48,7 +48,15 @@ $screen-size-desktop: 1024px;
 $screen-size-large: 1366px;
 $screen-size-tablet: 768px;
 
-$color-white: white;
+$color__border: #cdd7e2;
+$color__dark: #283543;
+$color__darker: #222e3a;
+$color__font: $color__dark;
+$color__font-secondary: #4c5b6d;
+
+$shadow__border: 0 0 0 $border-width $color__border;
+$shadow__drop: 0 2px 4px transparentize($color__dark, 0.85);
+
 $color-white-off: rgba(255, 255, 255, 0.5);
 
 $color-background: #f6fafc;

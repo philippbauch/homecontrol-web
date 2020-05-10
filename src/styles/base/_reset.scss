@@ -1,6 +1,7 @@
 body {
+  background-color: white;
   color: $font-color-primary;
-  font-size: $base-font;
+  font-size: $font-md;
   font-family: $font-family;
   margin: 0;
   padding: 0;
@@ -54,7 +55,11 @@ ul {
   padding: 0;
 }
 
-h1,
+h1 {
+  font-weight: $font-weight-bold;
+  font-size: $font-xxl;
+}
+
 h2,
 h3,
 h4,

@@ -1,6 +1,8 @@
+@import "../base/variables";
+
 #navigation {
-  background-color: $color-background-alt;
-  color: $color-white;
+  background-color: $color__dark;
+  color: white;
   display: flex;
   flex-direction: column;
 
@@ -15,17 +17,10 @@
       margin: 0 $margin-lg;
     }
 
-    .navigation-right {
-      .status {
-        margin-left: $margin-md;
-      }
-    }
-
     .navigation-username {
       height: $nav-height;
       line-height: $nav-height;
-      margin-right: -$margin-lg;
-      padding: 0 $padding-lg;
+      padding: 0 $padding-md;
     }
   }
 

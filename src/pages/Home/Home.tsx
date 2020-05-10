@@ -4,7 +4,7 @@ import { AddRoom } from "../AddRoom";
 import { InviteUser } from "../InviteUser";
 import { Residents } from "../Residents";
 import { Rooms } from "../Rooms";
-import { Divider, Level, Tile } from "../../components";
+import { Divider, Level, Tile, Card } from "../../components";
 import { PeopleIcon, RoomsIcon } from "../../components/icons";
 import { useHome } from "../../contexts/HomesContext";
 import { Page } from "../../layout";
@@ -50,7 +50,9 @@ export const Home: React.FunctionComponent = () => {
               <h3 id="home-activity-title">Aktivitäten</h3>
               <Link to={`/homes/${home._id}/activity`}>Alle anzeigen</Link>
             </Level>
-            <div>Keine neuen Aktivitäten.</div>
+            <div>
+              <Card>Keine neuen Aktivitäten.</Card>
+            </div>
           </section>
         </Page>
       </Route>
