@@ -54,7 +54,7 @@ export const Navigation: React.FunctionComponent = () => {
           >
             {user.identifier}
           </Link>
-          <UserIcon user={user} />
+          <UserIcon dark={true} user={user} />
         </div>
       </section>
       {showSidebar && (

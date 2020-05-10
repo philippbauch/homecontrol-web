@@ -3,8 +3,14 @@ $icon-size: 32px;
 .user-icon {
   height: $icon-size;
   border-radius: $radius;
-  background-color: $color__darker;
+  box-shadow: $shadow__border;
+  background-color: $color__background;
   width: $icon-size;
+
+  &.is-dark {
+    background-color: $color__darker;
+    box-shadow: none;
+  }
 }
 
 .user-letter {

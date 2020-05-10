@@ -13,6 +13,7 @@ import {
   Invitations,
   User,
   Users,
+  Courses,
 } from "./pages";
 
 export const App: React.FunctionComponent = () => {
@@ -28,6 +29,7 @@ export const App: React.FunctionComponent = () => {
       <NotificationProvider>
         <Layout>
           <Switch>
+            <Route component={Courses} exact={true} path="/courses" />
             <Route component={Homes} exact={true} path="/homes" />
             <Route component={AddHome} path="/homes/new" />
             <Route component={Home} path="/homes/:homeId" />

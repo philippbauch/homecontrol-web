@@ -5,9 +5,10 @@
   color: white;
   cursor: pointer;
   display: flex;
-  font-size: $font-md;
+  font-size: $font-sm;
+  line-height: 22px;
   justify-content: center;
-  padding: 0.75em $padding-md;
+  padding: $padding-xs $padding-md;
   transition: all 0.2s;
 
   &:disabled {
@@ -27,6 +28,7 @@
   &.is-primary {
     background-color: $color-primary;
     box-shadow: none;
+    font-weight: $font-weight-semi-bold;
 
     &:hover:not(:disabled) {
       background-color: $color-primary-dark;

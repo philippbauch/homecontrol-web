@@ -7,7 +7,6 @@ interface PageProps {
   breadcrumbs?: BreadcrumbProps[];
   className?: string;
   extra?: React.ReactNode;
-  icon?: React.ReactNode;
   id?: string;
   style?: any;
   subtitle?: string;
@@ -19,11 +18,10 @@ export const Page: React.FunctionComponent<PageProps> = ({
   children,
   className,
   extra,
-  icon,
   id,
   style,
   subtitle,
-  title
+  title,
 }) => {
   return (
     <div className={classnames("page", className)} id={id} style={{ ...style }}>
@@ -36,10 +34,7 @@ export const Page: React.FunctionComponent<PageProps> = ({
       ) : null}
       <div className="page-header">
         <Level>
-          <div>
-            {icon}
-            <h2 className="page-title">{title}</h2>
-          </div>
+          <h1 className="page-title">{title}</h1>
           {extra}
         </Level>
         {subtitle && <span className="page-sub-title">{subtitle}</span>}

@@ -1,0 +1,12 @@
+.courses-item {
+  display: flex;
+
+  .user-icon {
+    flex-shrink: 0;
+    margin-right: $margin-md;
+  }
+
+  h3 {
+    line-height: 32px;
+  }
+}

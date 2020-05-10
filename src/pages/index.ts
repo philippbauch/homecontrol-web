@@ -1,6 +1,7 @@
 export { AddHome } from "./AddHome";
 export { AddRoom } from "./AddRoom";
 export { AddUser } from "./AddUser";
+export { Courses } from "./Courses";
 export { Devices } from "./Devices";
 export { Device } from "./Device";
 export { Home } from "./Home";

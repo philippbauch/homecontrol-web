@@ -1,6 +1,6 @@
 body {
   background-color: white;
-  color: $font-color-primary;
+  color: $color__font;
   font-size: $font-md;
   font-family: $font-family;
   margin: 0;
@@ -60,11 +60,33 @@ h1 {
   font-size: $font-xxl;
 }
 
+h2 {
+  font-weight: $font-weight-bold;
+  font-size: $font-xl;
+}
+
+h3 {
+  font-weight: $font-weight-semi-bold;
+  font-size: $font-lg;
+}
+
+h4 {
+  font-weight: $font-weight-semi-bold;
+  font-size: $font-md;
+}
+
+h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: $font-weight-semi-bold;
   margin: 0;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-semi-bold;
 }
