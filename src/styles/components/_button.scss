@@ -26,12 +26,12 @@
   }
 
   &.is-primary {
-    background-color: $color-primary;
+    background-color: $color__primary;
     box-shadow: none;
     font-weight: $font-weight-semi-bold;
 
     &:hover:not(:disabled) {
-      background-color: $color-primary-dark;
+      background-color: $color__primary-dark;
     }
   }
 
