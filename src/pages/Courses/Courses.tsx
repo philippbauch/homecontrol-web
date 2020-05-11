@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Stack, Card, UserIcon } from "../../components";
+import { Button, Stack, Card, Tab, Tabs, UserIcon } from "../../components";
 import { Page } from "../../layout";
 import { useUserState } from "../../contexts/UserContext";
 
@@ -11,6 +11,10 @@ export const Courses: React.FunctionComponent = () => {
       title="Meine Kurse"
       extra={<Button kind="primary">Kurs erstellen</Button>}
     >
+      <Tabs>
+        <Tab active={true}>Alle</Tab>
+        <Tab>Favoriten</Tab>
+      </Tabs>
       <Stack gap="lg" vertical={true}>
         <Card className="courses-item">
           <UserIcon user={user} />

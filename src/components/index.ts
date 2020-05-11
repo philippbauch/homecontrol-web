@@ -14,6 +14,8 @@ export { Loader } from "./Loader";
 export { Spinner } from "./Spinner";
 export { Stack } from "./Stack";
 export { Status } from "./Status";
+export { Tab } from "./Tab";
+export { Tabs } from "./Tabs";
 export { Tag } from "./Tag";
 export { Tile } from "./Tile";
 export { UserIcon } from "./UserIcon";

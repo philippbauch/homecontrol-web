@@ -1,0 +1,22 @@
+.tabs {
+  display: flex;
+
+  .tab {
+    &:not(:last-child) {
+      margin-right: $margin-md;
+    }
+
+    div {
+      margin-bottom: 4px;
+      padding: 0 $padding-xs;
+    }
+
+    &.is-active::after {
+      content: "";
+      display: block;
+      height: 4px;
+      width: 100%;
+      background-color: $color-primary;
+    }
+  }
+}
