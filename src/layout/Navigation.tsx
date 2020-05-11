@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, NavLink, useHistory } from "react-router-dom";
-import { Status, Tile, UserIcon } from "../components";
+import { Link, useHistory, NavLink } from "react-router-dom";
+import { Burger, Tile, Status, UserIcon } from "../components";
 import { useUserState } from "../contexts/UserContext";
 import { useDefaultRoute, useLogout, useSocket } from "../hooks";
 import { SignOutIcon } from "../components/icons";
@@ -34,10 +34,13 @@ export const Navigation: React.FunctionComponent = () => {
     history.push(defaultRoute);
   };
 
+  const toggleSidebar = () => setShowSidebar(!showSidebar);
+
   return (
     <nav id="navigation">
       <section className="navigation-header">
         <div className="navigation-left">
+          <Burger onClick={toggleSidebar} open={showSidebar} />
           <h1 className="navigation-brand" onClick={goToDefaultRoute}>
             teapot
           </h1>
@@ -59,7 +62,6 @@ export const Navigation: React.FunctionComponent = () => {
           {home ? (
             <Tile className="home-tile" darker={true}>
               <span>{home.name}</span>
-              <SignOutIcon onClick={showHomes} />
             </Tile>
           ) : null}
           <div className="navigation-menu-vertical">

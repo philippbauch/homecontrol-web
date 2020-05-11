@@ -1,5 +1,5 @@
 $burger-bar-height: $size-xxs;
-$burger-bar-margin: 3px;
+$burger-bar-margin: 4px;
 $burger-bar-radius: 1px;
 $burger-bar-width: 18px;
 
@@ -26,15 +26,11 @@ $burger-bar-width: 18px;
   &.is-open {
     .burger-bar {
       &:nth-child(1) {
-        transform: translateY(5px) rotate(45deg);
+        transform: translateY(3px) rotate(45deg);
       }
 
       &:nth-child(2) {
-        opacity: 0;
-      }
-
-      &:nth-child(3) {
-        transform: translateY(-5px) rotate(-45deg);
+        transform: translateY(-3px) rotate(-45deg);
       }
     }
   }

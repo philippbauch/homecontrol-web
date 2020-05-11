@@ -8,7 +8,7 @@ interface BurgerProps {
 
 export const Burger: React.FunctionComponent<BurgerProps> = ({
   onClick,
-  open
+  open,
 }) => {
   return (
     <div
@@ -16,7 +16,6 @@ export const Burger: React.FunctionComponent<BurgerProps> = ({
       onClick={onClick}
     >
       <div className="burger-bars">
-        <div className="burger-bar"></div>
         <div className="burger-bar"></div>
         <div className="burger-bar"></div>
       </div>
