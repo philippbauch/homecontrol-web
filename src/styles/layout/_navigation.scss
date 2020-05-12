@@ -55,7 +55,7 @@
 
 .subnavigation {
   align-items: center;
-  box-shadow: $shadow__border;
+  border-bottom: $border-width solid $color__border;
   display: flex;
   padding: 0 $padding-lg;
 }
