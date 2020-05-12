@@ -1,19 +1,26 @@
-.input {
-  background-color: transparent;
-  border-radius: $radius;
+.input-container {
   box-shadow: $border-shadow;
   -webkit-appearance: none;
   -webkit-box-shadow: $border-shadow;
-  color: $font-color-primary;
-  font-size: $font-md;
-  padding: 0.75em $padding-md;
+  border-radius: $radius;
+  overflow: hidden;
+  display: flex;
   transition: box-shadow 0.2s;
 
-  &:focus {
+  &:focus-within {
     -webkit-appearance: none;
     -webkit-box-shadow: $border-shadow-focus;
     box-shadow: $border-shadow-focus;
   }
+}
+
+.input {
+  flex-grow: 1;
+  background-color: transparent;
+  color: $font-color-primary;
+  font-size: $font-md;
+  line-height: 24px;
+  padding: $padding-sm $padding-md;
 
   &::placeholder {
     color: $font-color-secondary;

@@ -41,7 +41,7 @@ export const Login: React.FunctionComponent = () => {
   return (
     <div id="login-page">
       <section id="login-container">
-        <h2 id="login-title">Login</h2>
+        <h1 id="login-title">Login</h1>
         <form id="login-form" onSubmit={handleFormSubmit}>
           {error ? (
             <Alert onClose={resetError} type="error">
@@ -49,10 +49,10 @@ export const Login: React.FunctionComponent = () => {
             </Alert>
           ) : null}
           <div className="login-form-section">
-            <label className="login-form-label">Nutzername</label>
+            <label className="login-form-label">E-Mail</label>
             <Input
               onChange={setIdentifier}
-              placeholder="ID"
+              placeholder="E-Mail"
               type="text"
               value={identifier}
             />
@@ -61,7 +61,7 @@ export const Login: React.FunctionComponent = () => {
             <label className="login-form-label">Passwort</label>
             <Input
               onChange={setPassword}
-              placeholder="Password"
+              placeholder="Passwort"
               type="password"
               value={password}
             />
