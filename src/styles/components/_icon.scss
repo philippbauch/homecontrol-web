@@ -7,6 +7,11 @@ $icon-size-lg: 1.5em;
   align-items: center;
   display: inline-flex;
   justify-content: center;
+  // transition: transform 0.2s;
+
+  &.flip-vertical {
+    transform: rotate(180deg);
+  }
 
   &.is-clickable {
     cursor: pointer;

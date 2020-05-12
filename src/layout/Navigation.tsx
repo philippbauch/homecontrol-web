@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { Tile, Status, UserIcon } from "../components";
+import { Status, UserIcon } from "../components";
 import { useUserState } from "../contexts/UserContext";
 import { useDefaultRoute, useLogout, useSocket } from "../hooks";
-import { useHome } from "../contexts/HomesContext";
 import http from "../HttpClient";
+import { ChevronIcon } from "../components/icons";
 
 export const Navigation: React.FunctionComponent = () => {
   const defaultRoute = useDefaultRoute();
   const history = useHistory();
-  const home = useHome();
   const logout = useLogout();
   const { connected } = useSocket();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -27,6 +26,10 @@ export const Navigation: React.FunctionComponent = () => {
     history.push(defaultRoute);
   };
 
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
   return (
     <nav id="navigation">
       <section className="navigation-header">
@@ -35,7 +38,7 @@ export const Navigation: React.FunctionComponent = () => {
             teapot
           </h1>
         </div>
-        <div className="navigation-right">
+        <div className="navigation-right" onClick={toggleSidebar}>
           <Status connected={connected} />
           <Link
             className="nostyle navigation-username"
@@ -45,15 +48,15 @@ export const Navigation: React.FunctionComponent = () => {
             {user.identifier}
           </Link>
           <UserIcon dark={true} user={user} />
+          <ChevronIcon
+            className="navigation-dropdown"
+            size="sm"
+            vflip={showSidebar}
+          />
         </div>
       </section>
       {showSidebar && (
         <section className="navigation-extension">
-          {home ? (
-            <Tile className="home-tile" darker={true}>
-              <span>{home.name}</span>
-            </Tile>
-          ) : null}
           <div className="navigation-menu-vertical">
             {user.admin ? (
               <NavLink

@@ -9,6 +9,7 @@
   .navigation-header {
     display: flex;
     justify-content: space-between;
+    height: $nav-height;
 
     .navigation-left,
     .navigation-right {
@@ -21,6 +22,10 @@
       height: $nav-height;
       line-height: $nav-height;
       padding: 0 $padding-md;
+    }
+
+    .user-icon {
+      margin-right: $margin-sm;
     }
   }
 

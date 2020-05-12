@@ -1,4 +1,5 @@
 export { CheckmarkIcon } from "./CheckmarkIcon";
+export { ChevronIcon } from "./ChevronIcon";
 export { CloseIcon } from "./CloseIcon";
 export { ErrorIcon } from "./ErrorIcon";
 export { HomeIcon } from "./HomeIcon";
