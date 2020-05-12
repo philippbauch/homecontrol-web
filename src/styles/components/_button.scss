@@ -11,6 +11,11 @@
   padding: $padding-xs $padding-md;
   transition: all 0.2s;
 
+  &:hover:not(:disabled) {
+    box-shadow: $shadow__drop;
+    transform: translateY(-1px);
+  }
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.8;
@@ -18,7 +23,6 @@
 
   &.is-danger {
     background-color: $color-danger;
-    box-shadow: none;
 
     &:hover:not(:disabled) {
       background-color: $color-danger-dark;
@@ -27,11 +31,10 @@
 
   &.is-primary {
     background-color: $color__primary;
-    box-shadow: none;
     font-weight: $font-weight-semi-bold;
 
     &:hover:not(:disabled) {
-      background-color: $color__primary-dark;
+      background-color: $color__primary-light;
     }
   }
 
