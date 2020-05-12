@@ -7,12 +7,12 @@ $burger-bar-width: 18px;
   align-items: center;
   cursor: pointer;
   display: flex;
-  height: $nav-height;
+  height: 48px;
   margin-left: -$margin-lg;
   padding: 0 $padding-lg;
 
   &-bar {
-    background-color: white;
+    background-color: $color__dark;
     border-radius: $burger-bar-radius;
     height: $burger-bar-height;
     transition: transform 0.2s, opacity 0.1s;

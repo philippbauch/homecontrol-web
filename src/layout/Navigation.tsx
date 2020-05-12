@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { Burger, Tile, Status, UserIcon } from "../components";
+import { Tile, Status, UserIcon } from "../components";
 import { useUserState } from "../contexts/UserContext";
 import { useDefaultRoute, useLogout, useSocket } from "../hooks";
-import { SignOutIcon } from "../components/icons";
 import { useHome } from "../contexts/HomesContext";
 import http from "../HttpClient";
 
@@ -20,12 +19,6 @@ export const Navigation: React.FunctionComponent = () => {
     http.post("/logout").then(logout);
   };
 
-  const showHomes = () => {
-    setShowSidebar(false);
-
-    history.push("/homes");
-  };
-
   const hideSidebar = () => setShowSidebar(false);
 
   const goToDefaultRoute = () => {
@@ -34,13 +27,10 @@ export const Navigation: React.FunctionComponent = () => {
     history.push(defaultRoute);
   };
 
-  const toggleSidebar = () => setShowSidebar(!showSidebar);
-
   return (
     <nav id="navigation">
       <section className="navigation-header">
         <div className="navigation-left">
-          <Burger onClick={toggleSidebar} open={showSidebar} />
           <h1 className="navigation-brand" onClick={goToDefaultRoute}>
             teapot
           </h1>

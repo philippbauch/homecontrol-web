@@ -52,3 +52,10 @@
     }
   }
 }
+
+.subnavigation {
+  align-items: center;
+  box-shadow: $shadow__border;
+  display: flex;
+  padding: 0 $padding-lg;
+}

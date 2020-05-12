@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Navigation } from "./Navigation";
+import { Subnavigation } from "./Subnavigation";
 import { Notifications } from "./Notifications";
 import { useUserState } from "../contexts/UserContext";
 import { useNotify, useSocket, useSocketEvent } from "../hooks";
@@ -33,6 +34,7 @@ export const Layout: React.FunctionComponent = ({ children }) => {
     <Fragment>
       <div id="layout">
         <Navigation />
+        <Subnavigation />
         <main id="main">{children}</main>
       </div>
       <Notifications />
