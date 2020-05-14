@@ -18,6 +18,7 @@ export const Burger: React.FunctionComponent<BurgerProps> = ({
       <div className="burger-bars">
         <div className="burger-bar"></div>
         <div className="burger-bar"></div>
+        <div className="burger-bar"></div>
       </div>
     </div>
   );
