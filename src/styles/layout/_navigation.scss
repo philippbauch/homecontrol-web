@@ -61,9 +61,12 @@
       padding: $padding-sm $padding-md;
     }
 
-    &-trigger {
-      align-items: center;
-      display: flex;
+    .user-icon {
+      cursor: pointer;
+
+      &.is-active {
+        box-shadow: $shadow__primary;
+      }
     }
   }
 

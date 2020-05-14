@@ -44,7 +44,13 @@ export const Navigation: React.FunctionComponent = () => {
           <Status connected={connected} />
           <Dropdown
             className="navigation-dropdown"
-            trigger={() => <UserIcon dark={true} user={user} />}
+            trigger={(active) => (
+              <UserIcon
+                className={active ? "is-active" : undefined}
+                dark={true}
+                user={user}
+              />
+            )}
           >
             {isScreenMobile() && (
               <Fragment>

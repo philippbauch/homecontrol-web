@@ -60,6 +60,7 @@ $color__primary-dark: #509deb;
 
 $shadow__border: 0 0 0 $border-width $color__border;
 $shadow__drop: 0 2px 4px transparentize($color__dark, 0.85);
+$shadow__primary: 0 0 0 2px $color__primary;
 
 $color-white-off: rgba(255, 255, 255, 0.5);
 
