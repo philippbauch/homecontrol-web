@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { Status, UserIcon, Dropdown } from "../components";
+import { Status, UserIcon, Dropdown, Level } from "../components";
 import { useUserState } from "../contexts/UserContext";
 import { useLogout, useSocket } from "../hooks";
 import http from "../HttpClient";
+import { SignOutIcon } from "../components/icons";
 
 export const Navigation: React.FunctionComponent = () => {
   const history = useHistory();
@@ -34,16 +35,25 @@ export const Navigation: React.FunctionComponent = () => {
         </div>
         <div className="navigation-right">
           <Status connected={connected} />
-          <Link
-            className="nostyle navigation-username"
-            onClick={() => setShowSidebar(false)}
-            to={`/users/${user._id}`}
+          <Dropdown
+            className="navigation-dropdown"
+            trigger={() => <UserIcon dark={true} user={user} />}
           >
-            {user.identifier}
-          </Link>
-
-          <Dropdown trigger={(active) => <UserIcon dark={true} user={user} />}>
-            Menu
+            <div className="navigation-dropdown-item">
+              <Link
+                className="nostyle"
+                onClick={() => setShowSidebar(false)}
+                to={`/users/${user._id}`}
+              >
+                Account
+              </Link>
+            </div>
+            <div className="navigation-dropdown-item">
+              <Level>
+                <span>Ausloggen</span>
+                <SignOutIcon size="sm" />
+              </Level>
+            </div>
           </Dropdown>
         </div>
       </section>

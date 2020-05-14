@@ -1,13 +1,16 @@
+import classnames from "classnames";
 import React, { useRef, useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import { Card } from "./Card";
 
 interface DropdownProps {
+  className?: string;
   trigger: (active: boolean) => React.ReactNode;
 }
 
 export const Dropdown: React.FunctionComponent<DropdownProps> = ({
   children,
+  className,
   trigger,
 }) => {
   const [active, setActive] = useState(false);
@@ -26,23 +29,22 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
     function handleClickOutside(event: any) {
       const clickedOutside =
         menuRef.current && !menuRef.current.contains(event.target);
+
       const clickedTrigger =
         triggerRef.current && triggerRef.current.contains(event.target);
+
       if (clickedOutside && !clickedTrigger) {
-        console.log("Close dropdown");
         setActive(false);
       }
     }
-    // Bind the event listener
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [active]);
 
   return (
-    <div className="dropdown">
+    <div className={classnames("dropdown", className)}>
       <div className="dropdown-trigger" ref={triggerRef} onClick={toggleActive}>
         {trigger(active)}
       </div>

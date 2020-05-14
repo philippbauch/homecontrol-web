@@ -18,10 +18,26 @@
       margin: 0 $margin-lg;
     }
 
+    .status {
+      margin-right: $margin-md;
+    }
+
     .navigation-username {
       height: $nav-height;
       line-height: $nav-height;
       padding: 0 $padding-md;
+    }
+  }
+
+  .navigation-dropdown {
+    &-item {
+      min-width: 180px;
+      padding: $padding-sm $padding-md;
+    }
+
+    &-trigger {
+      align-items: center;
+      display: flex;
     }
   }
 
