@@ -1,6 +1,18 @@
 .divider {
-  background-color: $color-background-dark;
+  background-color: $color__border;
   height: 1px;
-  margin: $margin-lg 0;
+
   width: 100%;
+
+  &.is-sm {
+    margin: $margin-sm 0;
+  }
+
+  &.is-md {
+    margin: $margin-md 0;
+  }
+
+  &.is-lg {
+    margin: $margin-lg 0;
+  }
 }
