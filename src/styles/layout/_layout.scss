@@ -3,8 +3,17 @@
   flex-direction: column;
   position: relative;
 
+  #header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 2;
+  }
+
   #main {
     display: flex;
+    margin-top: $nav-height + 48px;
     justify-content: center;
     position: relative;
   }

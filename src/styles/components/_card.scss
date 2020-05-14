@@ -2,6 +2,7 @@
   background-color: white;
   border-radius: $radius;
   box-shadow: $shadow__border, $shadow__drop;
+  color: $color__dark;
 
   &.is-clickable {
     cursor: pointer;

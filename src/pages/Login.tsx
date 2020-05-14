@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Alert, Button, Input } from "../components";
 import { useUserState } from "../contexts/UserContext";
-import { useDefaultRoute, useError, useLogin } from "../hooks";
+import { useError, useLogin } from "../hooks";
 import http from "../HttpClient";
 
 export const Login: React.FunctionComponent = () => {
-  const defaultRoute = useDefaultRoute();
   const [error, setError, resetError] = useError();
   const history = useHistory();
   const login = useLogin();
@@ -34,9 +33,9 @@ export const Login: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (user) {
-      history.push(defaultRoute);
+      history.push("/courses");
     }
-  }, [defaultRoute, history, user]);
+  }, [history, user]);
 
   return (
     <div id="login-page">

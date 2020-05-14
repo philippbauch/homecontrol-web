@@ -16,23 +16,23 @@
     &-appear {
       opacity: 0;
       transform: translateX(100%);
-    }
 
-    &-appear-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: transform 200ms, opacity 200ms;
+      &-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 200ms, opacity 200ms;
+      }
     }
 
     &-exit {
       opacity: 1;
       transform: translateX(0);
-    }
 
-    &-exit-active {
-      opacity: 0;
-      transform: translateX(100%);
-      transition: transform 200ms, opacity 200ms;
+      &-active {
+        opacity: 0;
+        transform: translateX(100%);
+        transition: transform 200ms, opacity 200ms;
+      }
     }
 
     &:not(:last-child) {

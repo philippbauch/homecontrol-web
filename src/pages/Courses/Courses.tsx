@@ -2,9 +2,11 @@ import React from "react";
 import { Button, Stack, Card, Tab, Tabs, UserIcon } from "../../components";
 import { Page } from "../../layout";
 import { useUserState } from "../../contexts/UserContext";
+import { useHistory } from "react-router-dom";
 
 export const Courses: React.FunctionComponent = () => {
   const user = useUserState();
+  const history = useHistory();
 
   return (
     <Page
@@ -16,7 +18,10 @@ export const Courses: React.FunctionComponent = () => {
         <Tab>Favoriten</Tab>
       </Tabs>
       <Stack gap="lg" vertical={true}>
-        <Card className="courses-item">
+        <Card
+          className="courses-item"
+          onClick={() => history.push("/courses/1")}
+        >
           <UserIcon user={user} />
           <div>
             <h3>Mobile verteilte Systeme</h3>
@@ -26,7 +31,10 @@ export const Courses: React.FunctionComponent = () => {
             </p>
           </div>
         </Card>
-        <Card className="courses-item">
+        <Card
+          className="courses-item"
+          onClick={() => history.push("/courses/2")}
+        >
           <UserIcon user={user} />
           <div>
             <h3>Security Engineering</h3>
@@ -36,7 +44,10 @@ export const Courses: React.FunctionComponent = () => {
             </p>
           </div>
         </Card>
-        <Card className="courses-item">
+        <Card
+          className="courses-item"
+          onClick={() => history.push("/courses/3")}
+        >
           <UserIcon user={user} />
           <div>
             <h3>Diskrete Wahrscheinlichkeitstheorie</h3>

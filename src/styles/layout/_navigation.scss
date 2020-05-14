@@ -23,10 +23,6 @@
       line-height: $nav-height;
       padding: 0 $padding-md;
     }
-
-    .user-icon {
-      margin-right: $margin-sm;
-    }
   }
 
   .navigation-extension {
@@ -60,7 +56,8 @@
 
 .subnavigation {
   align-items: center;
-  border-bottom: $border-width solid $color__border;
+  color: white;
+  background-color: $color__dark;
   display: flex;
   padding: 0 $padding-lg;
 }

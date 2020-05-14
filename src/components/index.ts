@@ -7,6 +7,7 @@ export { Card } from "./Card";
 export { Checkbox } from "./Checkbox";
 export { ColorSquare } from "./ColorSquare";
 export { Divider } from "./Divider";
+export { Dropdown } from "./Dropdown";
 export { Icon } from "./Icon";
 export { Input } from "./Input";
 export { Level } from "./Level";

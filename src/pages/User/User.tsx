@@ -13,12 +13,10 @@ import { LockUser } from "./LockUser";
 import { Level, Loader, Tile, Tag } from "../../components";
 import { BreadcrumbProps } from "../../components/Breadcrumb";
 import { useUserState } from "../../contexts/UserContext";
-import { useDefaultRoute } from "../../hooks";
 import http from "../../HttpClient";
 import { Page } from "../../layout";
 
 export const User: React.FunctionComponent = () => {
-  const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const { userId } = useParams();
   const [fetchedUser, setFetchedUser] = useState<any>(null);
@@ -157,6 +155,6 @@ export const User: React.FunctionComponent = () => {
       </Route>
     </Switch>
   ) : (
-    <Redirect to={defaultRoute} />
+    <Redirect to={"/courses"} />
   );
 };

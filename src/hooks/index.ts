@@ -1,4 +1,3 @@
-export { useDefaultRoute } from "./useDefaultRoute";
 export { useError } from "./useError";
 export { useLogin } from "./useLogin";
 export { useLogout } from "./useLogout";

@@ -33,8 +33,10 @@ export const Layout: React.FunctionComponent = ({ children }) => {
   return (
     <Fragment>
       <div id="layout">
-        <Navigation />
-        <Subnavigation />
+        <header id="header">
+          <Navigation />
+          <Subnavigation />
+        </header>
         <main id="main">{children}</main>
       </div>
       <Notifications />

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
-import { Status, UserIcon } from "../components";
+import { Status, UserIcon, Dropdown } from "../components";
 import { useUserState } from "../contexts/UserContext";
-import { useDefaultRoute, useLogout, useSocket } from "../hooks";
+import { useLogout, useSocket } from "../hooks";
 import http from "../HttpClient";
-import { ChevronIcon } from "../components/icons";
 
 export const Navigation: React.FunctionComponent = () => {
-  const defaultRoute = useDefaultRoute();
   const history = useHistory();
   const logout = useLogout();
   const { connected } = useSocket();
@@ -23,11 +21,7 @@ export const Navigation: React.FunctionComponent = () => {
   const goToDefaultRoute = () => {
     hideSidebar();
 
-    history.push(defaultRoute);
-  };
-
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
+    history.push("/courses");
   };
 
   return (
@@ -38,7 +32,7 @@ export const Navigation: React.FunctionComponent = () => {
             teapot
           </h1>
         </div>
-        <div className="navigation-right" onClick={toggleSidebar}>
+        <div className="navigation-right">
           <Status connected={connected} />
           <Link
             className="nostyle navigation-username"
@@ -47,17 +41,31 @@ export const Navigation: React.FunctionComponent = () => {
           >
             {user.identifier}
           </Link>
-          <UserIcon dark={true} user={user} />
-          <ChevronIcon
-            className="navigation-dropdown"
-            size="sm"
-            vflip={showSidebar}
-          />
+
+          <Dropdown trigger={(active) => <UserIcon dark={true} user={user} />}>
+            Menu
+          </Dropdown>
         </div>
       </section>
       {showSidebar && (
         <section className="navigation-extension">
           <div className="navigation-menu-vertical">
+            <NavLink
+              activeClassName="is-active"
+              className="sidebar-item nostyle"
+              onClick={hideSidebar}
+              to="/courses"
+            >
+              Meine Kurse
+            </NavLink>
+            <NavLink
+              activeClassName="is-active"
+              className="sidebar-item nostyle"
+              onClick={hideSidebar}
+              to="/courses"
+            >
+              Katalog
+            </NavLink>
             {user.admin ? (
               <NavLink
                 activeClassName="is-active"
@@ -68,14 +76,6 @@ export const Navigation: React.FunctionComponent = () => {
                 Benutzer
               </NavLink>
             ) : null}
-            <NavLink
-              activeClassName="is-active"
-              className="sidebar-item nostyle"
-              onClick={hideSidebar}
-              to="/invitations"
-            >
-              Einladungen
-            </NavLink>
             <div className="sidebar-item" onClick={handleLogout}>
               Ausloggen
             </div>
