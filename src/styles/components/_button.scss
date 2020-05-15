@@ -7,7 +7,6 @@
   display: flex;
   height: 32px;
   font-size: $font-sm;
-  line-height: 24px;
   justify-content: center;
   padding: $padding-xs $padding-md;
   transition: all 0.2s;
@@ -20,6 +19,12 @@
   &:disabled {
     cursor: not-allowed;
     opacity: 0.8;
+  }
+
+  &.is-big {
+    padding: $padding-sm $padding-md;
+    font-size: $font-md;
+    height: 40px;
   }
 
   &.is-danger {

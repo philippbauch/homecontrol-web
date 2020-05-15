@@ -12,6 +12,7 @@ type ButtonSize = "small" | "normal";
 
 interface ButtonProps {
   align?: ButtonAlign;
+  big?: boolean;
   className?: string;
   disabled?: boolean;
   kind?: ButtonKind;
@@ -23,6 +24,7 @@ interface ButtonProps {
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
   align,
+  big,
   children,
   className,
   disabled,
@@ -37,6 +39,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
       className={classnames("button", className, {
         "align-end": align === "end",
         "align-start": align === "start",
+        "is-big": big,
         "is-danger": kind === "danger",
         "is-primary": kind === "primary",
         "is-small": size === "small",

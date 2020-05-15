@@ -65,7 +65,7 @@ export const Login: React.FunctionComponent = () => {
               value={password}
             />
           </div>
-          <Button kind="primary" loading={loading} type="submit">
+          <Button big={true} kind="primary" loading={loading} type="submit">
             Anmelden
           </Button>
         </form>
