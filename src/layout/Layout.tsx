@@ -17,6 +17,7 @@ import { CSSTransition } from "react-transition-group";
 
 export const Layout: React.FunctionComponent = ({ children }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const asideRef = useRef<HTMLDivElement>(null);
   const { isScreenMobile } = useScreenSize();
   const [showSidebar, setShowSidebar] = useState(!isScreenMobile());
@@ -63,10 +64,14 @@ export const Layout: React.FunctionComponent = ({ children }) => {
     return () => window.removeEventListener("resize", resizeLayout);
   }, [resizeLayout]);
 
+  const bodyHeight =
+    (layoutRef?.current?.offsetHeight || 0) -
+    (headerRef?.current?.offsetHeight || 0);
+
   return (
     <Fragment>
       <div id="layout" ref={layoutRef}>
-        <section id="header">
+        <section id="header" ref={headerRef}>
           <Navigation />
           {isScreenMobile() && (
             <Subnavigation
@@ -78,6 +83,7 @@ export const Layout: React.FunctionComponent = ({ children }) => {
         <section
           id="body"
           className={classnames({ "has-sidebar": showSidebar })}
+          style={{ height: bodyHeight }}
         >
           <CSSTransition
             in={showSidebar}

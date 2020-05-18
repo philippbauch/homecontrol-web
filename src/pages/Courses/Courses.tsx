@@ -57,6 +57,32 @@ export const Courses: React.FunctionComponent = () => {
             </p>
           </div>
         </Card>
+        <Card
+          className="courses-item"
+          onClick={() => history.push("/courses/3")}
+        >
+          <UserIcon user={user} />
+          <div>
+            <h3>Diskrete Wahrscheinlichkeitstheorie</h3>
+            <p>
+              In diesem Kurs lernen wir etwas über verteilte Systeme. Das wird
+              mit Sicherheit ein riesen Spaß!
+            </p>
+          </div>
+        </Card>
+        <Card
+          className="courses-item"
+          onClick={() => history.push("/courses/3")}
+        >
+          <UserIcon user={user} />
+          <div>
+            <h3>Diskrete Wahrscheinlichkeitstheorie</h3>
+            <p>
+              In diesem Kurs lernen wir etwas über verteilte Systeme. Das wird
+              mit Sicherheit ein riesen Spaß!
+            </p>
+          </div>
+        </Card>
       </Stack>
     </Page>
   );

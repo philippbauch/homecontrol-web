@@ -1,9 +1,8 @@
 .page {
   display: flex;
   flex-direction: column;
-  margin-bottom: $margin-lg;
-  padding: 0 $padding-lg;
-  width: 100%;
+  margin: 0 auto;
+  padding: $padding-lg;
 
   @include screen-desktop {
     width: 80%;
