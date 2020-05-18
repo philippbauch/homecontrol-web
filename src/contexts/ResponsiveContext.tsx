@@ -48,16 +48,16 @@ const ResponsiveProvider: React.FunctionComponent = ({ children }) => {
   );
 };
 
-function useResponsiveState() {
+function useScreenSize() {
   const context = React.useContext(ResponsiveStateContext);
 
   if (context === undefined) {
     throw new Error(
-      "useResponsiveState must be used within a ResponsiveStateContext"
+      "useScreenSize must be used within a ResponsiveStateContext"
     );
   }
 
   return context;
 }
 
-export { ResponsiveProvider, useResponsiveState };
+export { ResponsiveProvider, useScreenSize };

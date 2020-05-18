@@ -3,18 +3,56 @@
   flex-direction: column;
   position: relative;
 
-  #header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 2;
-  }
-
-  #main {
-    display: flex;
-    margin-top: $nav-height + 48px;
-    justify-content: center;
+  #body {
+    height: 100%;
     position: relative;
+
+    #main {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .sidebar {
+      background-color: white;
+      border-right: $border-width solid $color__border;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 85%;
+      z-index: 1;
+
+      &-enter,
+      &-appear {
+        transform: translateX(-100%);
+
+        &-active {
+          transform: translateX(0);
+          transition: transform 0.2s;
+        }
+      }
+
+      &-exit {
+        transform: translateX(0);
+
+        &-active {
+          transform: translateX(-100%);
+          transition: transform 0.2s;
+        }
+      }
+
+      @include screen-tablet {
+        width: 200px;
+      }
+
+      @include screen-desktop {
+        width: 240px;
+      }
+
+      @include screen-large {
+        width: 280px;
+      }
+    }
   }
 }

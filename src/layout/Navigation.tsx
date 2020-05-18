@@ -5,11 +5,11 @@ import { useUserState } from "../contexts/UserContext";
 import { useLogout, useSocket } from "../hooks";
 import http from "../HttpClient";
 import { SignOutIcon } from "../components/icons";
-import { useResponsiveState } from "../contexts/ResponsiveContext";
+import { useScreenSize } from "../contexts/ResponsiveContext";
 
 export const Navigation: React.FunctionComponent = () => {
   const history = useHistory();
-  const { isScreenMobile } = useResponsiveState();
+  const { isScreenMobile } = useScreenSize();
   const logout = useLogout();
   const { connected } = useSocket();
   const user = useUserState();
