@@ -1,11 +1,5 @@
 import classnames from "classnames";
-import React, {
-  Fragment,
-  useEffect,
-  useRef,
-  useCallback,
-  useState,
-} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Notifications } from "./Notifications";
@@ -15,7 +9,6 @@ import { useScreenSize } from "../contexts/ResponsiveContext";
 import { CSSTransition } from "react-transition-group";
 
 export const Layout: React.FunctionComponent = ({ children }) => {
-  const layoutRef = useRef<HTMLDivElement>(null);
   const { isScreenMobile } = useScreenSize();
   const [showSidebar, setShowSidebar] = useState(!isScreenMobile());
   const history = useHistory();
@@ -43,29 +36,9 @@ export const Layout: React.FunctionComponent = ({ children }) => {
     );
   });
 
-  const resizeLayout = useCallback(() => {
-    const layout = layoutRef.current;
-
-    if (layout) {
-      layout.style.height = `${window.innerHeight}px`;
-    }
-  }, [layoutRef]);
-
-  useEffect(() => {
-    window.addEventListener("resize", resizeLayout);
-
-    resizeLayout();
-
-    return () => window.removeEventListener("resize", resizeLayout);
-  }, [resizeLayout]);
-
   return (
     <Fragment>
-      <div
-        id="layout"
-        ref={layoutRef}
-        className={classnames({ "has-sidebar": showSidebar })}
-      >
+      <div id="layout" className={classnames({ "has-sidebar": showSidebar })}>
         <Navigation showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
         <CSSTransition
           in={showSidebar}
