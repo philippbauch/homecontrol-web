@@ -4,53 +4,51 @@
   background-color: $color__dark;
   color: white;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  height: $nav-height;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 
-  .navigation-header {
+  .navigation-left,
+  .navigation-right {
+    align-items: center;
     display: flex;
-    justify-content: space-between;
+  }
+
+  .navigation-right {
+    margin: 0 $margin-lg;
+  }
+
+  .status {
+    margin-right: $margin-md;
+  }
+
+  .navigation-username {
     height: $nav-height;
+    line-height: $nav-height;
+    padding: 0 $padding-md;
+  }
 
-    .navigation-left,
-    .navigation-right {
-      align-items: center;
-      display: flex;
-    }
+  .navigation-brand {
+    cursor: pointer;
+    line-height: $nav-height;
+    padding: 0 $padding-lg;
+  }
 
-    .navigation-right {
-      margin: 0 $margin-lg;
-    }
+  .navigation-menu {
+    display: flex;
+    margin: 0 $margin-lg;
 
-    .status {
-      margin-right: $margin-md;
-    }
-
-    .navigation-username {
-      height: $nav-height;
+    &-item {
       line-height: $nav-height;
-      padding: 0 $padding-md;
-    }
 
-    .navigation-brand {
-      cursor: pointer;
-      line-height: $nav-height;
-      padding: 0 $padding-lg;
-    }
+      &:not(:last-child) {
+        margin-right: $margin-lg;
+      }
 
-    .navigation-menu {
-      display: flex;
-      margin: 0 $margin-lg;
-
-      &-item {
-        line-height: $nav-height;
-
-        &:not(:last-child) {
-          margin-right: $margin-lg;
-        }
-
-        &.active {
-          color: $color__primary;
-        }
+      &.active {
+        color: $color__primary;
       }
     }
   }

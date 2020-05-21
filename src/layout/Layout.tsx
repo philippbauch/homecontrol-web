@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import { useHistory } from "react-router-dom";
 import { Navigation } from "./Navigation";
-import { Subnavigation } from "./Subnavigation";
 import { Notifications } from "./Notifications";
 import { useUserState } from "../contexts/UserContext";
 import { useNotify, useSocket, useSocketEvent } from "../hooks";
@@ -17,8 +16,6 @@ import { CSSTransition } from "react-transition-group";
 
 export const Layout: React.FunctionComponent = ({ children }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const asideRef = useRef<HTMLDivElement>(null);
   const { isScreenMobile } = useScreenSize();
   const [showSidebar, setShowSidebar] = useState(!isScreenMobile());
   const history = useHistory();
@@ -27,8 +24,6 @@ export const Layout: React.FunctionComponent = ({ children }) => {
   const user = useUserState();
 
   const toggleSidebar = () => setShowSidebar((prev) => !prev);
-
-  const asideWidth = asideRef?.current?.offsetWidth || 0;
 
   useEffect(() => {
     if (user) {
@@ -64,49 +59,23 @@ export const Layout: React.FunctionComponent = ({ children }) => {
     return () => window.removeEventListener("resize", resizeLayout);
   }, [resizeLayout]);
 
-  const bodyHeight =
-    (layoutRef?.current?.offsetHeight || 0) -
-    (headerRef?.current?.offsetHeight || 0);
-
   return (
     <Fragment>
-      <div id="layout" ref={layoutRef}>
-        <section id="header" ref={headerRef}>
-          <Navigation />
-          {isScreenMobile() && (
-            <Subnavigation
-              showSidebar={showSidebar}
-              toggleSidebar={toggleSidebar}
-            />
-          )}
-        </section>
-        <section
-          id="body"
-          className={classnames({ "has-sidebar": showSidebar })}
-          style={{ height: bodyHeight }}
+      <div
+        id="layout"
+        ref={layoutRef}
+        className={classnames({ "has-sidebar": showSidebar })}
+      >
+        <Navigation showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+        <CSSTransition
+          in={showSidebar}
+          classNames="sidebar"
+          timeout={200}
+          unmountOnExit={true}
         >
-          <CSSTransition
-            in={showSidebar}
-            classNames="sidebar"
-            timeout={200}
-            unmountOnExit={true}
-          >
-            <aside className="sidebar" ref={asideRef}></aside>
-          </CSSTransition>
-
-          <main
-            id="main"
-            style={
-              !isScreenMobile()
-                ? {
-                    marginLeft: asideWidth,
-                  }
-                : {}
-            }
-          >
-            {children}
-          </main>
-        </section>
+          <aside className="sidebar"></aside>
+        </CSSTransition>
+        <main id="main">{children}</main>
       </div>
       <Notifications />
     </Fragment>
