@@ -7,7 +7,7 @@ $burger-bar-width: 18px;
   align-items: center;
   cursor: pointer;
   display: flex;
-  height: 48px;
+  height: $nav-height;
   margin-left: -$margin-lg;
   padding: 0 $padding-lg;
 
