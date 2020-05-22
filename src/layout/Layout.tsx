@@ -48,7 +48,17 @@ export const Layout: React.FunctionComponent = ({ children }) => {
         >
           <aside className="sidebar"></aside>
         </CSSTransition>
-        <main id="main">{children}</main>
+        <main className="main">
+          <CSSTransition
+            classNames="main-overlay"
+            in={showSidebar}
+            timeout={200}
+            unmountOnExit={true}
+          >
+            <div className="main-overlay" onClick={toggleSidebar} />
+          </CSSTransition>
+          {children}
+        </main>
       </div>
       <Notifications />
     </Fragment>

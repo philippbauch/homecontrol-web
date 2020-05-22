@@ -3,11 +3,40 @@
   flex-direction: column;
   position: relative;
 
-  #main {
+  .main {
     margin-top: $nav-height;
     display: flex;
+    position: relative;
     justify-content: center;
     transition: margin-left 0.2s;
+
+    &-overlay {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: $color__overlay;
+
+      &-enter {
+        opacity: 0;
+
+        &-active {
+          opacity: 1;
+          transition: opacity 0.2s;
+        }
+      }
+
+      &-exit {
+        opacity: 1;
+
+        &-active {
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+      }
+    }
   }
 
   .sidebar {
@@ -18,7 +47,7 @@
     position: fixed;
     top: $nav-height;
     width: 85%;
-    z-index: 1;
+    z-index: 2;
 
     &-enter,
     &-appear {
