@@ -4,6 +4,7 @@ import { NotificationProvider } from "./contexts/NotificationContext";
 import { useUserState } from "./contexts/UserContext";
 import { Layout } from "./layout";
 import { AddUser, CoursePage, Courses, User, Users } from "./pages";
+import { CoursesProvider } from "./contexts/CoursesContext";
 
 export const App: React.FunctionComponent = () => {
   const user = useUserState();
@@ -14,16 +15,18 @@ export const App: React.FunctionComponent = () => {
 
   return (
     <NotificationProvider>
-      <Layout>
-        <Switch>
-          <Route component={Courses} exact={true} path="/courses" />
-          <Route component={CoursePage} path="/courses/:courseId" />
-          <Route component={Users} exact={true} path="/users" />
-          <Route component={AddUser} path={"/users/new"} />
-          <Route component={User} path="/users/:userId" />
-          <Redirect to="/courses" />
-        </Switch>
-      </Layout>
+      <CoursesProvider>
+        <Layout>
+          <Switch>
+            <Route component={Courses} exact={true} path="/courses" />
+            <Route component={CoursePage} path="/courses/:courseId" />
+            <Route component={Users} exact={true} path="/users" />
+            <Route component={AddUser} path={"/users/new"} />
+            <Route component={User} path="/users/:userId" />
+            <Redirect to="/courses" />
+          </Switch>
+        </Layout>
+      </CoursesProvider>
     </NotificationProvider>
   );
 };

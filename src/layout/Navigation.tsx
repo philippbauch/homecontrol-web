@@ -40,13 +40,19 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   return (
     <nav id="navigation">
       <div className="navigation-left">
-        <Burger onClick={toggleSidebar} open={showSidebar} />
+        {isScreenMobile() && (
+          <Burger onClick={toggleSidebar} open={showSidebar} />
+        )}
         <h1 className="navigation-brand" onClick={goToDefaultRoute}>
           teapot
         </h1>
         {!isScreenMobile() && (
           <div className="navigation-menu">
-            <NavLink className="navigation-menu-item nostyle" to="/courses">
+            <NavLink
+              className="navigation-menu-item nostyle"
+              exact={true}
+              to="/courses"
+            >
               Meine Kurse
             </NavLink>
             <NavLink className="navigation-menu-item nostyle" to="/catalog">

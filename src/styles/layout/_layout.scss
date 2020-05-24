@@ -44,10 +44,36 @@
     border-right: $border-width solid $color__border;
     bottom: 0;
     left: 0;
+    overflow-y: auto;
     position: fixed;
     top: $nav-height;
     width: 85%;
     z-index: 2;
+
+    &-header {
+      padding: $padding-md;
+      margin-bottom: $margin-sm;
+    }
+
+    &-menu {
+      margin-left: $margin-md;
+
+      &-item {
+        margin-left: -$margin-md;
+        padding: $padding-xxs $padding-md;
+
+        &.active {
+          background-color: $color__primary;
+          color: white;
+          font-weight: $font-weight-semi-bold;
+        }
+      }
+
+      &-section {
+        display: flex;
+        flex-direction: column;
+      }
+    }
 
     &-enter,
     &-appear {
@@ -82,7 +108,7 @@
   }
 
   &.has-sidebar {
-    #main {
+    .main {
       @include screen-tablet {
         margin-left: 200px;
       }

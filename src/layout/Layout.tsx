@@ -1,12 +1,14 @@
 import classnames from "classnames";
 import React, { Fragment, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 import { Navigation } from "./Navigation";
 import { Notifications } from "./Notifications";
+import { Sidebar } from "./Sidebar";
+import { useScreenSize } from "../contexts/ResponsiveContext";
 import { useUserState } from "../contexts/UserContext";
 import { useNotify, useSocket, useSocketEvent } from "../hooks";
-import { useScreenSize } from "../contexts/ResponsiveContext";
-import { CSSTransition } from "react-transition-group";
+import { useCoursesState } from "../contexts/CoursesContext";
 
 export const Layout: React.FunctionComponent = ({ children }) => {
   const { isScreenMobile } = useScreenSize();
@@ -15,6 +17,7 @@ export const Layout: React.FunctionComponent = ({ children }) => {
   const notify = useNotify();
   const { socket } = useSocket();
   const user = useUserState();
+  const { activeCourse } = useCoursesState();
 
   const toggleSidebar = () => setShowSidebar((prev) => !prev);
 
@@ -38,20 +41,26 @@ export const Layout: React.FunctionComponent = ({ children }) => {
 
   return (
     <Fragment>
-      <div id="layout" className={classnames({ "has-sidebar": showSidebar })}>
-        <Navigation showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+      <div
+        id="layout"
+        className={classnames({ "has-sidebar": activeCourse && showSidebar })}
+      >
+        <Navigation
+          showSidebar={activeCourse && showSidebar}
+          toggleSidebar={toggleSidebar}
+        />
         <CSSTransition
-          in={showSidebar}
+          in={activeCourse && showSidebar}
           classNames="sidebar"
           timeout={200}
           unmountOnExit={true}
         >
-          <aside className="sidebar"></aside>
+          <Sidebar />
         </CSSTransition>
         <main className="main">
           <CSSTransition
             classNames="main-overlay"
-            in={showSidebar}
+            in={activeCourse && showSidebar && isScreenMobile()}
             timeout={200}
             unmountOnExit={true}
           >
