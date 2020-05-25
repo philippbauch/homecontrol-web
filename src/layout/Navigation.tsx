@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import {
-  Status,
-  UserIcon,
+  Avatar,
+  Burger,
+  Divider,
   Dropdown,
   Level,
-  Divider,
-  Burger,
+  Status,
 } from "../components";
 import { SignOutIcon } from "../components/icons";
 import { useCoursesState } from "../contexts/CoursesContext";
@@ -76,10 +76,10 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
         <Dropdown
           className="navigation-dropdown"
           trigger={(active) => (
-            <UserIcon
+            <Avatar
               className={active ? "is-active" : undefined}
               dark={true}
-              user={user}
+              name={user.identifier}
             />
           )}
         >

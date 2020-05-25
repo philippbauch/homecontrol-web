@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Stack, Card, Tab, Tabs, UserIcon } from "../../components";
+import { Avatar, Button, Card, Stack, Tab, Tabs } from "../../components";
 import { useCoursesState } from "../../contexts/CoursesContext";
 import { Page } from "../../layout";
 
@@ -21,9 +21,10 @@ export const Courses: React.FunctionComponent = () => {
         {courses.map((course) => (
           <Card
             className="courses-item"
+            key={course.id}
             onClick={() => history.push(`/courses/${course.id}`)}
           >
-            <UserIcon user={{ identifier: course.title }} />
+            <Avatar name={course.title} />
             <div>
               <h3>{course.title}</h3>
               <p>{course.description}</p>

@@ -1,7 +1,7 @@
 import React from "react";
-import { UserIcon, Divider } from "../components";
-import { useCoursesState } from "../contexts/CoursesContext";
 import { NavLink } from "react-router-dom";
+import { Avatar, Divider } from "../components";
+import { useCoursesState } from "../contexts/CoursesContext";
 
 interface SidebarProps {}
 
@@ -13,7 +13,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
       {activeCourse ? (
         <div className="sidebar-content">
           <section className="sidebar-header">
-            <UserIcon user={{ identifier: "My course" }} />
+            <Avatar big={true} name={activeCourse.title} />
             <h3>{activeCourse.title}</h3>
           </section>
 

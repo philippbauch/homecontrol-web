@@ -1,4 +1,5 @@
 export { Alert } from "./Alert";
+export { Avatar } from "./Avatar";
 export { Breadcrumb } from "./Breadcrumb";
 export { Breadcrumbs } from "./Breadcrumbs";
 export { Burger } from "./Burger";
@@ -19,4 +20,3 @@ export { Tab } from "./Tab";
 export { Tabs } from "./Tabs";
 export { Tag } from "./Tag";
 export { Tile } from "./Tile";
-export { UserIcon } from "./UserIcon";
