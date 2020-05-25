@@ -47,7 +47,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
                 className="sidebar-menu-item"
                 to={`/courses/${activeCourse.id}/people`}
               >
-                Personen
+                Leute
               </NavLink>
               <NavLink
                 className="sidebar-menu-item"

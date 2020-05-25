@@ -52,8 +52,18 @@
     z-index: 2;
 
     &-header {
-      padding: $padding-md;
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      height: $size-xxl;
+      line-height: $size-lg;
       margin-bottom: $margin-sm;
+      padding: $padding-md;
+
+      .avatar {
+        flex-shrink: 0;
+        margin-right: $margin-md;
+      }
     }
 
     &-menu {
@@ -96,15 +106,15 @@
     }
 
     @include screen-tablet {
-      width: 200px;
+      width: 220px;
     }
 
     @include screen-desktop {
-      width: 240px;
+      width: 260px;
     }
 
     @include screen-large {
-      width: 280px;
+      width: 300px;
     }
   }
 
