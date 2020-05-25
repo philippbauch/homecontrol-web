@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 0 $padding-lg;
   margin-bottom: $margin-lg;
+  width: 100%;
 
   @include screen-desktop {
     width: 80%;
