@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { Navigation } from "./Navigation";
@@ -18,6 +18,7 @@ export const Layout: React.FunctionComponent = ({ children }) => {
   const { socket } = useSocket();
   const user = useUserState();
   const { activeCourse } = useCoursesState();
+  const [minHeightMain, setMinHeightMain] = useState(0);
 
   const toggleSidebar = () => setShowSidebar((prev) => !prev);
 
@@ -39,6 +40,18 @@ export const Layout: React.FunctionComponent = ({ children }) => {
     );
   });
 
+  const updateMinHeightMain = useCallback(() => {
+    setMinHeightMain(window.innerHeight - 64);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMinHeightMain);
+
+    updateMinHeightMain();
+
+    return () => window.removeEventListener("resize", updateMinHeightMain);
+  }, [updateMinHeightMain]);
+
   return (
     <Fragment>
       <div
@@ -57,7 +70,7 @@ export const Layout: React.FunctionComponent = ({ children }) => {
         >
           <Sidebar />
         </CSSTransition>
-        <main className="main">
+        <main className="main" style={{ minHeight: minHeightMain }}>
           <CSSTransition
             classNames="main-overlay"
             in={activeCourse && showSidebar && isScreenMobile()}

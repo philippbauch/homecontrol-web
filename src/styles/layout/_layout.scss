@@ -8,7 +8,7 @@
     display: flex;
     position: relative;
     justify-content: center;
-    transition: margin-left 0.2s;
+    transition: margin-left 0.2s, transform 0.2s;
 
     &-overlay {
       position: absolute;
@@ -109,8 +109,11 @@
 
   &.has-sidebar {
     .main {
+      transform: translateX(85%);
+
       @include screen-tablet {
         margin-left: 200px;
+        transform: translateX(0);
       }
 
       @include screen-desktop {

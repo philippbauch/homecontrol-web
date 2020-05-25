@@ -13,6 +13,7 @@ import { useLogout, useSocket } from "../hooks";
 import http from "../HttpClient";
 import { SignOutIcon } from "../components/icons";
 import { useScreenSize } from "../contexts/ResponsiveContext";
+import { useCoursesState } from "../contexts/CoursesContext";
 
 interface NavigationProps {
   showSidebar: boolean;
@@ -28,6 +29,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   const logout = useLogout();
   const { connected } = useSocket();
   const user = useUserState();
+  const { activeCourse } = useCoursesState();
 
   const handleLogout = () => {
     http.post("/logout").then(logout);
@@ -40,7 +42,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   return (
     <nav id="navigation">
       <div className="navigation-left">
-        {isScreenMobile() && (
+        {activeCourse && isScreenMobile() && (
           <Burger onClick={toggleSidebar} open={showSidebar} />
         )}
         <h1 className="navigation-brand" onClick={goToDefaultRoute}>
