@@ -1,7 +1,7 @@
 import React from "react";
 import { UserIcon, Divider } from "../components";
 import { useCoursesState } from "../contexts/CoursesContext";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface SidebarProps {}
 

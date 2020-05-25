@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import {
   Status,
@@ -8,12 +8,12 @@ import {
   Divider,
   Burger,
 } from "../components";
+import { SignOutIcon } from "../components/icons";
+import { useCoursesState } from "../contexts/CoursesContext";
+import { useScreenSize } from "../contexts/ResponsiveContext";
 import { useUserState } from "../contexts/UserContext";
 import { useLogout, useSocket } from "../hooks";
 import http from "../HttpClient";
-import { SignOutIcon } from "../components/icons";
-import { useScreenSize } from "../contexts/ResponsiveContext";
-import { useCoursesState } from "../contexts/CoursesContext";
 
 interface NavigationProps {
   showSidebar: boolean;
@@ -24,12 +24,12 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   showSidebar,
   toggleSidebar,
 }) => {
-  const history = useHistory();
-  const { isScreenMobile } = useScreenSize();
-  const logout = useLogout();
-  const { connected } = useSocket();
-  const user = useUserState();
   const { activeCourse } = useCoursesState();
+  const history = useHistory();
+  const logout = useLogout();
+  const { isScreenMobile } = useScreenSize();
+  const { connected, socket } = useSocket();
+  const user = useUserState();
 
   const handleLogout = () => {
     http.post("/logout").then(logout);
@@ -38,6 +38,14 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
   const goToDefaultRoute = () => {
     history.push("/courses");
   };
+
+  useEffect(() => {
+    if (user) {
+      socket.open();
+    } else {
+      socket.close();
+    }
+  }, [socket, user]);
 
   return (
     <nav id="navigation">
