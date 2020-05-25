@@ -22,7 +22,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
               <NavLink
                 className="sidebar-menu-item"
                 exact={true}
-                to={`/courses/${activeCourse.id}`}
+                to={`/courses/${activeCourse.id}/overview`}
               >
                 Übersicht
               </NavLink>
@@ -36,7 +36,26 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
             <Divider />
             <div className="sidebar-menu-section">Section2</div>
             <Divider />
-            <div className="sidebar-menu-section">Section 3</div>
+            <div className="sidebar-menu-section">
+              <NavLink
+                className="sidebar-menu-item"
+                to={`/courses/${activeCourse.id}/sections`}
+              >
+                Kursabschnitte
+              </NavLink>
+              <NavLink
+                className="sidebar-menu-item"
+                to={`/courses/${activeCourse.id}/people`}
+              >
+                Personen
+              </NavLink>
+              <NavLink
+                className="sidebar-menu-item"
+                to={`/courses/${activeCourse.id}/settings`}
+              >
+                Einstellungen
+              </NavLink>
+            </div>
           </section>
         </div>
       ) : (

@@ -18,12 +18,12 @@ export const Avatar: React.FunctionComponent<UserIconProps> = ({
 
   return (
     <div
-      className={classnames("user-icon", className, {
+      className={classnames("avatar", className, {
         "is-big": big,
         "is-dark": dark,
       })}
     >
-      <div className="user-letter">{letter}</div>
+      <div className="avatar-letter">{letter}</div>
     </div>
   );
 };

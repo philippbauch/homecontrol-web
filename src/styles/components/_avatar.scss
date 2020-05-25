@@ -1,0 +1,34 @@
+$icon-size: $size-xl;
+$icon-size-big: $size-xxl;
+
+.avatar {
+  height: $icon-size;
+  border-radius: $radius;
+  box-shadow: $shadow__border;
+  background-color: $color__background;
+  width: $icon-size;
+
+  &-letter {
+    color: $color__font-secondary;
+    font-size: $font-lg;
+    font-weight: $font-weight-semi-bold;
+    text-align: center;
+    line-height: $icon-size;
+    text-transform: uppercase;
+  }
+
+  &.is-big {
+    height: $icon-size-big;
+    width: $icon-size-big;
+
+    .avatar-letter {
+      font-size: $font-xl;
+      line-height: $icon-size-big;
+    }
+  }
+
+  &.is-dark {
+    background-color: $color__darker;
+    box-shadow: none;
+  }
+}
