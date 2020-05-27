@@ -10,7 +10,7 @@ $spinner-border-width-xl: 2.5em;
   position: relative;
 
   &::before {
-    border-color: $color-white-off;
+    border-color: $color__white-off;
     border-radius: $radius-round;
     border-style: solid;
     border-top-color: white;
@@ -24,8 +24,8 @@ $spinner-border-width-xl: 2.5em;
   }
 
   &.is-primary::before {
-    border-color: $color-white-off;
-    border-top-color: $color-primary;
+    border-color: $color__white-off;
+    border-top-color: $color__primary;
   }
 
   &.is-sm {

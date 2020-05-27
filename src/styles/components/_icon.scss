@@ -17,20 +17,20 @@ $icon-size-lg: 1.5em;
     cursor: pointer;
 
     &:hover {
-      color: $color-primary;
+      color: $color__primary;
     }
   }
 
   &.is-danger {
-    color: $color-danger;
+    color: $color__danger;
   }
 
   &.is-primary {
-    color: $color-primary;
+    color: $color__primary;
   }
 
   &.is-success {
-    color: $color-success;
+    color: $color__success;
   }
 
   &.is-xs {

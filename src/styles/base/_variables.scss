@@ -50,7 +50,9 @@ $screen-size-tablet: 768px;
 
 $color__background: #f0f4f8;
 $color__border: #cdd7e2;
-$color__dark: #1b344e;
+$color__danger: #e96073;
+$color__danger-dark: #cf5061;
+$color__dark: #1b2c3e;
 $color__darker: #192c41;
 $color__font: $color__dark;
 $color__font-secondary: #4c5b6d;
@@ -58,12 +60,14 @@ $color__overlay: transparentize($color__dark, 0.8);
 $color__primary-light: #72b8fd;
 $color__primary: #5fafff;
 $color__primary-dark: #509deb;
+$color__success: #1be074;
+$color__white-off: rgba(255, 255, 255, 0.5);
 
 $shadow__border: 0 0 0 $border-width $color__border;
+$shadow__border-danger: 0 0 0 $border-width $color__danger;
+$shadow__border-primary: 0 0 0 $border-width $color__primary;
 $shadow__drop: 0 2px 4px transparentize($color__dark, 0.85);
-$shadow__primary: 0 0 0 2px $color__primary;
-
-$color-white-off: rgba(255, 255, 255, 0.5);
+$shadow__focus: 0 0 0 4px transparentize($color__primary, 0.6);
 
 $color-background: #f6fafc;
 $color-background-dark: #eef4f7;
@@ -76,17 +80,3 @@ $color-background-alt: #2c3235;
 
 $font-color-primary: #495a67;
 $font-color-secondary: #728797;
-
-$color-transparent: transparent;
-$color-danger: #e96073;
-$color-danger-dark: #cf5061;
-$color-primary: #5fafff;
-$color-primary-dark: #55cdee;
-$color-pink: #e7b7ea;
-$color-purple: #808fde;
-$color-success: #1be074;
-
-$border-color: #a3bacc;
-$border-shadow: inset 0 0 0 1px $border-color;
-$border-shadow-focus: $border-shadow, 0 0 0 4px #bee1f3;
-$box-shadow: 0 2px 4px 0 transparentize($font-color-primary, 0.75);

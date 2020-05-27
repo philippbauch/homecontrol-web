@@ -69,9 +69,22 @@
     &-menu {
       margin-left: $margin-md;
 
+      &-header {
+        color: $color__font-secondary;
+        text-transform: uppercase;
+        font-weight: $font-weight-semi-bold;
+        font-size: $font-xs;
+        margin-bottom: $margin-sm;
+      }
+
       &-item {
+        color: $color__font-secondary;
         margin-left: -$margin-md;
         padding: $padding-xs $padding-md;
+
+        &:hover:not(.active) {
+          color: $color__primary;
+        }
 
         &.active {
           background-color: $color__primary;

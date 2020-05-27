@@ -7,6 +7,7 @@ export const CoursePage: React.FunctionComponent = () => {
 
   return (
     <Switch>
+      <Route path="/courses/:courseId/chapters">Kapitel</Route>
       <Route path="/courses/:courseId/people">Personen</Route>
       <Route path="/courses/:courseId/sections">Kursabschnitte</Route>
       <Route path="/courses/:courseId/settings">Einstellungen</Route>

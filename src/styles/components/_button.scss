@@ -28,10 +28,10 @@
   }
 
   &.is-danger {
-    background-color: $color-danger;
+    background-color: $color__danger;
 
     &:hover:not(:disabled) {
-      background-color: $color-danger-dark;
+      background-color: $color__danger-dark;
     }
   }
 

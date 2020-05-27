@@ -11,6 +11,7 @@
     },
     "chapters": [
       {
+        "id": 1,
         "title": "Abschnitt 1",
         "description": "Beschreibung des ersten Abschnitts",
         "sections": [
@@ -27,6 +28,7 @@
         ]
       },
       {
+        "id": 2,
         "title": "Abschnitt 2",
         "description": "Beschreibung des zweiten Abschnitts",
         "sections": [

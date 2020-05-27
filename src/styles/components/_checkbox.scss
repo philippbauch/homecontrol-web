@@ -9,9 +9,9 @@
 
     .checkbox-symbol {
       border-radius: $radius;
-      box-shadow: $border-shadow;
+      box-shadow: $shadow__border;
       -webkit-appearance: none;
-      -webkit-box-shadow: $border-shadow;
+      -webkit-box-shadow: $shadow__border;
       height: 18px;
       transition: all 0.2s ease;
       width: 18px;
@@ -19,7 +19,7 @@
       svg {
         fill: none;
         opacity: 0;
-        stroke: #ffffff;
+        stroke: white;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 2;
@@ -38,7 +38,7 @@
 
       &:checked + .checkbox-symbol {
         animation: wave 0.2s ease;
-        background-color: $color-primary;
+        background-color: $color__primary;
         box-shadow: none;
 
         svg {

@@ -6,7 +6,7 @@
   padding: $padding-sm $padding-md;
 
   &.is-error {
-    border: 1px solid $color-danger;
-    background-color: transparentize($color-danger, 0.8);
+    border: 1px solid $color__danger;
+    background-color: transparentize($color__danger, 0.8);
   }
 }

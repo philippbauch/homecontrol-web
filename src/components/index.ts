@@ -6,7 +6,6 @@ export { Burger } from "./Burger";
 export { Button } from "./Button";
 export { Card } from "./Card";
 export { Checkbox } from "./Checkbox";
-export { ColorSquare } from "./ColorSquare";
 export { Divider } from "./Divider";
 export { Dropdown } from "./Dropdown";
 export { Icon } from "./Icon";

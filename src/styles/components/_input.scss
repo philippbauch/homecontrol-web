@@ -1,7 +1,7 @@
 .input-container {
-  box-shadow: $border-shadow;
+  box-shadow: $shadow__border;
   -webkit-appearance: none;
-  -webkit-box-shadow: $border-shadow;
+  -webkit-box-shadow: $shadow__border;
   border-radius: $radius;
   overflow: hidden;
   display: flex;
@@ -9,8 +9,8 @@
 
   &:focus-within {
     -webkit-appearance: none;
-    -webkit-box-shadow: $border-shadow-focus;
-    box-shadow: $border-shadow-focus;
+    -webkit-box-shadow: $shadow__border-primary, $shadow__focus;
+    box-shadow: $shadow__border-primary, $shadow__focus;
   }
 }
 

@@ -20,37 +20,48 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
           <section className="sidebar-menu">
             <div className="sidebar-menu-section">
               <NavLink
-                className="sidebar-menu-item"
+                className="sidebar-menu-item nostyle"
                 exact={true}
                 to={`/courses/${activeCourse.id}/overview`}
               >
                 Übersicht
               </NavLink>
               <NavLink
-                className="sidebar-menu-item"
+                className="sidebar-menu-item nostyle"
                 to={`/courses/${activeCourse.id}/material`}
               >
                 Material
               </NavLink>
             </div>
             <Divider />
-            <div className="sidebar-menu-section">Section2</div>
+            <div className="sidebar-menu-section">
+              <div className="sidebar-menu-header">Abschnitte</div>
+              {activeCourse.chapters.map((chapter: any, index: number) => (
+                <NavLink
+                  key={chapter.id}
+                  className="sidebar-menu-item nostyle"
+                  to={`/courses/${activeCourse.id}/chapters/${chapter.id}`}
+                >
+                  <span>{index + 1}.</span> <span>{chapter.title}</span>
+                </NavLink>
+              ))}
+            </div>
             <Divider />
             <div className="sidebar-menu-section">
               <NavLink
-                className="sidebar-menu-item"
+                className="sidebar-menu-item nostyle"
                 to={`/courses/${activeCourse.id}/sections`}
               >
                 Kursabschnitte
               </NavLink>
               <NavLink
-                className="sidebar-menu-item"
+                className="sidebar-menu-item nostyle"
                 to={`/courses/${activeCourse.id}/people`}
               >
                 Leute
               </NavLink>
               <NavLink
-                className="sidebar-menu-item"
+                className="sidebar-menu-item nostyle"
                 to={`/courses/${activeCourse.id}/settings`}
               >
                 Einstellungen

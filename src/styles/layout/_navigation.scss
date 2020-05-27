@@ -59,7 +59,7 @@
       cursor: pointer;
 
       &.is-active {
-        box-shadow: $shadow__primary;
+        box-shadow: $shadow__focus;
       }
     }
   }
