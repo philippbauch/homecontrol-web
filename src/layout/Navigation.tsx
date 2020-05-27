@@ -53,9 +53,9 @@ export const Navigation: React.FunctionComponent<NavigationProps> = ({
         {activeCourse && isScreenMobile() && (
           <Burger onClick={toggleSidebar} open={showSidebar} />
         )}
-        <h1 className="navigation-brand" onClick={goToDefaultRoute}>
+        <h2 className="navigation-brand" onClick={goToDefaultRoute}>
           teapot
-        </h1>
+        </h2>
         {!isScreenMobile() && (
           <div className="navigation-menu">
             <NavLink

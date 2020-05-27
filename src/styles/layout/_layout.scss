@@ -136,16 +136,16 @@
       transform: translateX(85%);
 
       @include screen-tablet {
-        margin-left: 200px;
+        margin-left: 220px;
         transform: translateX(0);
       }
 
       @include screen-desktop {
-        margin-left: 240px;
+        margin-left: 260px;
       }
 
       @include screen-large {
-        margin-left: 280px;
+        margin-left: 300px;
       }
     }
   }

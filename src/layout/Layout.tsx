@@ -27,8 +27,8 @@ export const Layout: React.FunctionComponent = ({ children }) => {
   }, [activeCourse, isScreenMobile]);
 
   useWindowHeight(() => {
-    // $nav-height: 64px;
-    setMinHeightMain(window.innerHeight - 64);
+    // $nav-height: 48px;
+    setMinHeightMain(window.innerHeight - 48);
   });
 
   return (
