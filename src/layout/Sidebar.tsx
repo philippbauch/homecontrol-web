@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Avatar, Divider } from "../components";
 import { useCoursesState } from "../contexts/CoursesContext";
-import { CogIcon } from "../components/icons";
+import { CogIcon, PeopleIcon } from "../components/icons";
 
 interface SidebarProps {}
 
@@ -59,7 +59,8 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
                 className="sidebar-menu-item nostyle"
                 to={`/courses/${activeCourse.id}/people`}
               >
-                Leute
+                <PeopleIcon />
+                <span>Leute</span>
               </NavLink>
               <NavLink
                 className="sidebar-menu-item nostyle"
