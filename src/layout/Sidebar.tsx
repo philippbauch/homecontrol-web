@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Avatar, Divider } from "../components";
 import { useCoursesState } from "../contexts/CoursesContext";
+import { CogIcon } from "../components/icons";
 
 interface SidebarProps {}
 
@@ -64,7 +65,8 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
                 className="sidebar-menu-item nostyle"
                 to={`/courses/${activeCourse.id}/settings`}
               >
-                Einstellungen
+                <CogIcon />
+                <span>Einstellungen</span>
               </NavLink>
             </div>
           </section>

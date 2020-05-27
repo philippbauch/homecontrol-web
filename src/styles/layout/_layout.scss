@@ -78,9 +78,15 @@
       }
 
       &-item {
+        align-items: center;
         color: $color__font-secondary;
+        display: flex;
         margin-left: -$margin-md;
         padding: $padding-xs $padding-md;
+
+        .icon {
+          margin-right: $margin-md;
+        }
 
         &:hover:not(.active) {
           color: $color__primary;
