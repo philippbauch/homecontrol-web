@@ -3,6 +3,7 @@ export { ChevronIcon } from "./ChevronIcon";
 export { CloseIcon } from "./CloseIcon";
 export { CogIcon } from "./CogIcon";
 export { ErrorIcon } from "./ErrorIcon";
+export { FolderIcon } from "./FolderIcon";
 export { HomeIcon } from "./HomeIcon";
 export { InfoIcon } from "./InfoIcon";
 export { ListIcon } from "./ListIcon";

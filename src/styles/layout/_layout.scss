@@ -67,9 +67,8 @@
     }
 
     &-menu {
-      margin-left: $margin-md;
-
       &-header {
+        margin-left: $margin-md;
         color: $color__font-secondary;
         text-transform: uppercase;
         font-weight: $font-weight-semi-bold;
@@ -78,10 +77,11 @@
       }
 
       &-item {
+        border-radius: $radius;
         align-items: center;
         color: $color__font-secondary;
         display: flex;
-        margin-left: -$margin-md;
+        margin: $margin-xs;
         padding: $padding-xs $padding-md;
 
         .icon {
