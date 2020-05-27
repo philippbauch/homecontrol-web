@@ -2,6 +2,7 @@ export { CheckmarkIcon } from "./CheckmarkIcon";
 export { ChevronIcon } from "./ChevronIcon";
 export { CloseIcon } from "./CloseIcon";
 export { CogIcon } from "./CogIcon";
+export { CubeIcon } from "./CubeIcon";
 export { ErrorIcon } from "./ErrorIcon";
 export { FolderIcon } from "./FolderIcon";
 export { HomeIcon } from "./HomeIcon";

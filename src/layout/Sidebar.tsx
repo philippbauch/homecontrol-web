@@ -2,7 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Avatar, Divider } from "../components";
 import { useCoursesState } from "../contexts/CoursesContext";
-import { CogIcon, PeopleIcon, ListIcon, FolderIcon } from "../components/icons";
+import {
+  CogIcon,
+  PeopleIcon,
+  ListIcon,
+  FolderIcon,
+  CubeIcon,
+} from "../components/icons";
 
 interface SidebarProps {}
 
@@ -25,7 +31,15 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
                 exact={true}
                 to={`/courses/${activeCourse.id}/overview`}
               >
-                Übersicht
+                <CubeIcon />
+                <span>Übersicht</span>
+              </NavLink>
+              <NavLink
+                className="sidebar-menu-item nostyle"
+                to={`/courses/${activeCourse.id}/people`}
+              >
+                <PeopleIcon />
+                <span>Leute</span>
               </NavLink>
               <NavLink
                 className="sidebar-menu-item nostyle"
@@ -56,13 +70,6 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = () => {
               >
                 <ListIcon />
                 <span>Kursabschnitte</span>
-              </NavLink>
-              <NavLink
-                className="sidebar-menu-item nostyle"
-                to={`/courses/${activeCourse.id}/people`}
-              >
-                <PeopleIcon />
-                <span>Leute</span>
               </NavLink>
               <NavLink
                 className="sidebar-menu-item nostyle"
